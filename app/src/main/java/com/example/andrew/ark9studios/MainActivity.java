@@ -15,6 +15,7 @@ public class MainActivity extends Activity {
         window.requestFeature(Window.FEATURE_NO_TITLE);
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        //this is paul
         
         setContentView(R.layout.activity_main);
     }
