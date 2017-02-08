@@ -19,7 +19,7 @@ public abstract class Game extends Fragment {
     protected FileIO mFileIO;
     protected RenderSurface mRenderSurface;
 
-    private GameLoop mGameLoop;
+    private GameLoop mLoop;
     private int mScreenWidth = -1;
     private int mScreenHeight = -1;
 
@@ -91,6 +91,33 @@ public abstract class Game extends Fragment {
         super.onDestroy();
 
         //dispose of any game screens
+    }
+
+    //////////////////////////////////////////////////////////////////
+    // Update and Draw methods
+    //////////////////////////////////////////////////////////////////
+
+    public void doUpdate(ElapsedTime elapsedTime) {
+        //reset accumulators for key/touch events
+
+        //get and update the current game screen
+
+        notifyUpdateCompleted();
+    }
+
+    public void notifyUpdateCompleted() {
+        mLoop.notifyUpdateCompleted();
+    }
+
+    public void doDraw(ElapsedTime elapsedTime) {
+
+        //get and draw the current screen
+
+        notifyDrawCompleted();
+    }
+
+    public void notifyDrawCompleted() {
+        mLoop.notifyDrawCompleted();
     }
 
 

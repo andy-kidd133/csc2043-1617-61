@@ -15,33 +15,6 @@ public class GameLoop implements Runnable {
     //average FPS
     private float mAverageFramesPerSecond;
 
-    //////////////////////////////////////////////////////////////////
-    // Update and Draw methods
-    //////////////////////////////////////////////////////////////////
-
-    private void doUpdate(ElapsedTime elapsedTime) {
-        //reset accumulators for key/touch events
-
-        //get and update the current game screen
-
-        notifyUpdateCompleted();
-    }
-
-    public void notifyUpdateCompleted() {
-        mLoop.notifyUpdateCompleted();
-    }
-
-    private void doDraw(ElapsedTime elapsedTime) {
-
-        //get and draw the current screen
-
-        notifyDrawCompleted();
-    }
-
-    public void notifyDrawCompleted() {
-        mLoop.notifyDrawCompleted();
-    }
-
     /////////////////////////////////////////////////////////////////////
     // Properies
     /////////////////////////////////////////////////////////////////////
@@ -127,6 +100,7 @@ public class GameLoop implements Runnable {
                 update.isLocked = true;
             }
             doUpdate(elapsedTime);
+
             //wait for the update to complete before processing
             synchronized (update) {
                 if (update.isLocked) {
@@ -139,6 +113,7 @@ public class GameLoop implements Runnable {
                 draw.isLocked = true;
             }
             doDraw(elapsedTime);
+
             //wait for the draw to complete before processing
             synchronized (draw) {
                 if (draw.isLocked) {
@@ -164,7 +139,52 @@ public class GameLoop implements Runnable {
                 overSleepTime = 0L;
             }
         }
-
-
     }
+
+    //notify the game loop that the update has completed
+
+    public void notifyDrawCompleted() {
+        synchronized (draw) {
+            draw.isLocked = false;
+            draw.notifyAll();
+        }
+    }
+
+    //notify the game loop that the update as completed
+
+    public void notifyUpdateCompleted() {
+        synchronized (update) {
+            update.isLocked = false;
+            update.notifyAll();
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////
+    // Pause/Resume methods for the game loop
+    ///////////////////////////////////////////////////////////////////
+
+    public void pause() {
+        running = false;
+        while (true) {
+            try {
+                renderThread.join();
+                return;
+            } catch (InterruptedException e) {
+
+            }
+        }
+    }
+
+    public void resume() {
+        running = true;
+
+        draw.isLocked = false;
+        update.isLocked = false;
+
+        renderThread = new Thread(this);
+        renderThread.start();
+    }
+
 }
+
+
