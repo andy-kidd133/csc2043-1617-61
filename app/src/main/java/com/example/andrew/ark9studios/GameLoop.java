@@ -15,6 +15,8 @@ public class GameLoop implements Runnable {
     //average FPS
     private float mAverageFramesPerSecond;
 
+
+
     /////////////////////////////////////////////////////////////////////
     // Properies
     /////////////////////////////////////////////////////////////////////
@@ -72,6 +74,7 @@ public class GameLoop implements Runnable {
         long startRun;
         long startStep, endStep;
         long sleepTime, overSleepTime;
+        boolean running = false;
 
         startRun = System.nanoTime() - targetStepPeriod;
         startStep = startRun;
@@ -141,6 +144,10 @@ public class GameLoop implements Runnable {
         }
     }
 
+
+    public void doUpdate(){
+
+    }
     //notify the game loop that the update has completed
 
     public void notifyDrawCompleted() {
