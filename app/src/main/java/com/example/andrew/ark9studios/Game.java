@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.andrew.ark9studios.CoreServices.ScreenManager;
+
 /**
  * Created by Andrew on 08/02/2017.
  */

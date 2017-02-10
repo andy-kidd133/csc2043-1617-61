@@ -1,4 +1,6 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.CoreServices;
+
+import com.example.andrew.ark9studios.GameScreen;
 
 import java.util.HashMap;
 import java.util.Map;
