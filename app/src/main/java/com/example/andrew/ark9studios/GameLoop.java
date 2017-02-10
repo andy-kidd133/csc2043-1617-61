@@ -142,12 +142,17 @@ public class GameLoop implements Runnable {
                 overSleepTime = 0L;
             }
         }
-    }
 
+    }
 
     public void doUpdate(){
 
     }
+
+    public void doDraw() {
+
+    }
+
     //notify the game loop that the update has completed
 
     public void notifyDrawCompleted() {

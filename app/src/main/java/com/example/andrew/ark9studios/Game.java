@@ -109,6 +109,8 @@ public abstract class Game extends Fragment {
         mLoop.notifyUpdateCompleted();
     }
 
+
+
     public void doDraw(ElapsedTime elapsedTime) {
 
         //get and draw the current screen

@@ -6,12 +6,12 @@ package com.example.andrew.ark9studios;
 
 public abstract class GameScreen {
 
-    protected final string mName;
+    protected final String mName;
     protected final Game mGame;
 
     //getters
 
-    public string getmName() {
+    public String getmName() {
         return mName;
     }
 
