@@ -2,6 +2,7 @@ package com.example.andrew.ark9studios;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ public abstract class Game extends Fragment {
     //core game services
     protected AssetStore mAssetManager;
     protected ScreenManager mScreenManager;
-    protected Input mInput;
+    protected ScriptGroup.Input mInput;
     protected FileIO mFileIO;
     protected RenderSurface mRenderSurface;
 
@@ -26,7 +27,7 @@ public abstract class Game extends Fragment {
     private int mScreenHeight = -1;
 
     //getters
-    public Input getInput() {
+    public ScriptGroup.Input getInput() {
         return mInput;
     }
 
@@ -63,6 +64,7 @@ public abstract class Game extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
 
         //create output view and associated renderer
 
