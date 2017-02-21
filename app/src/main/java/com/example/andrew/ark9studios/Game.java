@@ -15,7 +15,7 @@ import com.example.andrew.ark9studios.CoreServices.ScreenManager;
 
 public abstract class Game extends Fragment {
 
-    //core game services
+   /* //core game services
     protected AssetStore mAssetManager;
     protected ScreenManager mScreenManager;
     protected ScriptGroup.Input mInput;
@@ -126,5 +126,5 @@ public abstract class Game extends Fragment {
         mLoop.notifyDrawCompleted();
     }
 
-
+*/
 }

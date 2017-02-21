@@ -4,9 +4,9 @@ package com.example.andrew.ark9studios;
  * Created by Andrew on 08/02/2017.
  */
 
-public class GameLoop implements Runnable {
+public class GameLoop  {
 
-    //instance of game loop
+   /* //instance of game loop
     private GameLoop mLoop;
 
     //target FPS
@@ -196,7 +196,7 @@ public class GameLoop implements Runnable {
         renderThread = new Thread(this);
         renderThread.start();
     }
-
+*/
 }
 
 

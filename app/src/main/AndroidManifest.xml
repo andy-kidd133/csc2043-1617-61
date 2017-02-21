@@ -3,8 +3,7 @@
     package="com.example.andrew.ark9studios">
 
     <uses-permission android:name="android.permission.WAKE_LOCK"/>.
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="true"/>
 
 
