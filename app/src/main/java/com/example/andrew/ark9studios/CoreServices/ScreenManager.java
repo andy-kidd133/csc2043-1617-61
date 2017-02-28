@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ScreenManager {
 
-    //hash map for the collection of available game screens
+ /*   //hash map for the collection of available game screens
     private Map<String, GameScreen> mGameScreens;
 
     //current game screen
@@ -79,5 +79,5 @@ public class ScreenManager {
     public void dispose() {
         for (GameScreen gameScreen : mGameScreens.values())
             gameScreen.dispose();
-    }
+    }*/
 }

@@ -6,7 +6,7 @@ package com.example.andrew.ark9studios;
 
 public abstract class GameScreen {
 
-    protected final String mName;
+    /*protected final String mName;
     protected final Game mGame;
 
     //getters
@@ -36,5 +36,5 @@ public abstract class GameScreen {
 
     public void resume() {}
 
-    public void dispose() {}
+    public void dispose() {}*/
 }

@@ -17,6 +17,6 @@ public class MainActivity extends Activity {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
         
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_menu);
     }
 }

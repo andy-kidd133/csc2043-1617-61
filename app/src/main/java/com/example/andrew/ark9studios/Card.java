@@ -11,16 +11,14 @@ public abstract class Card {
     private Bitmap cardImage;
     private int health;
     private String cardDescription;
-    private CardType cardType;
     private CardDepartment cardDeparment;
     private CardLevel cardLevel;
 
-    public Card(String name, int health, String cardDescription, CardType cardType,
+    public Card(String name, int health, String cardDescription,
                 CardDepartment cardDeparment, CardLevel cardLevel, float posX, float posY) {
         this.name = name;
         this.health = health;
         this.cardDescription = cardDescription;
-        this.cardType = cardType;
         this.cardDeparment = cardDeparment;
         this.cardLevel = cardLevel;
     }
