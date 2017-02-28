@@ -3,8 +3,7 @@
     package="com.example.andrew.ark9studios">
 
     <uses-permission android:name="android.permission.WAKE_LOCK"/>.
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="true"/>
 
 
@@ -16,14 +15,6 @@
         android:theme="@style/AppTheme">
 
 
-        !--Splash Screen--!
-        <activity android:name=".SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         !--Main Activity--!
         <activity android:name=".MainActivity">
@@ -31,6 +22,15 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        !--Splash Screen--!
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
