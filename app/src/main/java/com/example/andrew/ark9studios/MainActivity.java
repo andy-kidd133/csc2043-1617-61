@@ -53,6 +53,8 @@ public class MainActivity extends Activity {
         cards.add(3); //
         cards.add(4); //
         cards.add(5); //
+        cards.add(6);
+        cards.add(7);
 
         deck.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -89,11 +91,31 @@ public class MainActivity extends Activity {
         public void assignImages(int card, ImageView image) {
             switch(card) {
                 case 1:
-                    image.setImageResource(R.drawable.demo_card);
+                    image.setImageResource(R.drawable.Card1);
                     break;
 
                 case 2:
-                    image.setImageResource(R.drawable./*card name*/ );
+                    image.setImageResource(R.drawable.Card2);
+                    break;
+
+                case 3:
+                    image.setImageResource(R.drawable.Card3);
+                    break;
+
+                case 4:
+                    image.setImageResource(R.drawable.Card4);
+                    break;
+
+                case 5:
+                    image.setImageResource(R.drawable.Card6);
+                    break;
+
+                case 6:
+                    image.setImageResource(R.drawable.Card6);
+                    break;
+
+                case 7:
+                    image.setImageResource(R.drawable.Card7);
                     break;
 
 
