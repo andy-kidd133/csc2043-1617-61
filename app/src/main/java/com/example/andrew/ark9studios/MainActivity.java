@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends Activity {
 
@@ -24,8 +26,8 @@ public class MainActivity extends Activity {
         window.requestFeature(Window.FEATURE_NO_TITLE);
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        
-        
+
+
         setContentView(R.layout.main_menu);
 
 
@@ -44,6 +46,60 @@ public class MainActivity extends Activity {
         card5.setVisibility(View.INVISIBLE);
         card6.setVisibility(View.INVISIBLE);
 
+        cards = new ArrayList<>();
+
+        cards.add(1); //demo_card
+        cards.add(2); //
+        cards.add(3); //
+        cards.add(4); //
+        cards.add(5); //
+
+        deck.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                //shuffle the cards
+                Collections.shuffle(cards);
+
+                //deal the first 6 cards
+                assignImages(cards.get(0),card1);
+                assignImages(cards.get(0),card2);
+                assignImages(cards.get(0),card3);
+                assignImages(cards.get(0),card4);
+                assignImages(cards.get(0),card5);
+                assignImages(cards.get(0),card6);
+
+                card1.setVisibility(View.VISIBLE);
+                card2.setVisibility(View.VISIBLE);
+                card3.setVisibility(View.VISIBLE);
+                card4.setVisibility(View.VISIBLE);
+                card5.setVisibility(View.VISIBLE);
+                card6.setVisibility(View.VISIBLE);
+
+                Toast.makeText(MainActivity.this, "Cards dealt!", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+            }
+        });
 
     }
-}
+
+        public void assignImages(int card, ImageView image) {
+            switch(card) {
+                case 1:
+                    image.setImageResource(R.drawable.demo_card);
+                    break;
+
+                case 2:
+                    image.setImageResource(R.drawable./*card name*/ );
+                    break;
+
+
+            }
+
+            }
+    }
+
+
