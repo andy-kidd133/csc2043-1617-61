@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/play_button"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:layout_weight="1"
+        android:contentDescription="Play Game"
+        android:src="@drawable/button_play_game"
+        tools:ignore="HardcodedText" />
+
+
+
+    <ImageView
+        android:id="@+id/option_button"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/options"
+        android:layout_gravity="center"
+        android:src="@drawable/option_button" />
+
+
+    <ImageView
+        android:id="@+id/score_button"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/score_board"
+        android:layout_gravity="center"
+        android:src="@drawable/button_scoreboard" />
+
+    <ImageView
+        android:id="@+id/rules_button"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:contentDescription="Rules"
+        android:layout_gravity="center"
+        android:src="@drawable/button_rules"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/quit_button"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:contentDescription="Quit"
+        android:layout_gravity="center"
+        android:src="@drawable/button_quit"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>
