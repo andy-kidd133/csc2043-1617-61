@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:weightSum="4"
+    android:padding="5dp"
+    >
+
+
+    <TextView
+        android:id="@+id/quit_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize = "35sp"
+        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center"
+        />
+
+
+
+
+    <ImageView
+        android:id="@+id/yes_button"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="Yes"
+        android:src="@drawable/yes_button"
+        tools:ignore="HardcodedText" />
+
+
+    <ImageView
+        android:id="@+id/no_button"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="No"
+        android:src="@drawable/no_button"
+        tools:ignore="HardcodedText" />
+
+
+
+</LinearLayout>
