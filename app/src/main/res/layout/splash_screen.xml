@@ -10,39 +10,28 @@
     android:background="@drawable/background">
 
 
+    <ImageView
+        android:id="@+id/studio_logo"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:contentDescription="Studio logo"
+        android:src="@drawable/studio_logo"
+        android:layout_marginTop="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
+
     <ProgressBar
         style="?android:attr/progressBarStyle"
         android:layout_width="360dp"
         android:layout_height="300dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="68dp"
         android:id="@+id/progressBar"
+        android:startColor="#447a29"
+        android:endColor="#447a29"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:contentDescription="Icon"
-        android:src="@mipmap/unimon"
-        android:layout_alignTop="@+id/title"
-        android:layout_alignStart="@+id/progressBar"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="155dp"
-        android:layout_alignEnd="@+id/progressBar" />
-
-    <ImageView
-        android:id="@+id/title"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:contentDescription="Title"
-        android:src="@drawable/title"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/progressBar" />
 
 
 </RelativeLayout>
