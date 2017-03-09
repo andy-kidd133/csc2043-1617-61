@@ -23,7 +23,7 @@ public abstract class Card {
         this.cardLevel = cardLevel;
     }
 
-    //need a draw method
+
 
 
 }

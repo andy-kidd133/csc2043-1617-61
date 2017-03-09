@@ -1,9 +1,15 @@
 package com.example.andrew.ark9studios.activities;
 
 import android.app.Activity;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.R;
 import com.example.andrew.ark9studios.fragments.PlayGameFragment;
 
@@ -15,7 +21,10 @@ import com.example.andrew.ark9studios.fragments.PlayGameFragment;
 public class MainActivity extends Activity {
 
 
-    //TODO: CREATE MUSIC CLASS AND ADD INSTANCE OF VARIABLE
+    private GameMusic backgroundMusic;
+
+
+
 
 
     /*(non-Javadoc)
@@ -33,9 +42,14 @@ public class MainActivity extends Activity {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        backgroundMusic = new GameMusic(MainActivity.this, R.raw.backgroundmusic);
+        if (backgroundMusic.hasPlayed() == false) {
+            backgroundMusic.startGameMusic();
+        }
 
         setContentView(R.layout.activity_main);
-        if(savedInstanceState==null){
+        if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new PlayGameFragment()).commit();
         }
 
@@ -53,6 +67,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        backgroundMusic.pauseGameMusic();
     }
 
     /* (non-Javadoc)
@@ -62,8 +77,9 @@ public class MainActivity extends Activity {
  * it resumes our game
  */
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
+        backgroundMusic.resumeGameMusic();
 
     }
 
@@ -75,7 +91,22 @@ public class MainActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        backgroundMusic.destroyGameMusic();
     }
+
+
+    /**
+     * this method returns the background music playter for the activity
+     *
+     * @return
+     */
+
+    public GameMusic getPlayer() {
+        return backgroundMusic;
+    }
+
+
+
 
 }
 

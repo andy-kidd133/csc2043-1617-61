@@ -13,7 +13,7 @@ import com.example.andrew.ark9studios.R;
  * Created by megan on 02/03/2017.
  */
 
-public class QuitFragment extends MainMenuFragment  {
+public class QuitFragment extends MainMenuFragment {
 
     private ImageView quitYes, quitNo;
 

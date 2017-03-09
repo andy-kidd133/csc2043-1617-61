@@ -11,6 +11,7 @@ import java.util.Random;
 //Card_Amount is the amount of cards the user has in their deck
 //card is the enum for the cards being stored
 //It should only need an array called deck that contains cards and the amount of cards in the array to work
+/*
 
 public class ShuffleCard extends Card extends Deck {
     void shuffle(int Card_Amount){
@@ -30,4 +31,4 @@ public class ShuffleCard extends Card extends Deck {
             Deck[i] = Temp;
         }
     }
-}
+}*/

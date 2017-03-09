@@ -8,18 +8,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.andrew.ark9studios.R;
-
-
 /**
  * Created by Megan on 23/02/2017.
  */
-
 public class PlayGameFragment extends Fragment {
-
-
-
     /* (non-Javadoc)
 	 * @see android.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
 	 *
@@ -33,7 +26,6 @@ public class PlayGameFragment extends Fragment {
         rootView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 FragmentManager fragMan = getFragmentManager();
                 FragmentTransaction fragTran = fragMan.beginTransaction().addToBackStack(null);
                 MainMenuFragment menu = new MainMenuFragment();
@@ -44,6 +36,3 @@ public class PlayGameFragment extends Fragment {
         return rootView;
     }
 }
-
-
-

@@ -24,10 +24,10 @@ public class RulesFragment extends Fragment {
 
 
       TextView title = (TextView) view.findViewById(R.id.rules_title);
-        title.setText("Rules Of Unimon");
+        title.setText("The Rules Of Unimon");
 
         TextView rulesText = (TextView) view.findViewById(R.id.rules_text_view);
-        rulesText.setText("The rules of unimon are.......");
+        rulesText.setText("");
 
         return view;
 
