@@ -36,7 +36,7 @@ public class MainMenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.main_menu, container, false);
         mainActivity = (MainActivity)getActivity();
         playGame = (ImageView) view.findViewById(R.id.play_button);
-        options = (ImageView) view.findViewById(R.id.options_button);
+        options = (ImageView) view.findViewById(R.id.option_button);
         rules = (ImageView) view.findViewById(R.id.rules_button);
         scoreBoard = (ImageView) view.findViewById(R.id.scoreboard_button);
         quit = (ImageView) view.findViewById(R.id.quit_button);
