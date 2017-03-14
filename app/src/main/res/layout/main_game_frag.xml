@@ -10,80 +10,79 @@
     android:background="@drawable/unimon_bg"
     >
 
-    <LinearLayout
-        android:id="@+id/lay"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:weightSum="6">
-
-        <ImageView
-            android:id="@+id/iv_card1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback"
-            android:contentDescription="" />
-
-        <ImageView
-            android:id="@+id/iv_card2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
-
-
-        <ImageView
-            android:id="@+id/iv_card3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
-
-
-        <ImageView
-            android:id="@+id/iv_card4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
-
-
-        <ImageView
-            android:id="@+id/iv_card5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
-
-
-        <ImageView
-            android:id="@+id/iv_card6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
-
-
-</LinearLayout>
 
     <ImageView
-        android:id="@+id/iv_deck"
-        android:layout_width="150dp"
-        android:layout_height="700dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/cardback"
+        android:id="@+id/player1deck"
+        android:layout_width="800dp"
+        android:layout_height="150dp"
+        android:src="@drawable/card_deck"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp" />
+
+    <ImageView
+        android:id="@+id/card1"
+        android:layout_width="71dp"
+        android:layout_height="150dp"
+        android:src="@drawable/deck_card"
+        android:layout_marginStart="59dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/card2"
+        android:layout_width="71dp"
+        android:layout_height="150dp"
+        android:src="@drawable/deck_card"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/card1" />
+
+
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="71dp"
+        android:layout_height="150dp"
+        android:src="@drawable/deck_card"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/card2" />
+
+    <ImageView
+        android:id="@+id/card4"
+        android:layout_width="71dp"
+        android:layout_height="150dp"
+        android:src="@drawable/deck_card"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/card3" />
+
+    <ImageView
+        android:id="@+id/card5"
+        android:layout_width="71dp"
+        android:layout_height="150dp"
+        android:src="@drawable/deck_card"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/card4" />
+
+    <ImageView
+        android:id="@+id/card6"
+        android:layout_width="73dp"
+        android:layout_height="150dp"
+        android:src="@drawable/deck_card"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/card5"
+        android:layout_marginStart="11dp" />
+
+    <ImageView
+        android:id="@+id/player2deck"
+        android:layout_width="800dp"
+        android:layout_height="210dp"
+        android:src="@drawable/card_enemy_blue"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp" />
+        android:layout_alignParentStart="true"
+        />
 
 
 </RelativeLayout>

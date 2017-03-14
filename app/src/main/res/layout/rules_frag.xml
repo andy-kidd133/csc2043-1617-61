@@ -15,7 +15,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize = "35sp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:gravity="center"
         />
@@ -29,7 +29,7 @@
         android:padding="10dp"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#000000"/>
 
 
 
