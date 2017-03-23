@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/unimon_bg"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/options_menu"
+        android:layout_width="500dp"
+        android:layout_height="700dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="Options"
+        android:src="@drawable/option_menu"
+        />
+
+    <Switch
+        android:id="@+id/musicswitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="290dp"
+        android:text=""
+        android:layout_alignBaseline="@+id/music_txt"
+        android:layout_alignBottom="@+id/music_txt"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="220dp" />
 
     <TextView
         android:id="@+id/music_txt"
@@ -13,21 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="220dp"
         android:text="Music On"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#000000"/>
 
-    <Switch
-        android:id="@+id/musicswitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:text=""
-        android:layout_alignBaseline="@+id/music_txt"
-        android:layout_alignBottom="@+id/music_txt"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="225dp" />
 
-</RelativeLayout>
+</FrameLayout>

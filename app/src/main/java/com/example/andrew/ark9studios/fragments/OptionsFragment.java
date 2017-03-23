@@ -36,7 +36,7 @@ public class OptionsFragment extends Fragment {
         mainActivity = (MainActivity)getActivity();
         musicText = (TextView) view.findViewById(R.id.music_txt);
         musicSwitch = (Switch) view.findViewById(R.id.musicswitch);
-        musicSwitch.setChecked(!mainActivity.getPlayer().isMusicOff());
+        musicSwitch.setChecked(!mainActivity.getPlayer().isOff());
 
         addListenerToMusic();
         return view;
@@ -56,13 +56,13 @@ public class OptionsFragment extends Fragment {
           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
               if(isChecked){
                   musicText.setText("Music On");
-                  mainActivity.getPlayer().startGameMusic();
-                  mainActivity.getPlayer().turnOnMusic();
+                  mainActivity.getPlayer().StartMusic();
+                  mainActivity.getPlayer().turnOn();
 
               }else{
                   musicText.setText("Music Off");
-                  mainActivity.getPlayer().stopGameMusic();
-                  mainActivity.getPlayer().turnOffMusic();
+                  mainActivity.getPlayer().stop();
+                  mainActivity.getPlayer().turnOff();
               }
           }
       });

@@ -3,6 +3,8 @@ package com.example.andrew.ark9studios;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
@@ -20,114 +22,158 @@ public class AssetStore {
 
 
 
-    Map<String, byte[]> assets;
-    AssetManager androidAssetManager;
-    private final native ParcelFileDescriptor openAssetFd(String fileName, long[] outOffsets);
+    // /////////////////////////////////////////////////////////////////////////
+    // Properties
+    // /////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Bitmap asset store
+     */
+    private HashMap<String, Bitmap> mBitmaps;
+
+    /**
+     * Music asset store
+     */
+    private HashMap<String, GameMusic> mMusic;
+
+    /**
+     * Sound asset store
+     */
+    private HashMap<String, Sound> mSounds;
+    private SoundPool mSoundPool;
+
+    /**
+     * File IO
+     */
+    private FileIO mFileIO;
+
+    // /////////////////////////////////////////////////////////////////////////
+    // Constructors
+    // /////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Create a new asset store
+     *
+     * @param FileIO Context to which this File IO will use
+     */
+    public AssetStore(FileIO fileIO) {
+        mFileIO = fileIO;
+        mBitmaps = new HashMap<String, Bitmap>();
+        mMusic = new HashMap<String, GameMusic>();
+        mSounds = new HashMap<String, Sound>();
+        mSoundPool = new SoundPool(Sound.MAX_CONCURRENT_SOUNDS,
+                AudioManager.STREAM_MUSIC, 0);
+    }
+
+    // /////////////////////////////////////////////////////////////////////////
+    // Store //
+    // /////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Add the specified bitmap asset to the store
+     *
+     * @param assetName Name given to the asset
+     * @param asset     Bitmap asset to add
+     * @return boolean true if the asset could be added, false it not (e.g. an
+     * asset with the specified name already exists).
+     */
+    public boolean add(String assetName, Bitmap asset) {
+        if (mBitmaps.containsKey(assetName))
+            return false;
+
+        mBitmaps.put(assetName, asset);
+        return true;
+    }
 
 
     /**
-     * Creates a new asset manager which is a hashmap containing a name and a byte array
+     * Add the specified sound asset to the store
      *
-     * @param assetManager this is the android asset manager which I then build upon to provide more functionality
+     * @param assetName Name given to the asset
+     * @param asset     Sound asset to add
+     * @return boolean true if the asset could be added, false it not (e.g. an
+     * asset with the specified name already exists).
      */
-    public AssetStore(AssetManager assetManager) {
-        assets = new HashMap<String, byte[]>();
-        androidAssetManager = assetManager;
+    public boolean add(String assetName, Sound asset) {
+        if (mSounds.containsKey(assetName))
+            return false;
+
+        mSounds.put(assetName, asset);
+        return true;
     }
 
     /**
-     * To create an asset you pass in the location of the file and the name you want to store against the file
-     * This method then breaks it into a byte array and adds it to the hashmap
+     * Load and add the specified bitmap asset to the store
      *
-     * @param locationOfFile this is the location of whatever file you want in the assets folder
-     * @param storedName this is the name to use when storing the asset in the asset manager
+     * @param assetName  Name given to the asset
+     * @param bitmapFile Location of the bitmap asset
+     * @return boolean true if the asset could be loaded and added, false if not
      */
-    public void StoreAsset(String locationOfFile, String storedName) {
-        InputStream inputStream = null;
-        byte[] byteArray = null;
+    public boolean loadAndAddBitmap(String assetName, String bitmapFile) {
 
-        //I have broken every file into a byte array so that I can handle every type of file and create a new getter method for that type
+        boolean success = true;
         try {
-            inputStream = androidAssetManager.open(locationOfFile);
-
-            byteArray = new byte[inputStream.available()];
-
-            inputStream.read(byteArray);
-
+            Bitmap bitmap = mFileIO.loadBitmap(bitmapFile, null);
+            success = add(assetName, bitmap);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("Gage", "AssetStore.loadAndAddBitmap: Cannot load ["
+                    + bitmapFile + "]");
+            success = false;
         }
 
+        return success;
+    }
+
+
+    /**
+     * Load and add the specified sound asset to the store
+     *
+     * @param assetName Name given to the asset
+     * @param soundFile Location of the sound asset
+     * @return boolean true if the asset could be loaded and added, false if not
+     */
+    public boolean loadAndAddSound(String assetName, String soundFile) {
+        boolean success = true;
         try {
-            inputStream.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+            Sound sound = mFileIO.loadSound(soundFile, mSoundPool);
+            success = add(assetName, sound);
+        } catch (IOException e) {
+            Log.e("Gage", "AssetStore.loadAndAddSound: Cannot load ["
+                    + soundFile + "]");
+            success = false;
         }
 
-        assets.put(storedName, byteArray);
+        return success;
     }
 
     /**
-     * This is used to list all the assets that are available
+     * Retrieve the specified bitmap asset from the store
      *
-     * @return a list of all the assets currently stored in memory
+     * @param assetName Name of the asset to retrieve
+     * @return Bitmap asset, null if the named asset could not be found
      */
-    public String ListAssets() {
-        String assetString = "";
-        int i = 0;
-
-        for(String key: assets.keySet()) {
-            assetString += "Asset " + i + " " + key;
-        }
-
-        return assetString;
+    public Bitmap getBitmap(String assetName) {
+        return mBitmaps.get(assetName);
     }
 
     /**
-     * This method is to generate a bitmap from a byte array
-     * You pass in the image name that is contained in the hashmap and you get a bitmap returned
+     * Retrieve the specified music asset from the store
      *
-     * @param imageName the name of the image stored in the asset manager
-     * @return the bitmap image created from the byte array
+     * @param assetName Name of the asset to retrieve
+     * @return Music asset, null if the named asset could not be found
      */
-    public Bitmap LoadBitmap(String imageName) {
-        Bitmap bitmap = null;
-
-        try {
-            byte[] imageByteArray = assets.get(imageName);
-
-            bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.length);
-        }
-        catch (Exception e) {
-            Log.d("debug", "There is no bitmap in the asset manager with that name");
-            Log.d("debug", e.toString());
-        }
-
-        return bitmap;
+    public GameMusic getMusic(String assetName) {
+        return mMusic.get(assetName);
     }
 
     /**
-     * Creates a string from the byte array stored in the hashmap
+     * Retrieve the specified sound asset from the store
      *
-     * @param textName the name of the text file stored in the asset manager
-     * @return a string of the text that was stored in the byte array
+     * @param assetName Name of the asset to retrieve
+     * @return Sound asset, null if the named asset could not be found
      */
-    public String LoadText(String textName) {
-        String text = null;
-
-        try {
-
-            byte[] textByteArray = assets.get(textName);
-
-            text = new String(textByteArray);
-        }
-        catch (Exception e) {
-            Log.d("debug", "There is no text in the asset manager with that name");
-            Log.d("debug", e.toString());
-        }
-
-        return text;
+    public Sound getSound(String assetName) {
+        return mSounds.get(assetName);
     }
 
 

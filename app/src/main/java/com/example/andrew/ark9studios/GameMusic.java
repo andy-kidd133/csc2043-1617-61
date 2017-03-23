@@ -1,7 +1,9 @@
 package com.example.andrew.ark9studios;
 
+
 import android.content.Context;
 import android.media.MediaPlayer;
+
 
 /**
  * Created by Megan on 06/03/2017.
@@ -10,82 +12,105 @@ import android.media.MediaPlayer;
 public class GameMusic extends MediaPlayer {
 
 
-    private MediaPlayer backgroundMusic;
-    private int currentPos;
-    private boolean played, musicOff, isGamePlaying;
+    private MediaPlayer backPlayer;
+    private int curPos;
+    private boolean played, off, gamePlaying;
 
+    /**
+     * BackgroundMusic extends MediaPlayer
+     * Constructor loads in raw file and prepares
+     *
+     * @param context - application context from activity
+     * @param resid - the raw id of the file to be loaded
+     */
     public GameMusic(Context context, int resid){
-        backgroundMusic = MediaPlayer.create(context, resid);
-        backgroundMusic.setLooping(true);
+        super();
+        backPlayer = MediaPlayer.create(context, resid);
+        backPlayer.setLooping(true);
         played = false;
-        musicOff= false;
-        isGamePlaying=false;
-
+        off = false;
+        gamePlaying = false;
     }
 
-
-
-    public void startGameMusic(){
-        backgroundMusic.start();
-        played=true;
+    // Starts the playback of music, sets a boolean that it has played
+    public void StartMusic() {
+        backPlayer.start();
+        played = true;
     }
 
-    public void pauseGameMusic(){
-        currentPos=backgroundMusic.getCurrentPosition();
-        backgroundMusic.pause();
+    //Pauses music and saves current position
+    public void pauseMusic() {
+        curPos = backPlayer.getCurrentPosition();
+        backPlayer.pause();
     }
 
-
-    public void resumeGameMusic(){
-        if(musicOff == false && isGamePlaying==false){
-            backgroundMusic.start();
-            backgroundMusic.seekTo(currentPos);
+    //Resumes playback
+    public void resumeMusic(){
+        if (off == false && gamePlaying == false){
+            backPlayer.start();
+            backPlayer.seekTo(curPos);
         }
     }
 
-    public void stopGameMusic(){
-        backgroundMusic.pause();
-        currentPos=0;
+    //Stops music and resets to zero
+    public void stopMusic() {
+        backPlayer.pause();
+        curPos = 0;
     }
 
-    public void destroyGameMusic(){
-        backgroundMusic.stop();
-        backgroundMusic.release();
+    //Releases music when finished
+    public void destroyMusic() {
+        backPlayer.stop();
+        backPlayer.release();
     }
 
-
-
-    //setters
-
-    public void turnOnMusic() {
-        musicOff = false;
+    //Setters
+    //Sets off variable false
+    public void turnOn() {
+        off = false;
     }
 
-    public void turnOffMusic(){
-        musicOff=true;
+    //Sets off variable true
+    public void turnOff() {
+        off = true;
     }
 
-    public void setIsGamePlaying(boolean m){
-        isGamePlaying=m;
+    //Sets gamePlaying variable
+    public void setGamePlaying(boolean n) {
+        gamePlaying = n;
     }
 
-
-
-
-
-    public boolean isMusicOff(){
-        return musicOff;
+    //Getters
+    /**
+     * @return
+     * returns variable indicating if the music is off
+     */
+    public boolean isOff() {
+        return off;
     }
 
-    public boolean isGamePlaying(){
-        return isGamePlaying;
+    /**
+     * @return
+     * returns variable indicating if main game fragment is playing
+     */
+    public boolean isGamePlaying() {
+        return gamePlaying;
     }
 
-
-    public boolean hasPlayed(){
+    /**
+     * @return
+     * returns variable indicating if the music has played
+     */
+    public boolean hasPlayed() {
         return played;
     }
 
 
-
 }
+
+
+
+
+
+
+

@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:id="@+id/container"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/unimon_bg"
     tools:context="com.example.andrew.ark9studios.activities.MainActivity">
-
-
-
+    <LinearLayout
+        android:id="@+id/lay"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <ImageView
+            android:id="@+id/iv_card1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/cardback" />
+        <ImageView
+            android:id="@+id/iv_card2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/cardback" />
+        <ImageView
+            android:id="@+id/iv_card3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/cardback" />
+        <ImageView
+            android:id="@+id/iv_card4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/cardback" />
+        <ImageView
+            android:id="@+id/iv_card5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/cardback" />
+        <ImageView
+            android:id="@+id/iv_card6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_Weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/cardback"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_deck"
+        android:layout_width="150dp"
+        android:layout_height="700dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/cardback"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

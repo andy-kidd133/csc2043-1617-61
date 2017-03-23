@@ -1,6 +1,7 @@
 package com.example.andrew.ark9studios.activities;
 
 import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
@@ -44,8 +45,8 @@ public class MainActivity extends Activity {
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         backgroundMusic = new GameMusic(MainActivity.this, R.raw.backgroundmusic);
-        if (backgroundMusic.hasPlayed() == false) {
-            backgroundMusic.startGameMusic();
+        if (backgroundMusic.isPlaying() == false) {
+            backgroundMusic.StartMusic();
         }
 
         setContentView(R.layout.activity_main);
@@ -67,20 +68,19 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        backgroundMusic.pauseGameMusic();
+        backgroundMusic.pauseMusic();
     }
 
     /* (non-Javadoc)
- * @see android.app.Activity#onResume()
- *
- * This method is again called by the android when the user brings the application to the front
- * it resumes our game
- */
+  * @see android.app.Activity#onResume()
+  *
+  * This method is again called by the android when the user brings the application to the front
+  * it resumes our game
+  */
     @Override
     public void onResume() {
         super.onResume();
-        backgroundMusic.resumeGameMusic();
-
+        backgroundMusic.resumeMusic();
     }
 
     /* (non-Javadoc)
@@ -91,7 +91,7 @@ public class MainActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        backgroundMusic.destroyGameMusic();
+        backgroundMusic.destroyMusic();
     }
 
 

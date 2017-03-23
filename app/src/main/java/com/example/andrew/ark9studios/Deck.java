@@ -1,8 +1,16 @@
 package com.example.andrew.ark9studios;
 
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static com.example.andrew.ark9studios.R.drawable.card1;
 
 /**
  * Created by megan on 02/03/2017.
@@ -11,20 +19,30 @@ import java.util.Collections;
 public class Deck {
 
     private boolean deckEmpty = true;
+    private Rect deckRect;
+    private static final int SIZEOFDECK=3;
+    private ArrayList<CharacterCard> player1Deck;
 
-    private static final int SIZEOFDECK=7;
 
-    private ArrayList<Card> playersDeck = new ArrayList<>();
+
+    //constructor
+    public Deck() {
+        deckRect = null;
+    }
+
 
     //methods for the deck class
 
 
-    public void shuffle(){
-        Collections.shuffle(playersDeck);
+    public void shuffle()
+    {
+        Collections.shuffle(player1Deck);
     }
 
-    public void addCardsToDeck()
-    {
+
+    public void addCardsToDeck(ArrayList<CharacterCard> p1Deck){
+
+      p1Deck = CardHelper.generateCards();
 
     }
 
@@ -49,7 +67,7 @@ public class Deck {
 
     public int getSizeofdeck()
     {
-        return playersDeck.size();
+        return player1Deck.size();
     }
 
 
