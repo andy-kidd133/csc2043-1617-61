@@ -24,10 +24,6 @@ public class MainActivity extends Activity {
 
     private GameMusic backgroundMusic;
 
-
-
-
-
     /*(non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 *
@@ -109,6 +105,3 @@ public class MainActivity extends Activity {
 
 
 }
-
-
-0
