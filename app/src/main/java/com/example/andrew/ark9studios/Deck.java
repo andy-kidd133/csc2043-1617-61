@@ -10,8 +10,6 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.example.andrew.ark9studios.R.drawable.card1;
-
 /**
  * Created by megan on 02/03/2017.
  */
@@ -25,10 +23,18 @@ public class Deck {
 
 
 
+
+
+
     //constructor
     public Deck() {
         deckRect = null;
     }
+
+
+
+
+
 
 
     //methods for the deck class

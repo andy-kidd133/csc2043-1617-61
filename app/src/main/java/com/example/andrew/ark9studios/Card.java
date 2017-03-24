@@ -37,6 +37,10 @@ public abstract class Card {
 
     }
 
+    public void zoomCard() {
+
+    }
+
 
 
 
