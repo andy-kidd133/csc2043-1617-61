@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="500dp"
+    android:background="@drawable/pausemenu">
+
+    <ImageView
+        android:id="@+id/resume_button"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="Resume"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginTop="-60dp"
+        android:src="@drawable/pauseresume"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+    <ImageView
+        android:id="@+id/menupause_button"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="Main Menu"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/pausemainmenu"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+    <ImageView
+        android:id="@+id/quit_button"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="Quit"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/pausequit"
+        tools:ignore="HardcodedText,RtlHardcoded" />
+
+
+</FrameLayout>

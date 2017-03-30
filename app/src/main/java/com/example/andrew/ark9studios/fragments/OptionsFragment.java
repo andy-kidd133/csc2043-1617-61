@@ -56,12 +56,12 @@ public class OptionsFragment extends Fragment {
           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
               if(isChecked){
                   musicText.setText("Music On");
-                  mainActivity.getPlayer().StartMusic();
+                  mainActivity.getPlayer().startGameMusic();
                   mainActivity.getPlayer().turnOn();
 
               }else{
                   musicText.setText("Music Off");
-                  mainActivity.getPlayer().stop();
+                  mainActivity.getPlayer().stopGameMusic();
                   mainActivity.getPlayer().turnOff();
               }
           }

@@ -33,19 +33,20 @@ public class GameMusic extends MediaPlayer {
     }
 
     // Starts the playback of music, sets a boolean that it has played
-    public void StartMusic() {
+
+    public void startGameMusic() {
         backPlayer.start();
         played = true;
     }
 
     //Pauses music and saves current position
-    public void pauseMusic() {
+    public void pauseGameMusic() {
         curPos = backPlayer.getCurrentPosition();
         backPlayer.pause();
     }
 
     //Resumes playback
-    public void resumeMusic(){
+    public void resumeGameMusic(){
         if (off == false && gamePlaying == false){
             backPlayer.start();
             backPlayer.seekTo(curPos);
@@ -53,13 +54,13 @@ public class GameMusic extends MediaPlayer {
     }
 
     //Stops music and resets to zero
-    public void stopMusic() {
+    public void stopGameMusic() {
         backPlayer.pause();
         curPos = 0;
     }
 
     //Releases music when finished
-    public void destroyMusic() {
+    public void destroyGameMusic() {
         backPlayer.stop();
         backPlayer.release();
     }

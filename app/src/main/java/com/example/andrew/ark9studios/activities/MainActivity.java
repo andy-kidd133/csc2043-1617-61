@@ -1,18 +1,16 @@
 package com.example.andrew.ark9studios.activities;
 
 import android.app.Activity;
-import android.content.res.AssetFileDescriptor;
+import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.RadioButton;
-import android.widget.Toast;
+
 
 import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.R;
-import com.example.andrew.ark9studios.fragments.PlayGameFragment;
+import com.example.andrew.ark9studios.fragments.MainMenuFragment;
 
 /**
  * Created by Megan on 23/02/2017.
@@ -46,12 +44,12 @@ public class MainActivity extends Activity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         backgroundMusic = new GameMusic(MainActivity.this, R.raw.backgroundmusic);
         if (backgroundMusic.isPlaying() == false) {
-            backgroundMusic.StartMusic();
+            backgroundMusic.startGameMusic();
         }
 
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, new PlayGameFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new MainMenuFragment()).commit();
         }
 
 
@@ -68,7 +66,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        backgroundMusic.pauseMusic();
+        backgroundMusic.pauseGameMusic();
     }
 
     /* (non-Javadoc)
@@ -80,7 +78,7 @@ public class MainActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        backgroundMusic.resumeMusic();
+        backgroundMusic.resumeGameMusic();
     }
 
     /* (non-Javadoc)
@@ -91,7 +89,7 @@ public class MainActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        backgroundMusic.destroyMusic();
+        backgroundMusic.destroyGameMusic();
     }
 
 
@@ -106,9 +104,6 @@ public class MainActivity extends Activity {
     }
 
 
-
-
 }
 
 
-0
