@@ -79,6 +79,7 @@ public class CharacterCard extends Card {
 
     public void cardAttack() {
 
+
     }
 
     public void cardDeath() {
