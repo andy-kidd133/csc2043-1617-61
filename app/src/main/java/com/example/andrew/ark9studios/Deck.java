@@ -21,11 +21,6 @@ public class Deck {
     private static final int SIZEOFDECK=3;
     private ArrayList<CharacterCard> player1Deck;
 
-
-
-
-
-
     //constructor
     public Deck() {
         deckRect = null;
