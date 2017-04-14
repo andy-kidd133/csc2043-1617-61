@@ -4,6 +4,7 @@ package com.example.andrew.ark9studios.fragments;
 import android.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,15 @@ import android.view.ViewGroup;
 
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameScreen;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 /*import com.example.andrew.ark9studios.gameInfrastructure.GameLoop;
 import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.GameViews.PauseGameMenuView;
@@ -103,6 +113,25 @@ public class GameFragment extends Fragment {
     public void setupStartScreen(GameScreen gameScreen) {
         game.setupInitialGameScreen(gameScreen);
     }
+
+    //Json file loader
+
+    public String loadJSONFile() {
+        String json = null;
+        try {
+            InputStream is = getActivity().getAssets().open("CardList.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
 
 
 }
