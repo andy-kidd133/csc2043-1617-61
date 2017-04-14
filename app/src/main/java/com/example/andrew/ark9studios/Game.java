@@ -1,35 +1,54 @@
 package com.example.andrew.ark9studios;
 
-import android.app.Fragment;
-import android.os.Bundle;
-import android.renderscript.ScriptGroup;
-import android.view.LayoutInflater;
+import android.app.Activity;
+import android.media.AudioManager;
+import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.example.andrew.ark9studios.CoreServices.ScreenManager;
+import com.example.andrew.ark9studios.GameGraphics.CanvasRenderSurface;
+import com.example.andrew.ark9studios.IO.FileIO;
+import com.example.andrew.ark9studios.fragments.GameFragment;
+import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+import com.example.andrew.ark9studios.gameInfrastructure.GameLoop;
+import com.example.andrew.ark9studios.gameInfrastructure.ScreenManager;
 
 /**
  * Created by Andrew on 08/02/2017.
+ * edited by Megan
  */
 
-public abstract class Game extends Fragment {
+public  class Game  {
 
-   /* //core game services
-    protected AssetStore mAssetManager;
+
+    //////////////////////////////////////////////////////////////////
+    //Variables
+    //////////////////////////////////////////////////////////////////
+
+    private static final int TARGET_GAME_FRAME_RATE=30;
+
+
+    protected AssetManager mAssetManager;
+
+
     protected ScreenManager mScreenManager;
-    protected ScriptGroup.Input mInput;
+
+
+   //PRIVATE AUDIOMANAGER AND INPUTMANAGER
+
+
     protected FileIO mFileIO;
-    protected RenderSurface mRenderSurface;
+    protected CanvasRenderSurface mRenderSurface;
 
     private GameLoop mLoop;
     private int mScreenWidth = -1;
     private int mScreenHeight = -1;
+    private Activity activity;
 
-    //getters
-    public ScriptGroup.Input getInput() {
-        return mInput;
-    }
+
+    //////////////////////////////////////////////////////////////////
+    //Getters
+    //////////////////////////////////////////////////////////////////
+
 
     public FileIO getFileIO() {
         return mFileIO;
@@ -43,7 +62,7 @@ public abstract class Game extends Fragment {
         return mScreenHeight;
     }
 
-    public AssetStore getAssetManager() {
+    public AssetManager getAssetManager() {
 
         return mAssetManager;
     }
@@ -52,79 +71,199 @@ public abstract class Game extends Fragment {
         return mScreenManager;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstaceState) {
-        super.onCreate(savedInstaceState);
-
-        //create instance of game loop
-
-        //create instances of the core game services
+    public GameLoop getmLoop(){
+        return mLoop;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+   public Activity getActivity(){
+       return  activity;
+   }
 
 
-        //create output view and associated renderer
 
-        //get our input from the created view
-
-        //store the size of the window we're using
-
-
-        return ;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        //if needed, resume the loop
-    }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-
-        //if needed pause the current screen
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        //dispose of any game screens
-    }
 
     //////////////////////////////////////////////////////////////////
-    // Update and Draw methods
+    //Constructor
     //////////////////////////////////////////////////////////////////
 
-    public void doUpdate(ElapsedTime elapsedTime) {
-        //reset accumulators for key/touch events
-
-        //get and update the current game screen
-
-        notifyUpdateCompleted();
-    }
-
-    public void notifyUpdateCompleted() {
-        mLoop.notifyUpdateCompleted();
+    public Game(GameFragment mainGameFragment){
+        this.activity = mainGameFragment.getActivity();
     }
 
 
 
-    public void doDraw(ElapsedTime elapsedTime) {
 
-        //get and draw the current screen
+    //////////////////////////////////////////////////////////////////
+    //Methods
+    //////////////////////////////////////////////////////////////////
 
-        notifyDrawCompleted();
+
+    /***
+     * initialises the games key components
+     */
+    public void initialiseGameComponents(){
+
+        //create a new game loop
+        mLoop = new GameLoop(this, TARGET_GAME_FRAME_RATE);
+
+        //create the game IO service
+        mFileIO = new FileIO(activity.getApplicationContext());
+
+        //create the game asset manager
+        mAssetManager = new AssetManager(mFileIO);
+        //create the screen manager
+        mScreenManager = new ScreenManager();
+
+        //request control of the phone/tablet volume
+        activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+
+
     }
 
-    public void notifyDrawCompleted() {
-        mLoop.notifyDrawCompleted();
+
+    /***
+     * Creates and returns the render surface the game will be displayed on
+     *
+     * @return view - game render surface
+     */
+    public View setUpViewAndReturn(){
+
+        mRenderSurface = new CanvasRenderSurface(this, activity);
+        View view = mRenderSurface.getAsView();
+        //TODO: INPUT MANAGER CLASS NEEDS TO BE COMPLETED
+
+        DisplayMetrics metrics = new DisplayMetrics();
+
+        activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        mScreenWidth = metrics.widthPixels;
+        mScreenHeight = metrics.heightPixels;
+
+        return view;
+
     }
 
-*/
+    /***
+     * This method pauses the game loop and the current game screen
+     */
+     public void resume(){
+
+         //pauses the current game screen
+         if(mScreenManager.getCurrentGameScreen() != null){
+             mScreenManager.getCurrentGameScreen().pause();
+         }
+
+         mLoop.resume();
+     }
+
+
+    /***
+     * Pause of the game that pauses the game loop and the current screen being
+     * displayed
+     */
+    public void pause() {
+        // Pause the game loop
+        mLoop.pause();
+
+        // If needed, pause the current game screen
+        if (mScreenManager.getCurrentGameScreen() != null) {
+            mScreenManager.getCurrentGameScreen().pause();
+        }
+
+    }
+
+
+    /***
+     * Disposes of any game screens
+     */
+    public void destroy() {
+        // Dispose of any game screens
+        mScreenManager.dispose();
+    }
+
+
+
+
+    /**
+     * Perform the update step
+     *
+     * @param elapsedTime
+     *            Elapsed time information for the current frame
+     */
+    public void update(ElapsedTime elapsedTime) {
+        // Reset accumulators for keys/touch events for the current frame
+        //((InputManager) inputManager).resetAccumulators();
+
+        // Get and update the current game screen
+        GameScreen gameScreen = mScreenManager.getCurrentGameScreen();
+        if (gameScreen != null)
+            gameScreen.update(elapsedTime);
+
+        // It is assumed that if the update is multi-threaded then the
+        // method call will not return until all update processes have
+        // completed. Once this happens, notify the game loop.
+        notifyIfUpdateCompleted();
+    }
+
+    /**
+     * Notify the game loop that the update has completed. This method is in
+     * invoked automatically once control has returned from the Game update()
+     * method.
+     */
+    public void notifyIfUpdateCompleted() {
+        mLoop.notifyIfUpdateCompleted();
+    }
+
+    /***
+     * Perform the draw step
+     *
+     * @param elapsedTime
+     *            - Elapsed time information for the current frame
+     */
+    public void draw(ElapsedTime elapsedTime) {
+        // Get and draw the current screen. Th e render surface will
+        // invoked Game.notifyDrawCompleted when the draw is done.
+        GameScreen gameScreen = mScreenManager.getCurrentGameScreen();
+        if (gameScreen != null) {
+            mRenderSurface.render(elapsedTime, gameScreen);
+        }
+    }
+
+    /**
+     * Notify the game loop that the draw has completed. This method is in
+     * invoked automatically by the render surface when the draw has completed.
+     */
+    public void notifyIfDrawCompleted() {
+        mLoop.notifyIfDrawCompleted();
+    }
+
+    /***
+     * Show this GameScreen upon launch of the application
+     *
+     * @param gameScreen
+     *            - screen to be shown
+     */
+    public void setupInitialGameScreen(GameScreen gameScreen) {
+        mScreenManager.addGameScreen(gameScreen);
+    }
+
+    /**
+     * Method that is useful for changing from one GameScreen to another.
+     *
+     * @param fromScreen
+     *            - screen coming from
+     * @param toScreen
+     *            - screen want to change to
+     */
+    public void changeScreen(GameScreen fromScreen, GameScreen toScreen) {
+        mScreenManager.transitionScreens(fromScreen, toScreen);
+    }
+
+
+
+
+
+
+
+
 }

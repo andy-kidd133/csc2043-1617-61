@@ -2,18 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.andrew.ark9studios">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>.
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="true"/>
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    .
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch.distinct"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
 
 
         !--Splash Screen--!
@@ -25,8 +30,15 @@
             </intent-filter>
         </activity>
 
-        !--Main Activity--!
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.GameActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <!--
+        !&#45;&#45;Login Activity&#45;&#45;!
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,6 +46,10 @@
             </intent-filter>
         </activity>
 
+
+        <activity android:name=".activities.RegisterActivity"/>
+        <activity android:name=".activities.MainActivity"/>
+        -->
 
     </application>
 

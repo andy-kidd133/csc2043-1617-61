@@ -19,7 +19,7 @@ import com.example.andrew.ark9studios.R;
 
 public class RulesFragment extends Fragment {
 
-private ImageView gameRules;
+private TextView rulesText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ private ImageView gameRules;
         View view = inflater.inflate(R.layout.rules_frag, container, false);
 
 
-        TextView rulesText = (TextView) view.findViewById(R.id.rules_text_view);
+        rulesText = (TextView) view.findViewById(R.id.rules_text_view);
         rulesText.setText("Win conditions: \n 1:Opponent runs out of cards to draw. \n 2:Opponent has no Unimon on the field. \n 3:Player collects all their prize cards.\n\n"+
                 "Setup:\n Shuffle your deck. Put top three cards face down in the prize cards \n section and draw 6 cards. Check you have at least 1 Unimon card.\n" +
                 "If you have no Unimon cards. Place all your cards in your hand  back\n" + " in the deck, reshuffle and draw another 6. Repeat until you have at\n" +

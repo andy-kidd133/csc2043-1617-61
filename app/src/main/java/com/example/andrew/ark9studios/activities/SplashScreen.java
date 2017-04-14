@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.andrew.ark9studios.IO.GameAssetInterface;
 import com.example.andrew.ark9studios.R;
 
 
@@ -38,8 +39,8 @@ public class SplashScreen extends Activity {
                 }catch(Exception e){
                     Log.e("SplashScreen Time", "Error with loading");
                 }finally{
-                    Intent openMainActivity = new Intent(SplashScreen.this, MainActivity.class);
-                    startActivity(openMainActivity);
+                    Intent openLoginActivity = new Intent(SplashScreen.this, GameActivity.class);
+                    startActivity(openLoginActivity);
                     finish();
                 }
             }
@@ -49,7 +50,7 @@ public class SplashScreen extends Activity {
         }
 
     @Override
-    protected void onPause(){
+    public void onPause(){
         super.onPause();
         finish();
     }

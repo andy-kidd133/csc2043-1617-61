@@ -5,82 +5,66 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/unimon_bg"
+    android:background="@drawable/qubbg"
     tools:context="com.example.andrew.ark9studios.activities.MainActivity">
 
 
-<!--    <LinearLayout
-        android:id="@+id/lay"
+
+    <TextView
+        android:id="@+id/welcomeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+
+        tools:ignore="RtlHardcoded" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="6"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        >
 
 
         <ImageView
-            android:id="@+id/iv_card1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
+            android:id="@+id/unimon_logo"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="100dp"
+            android:contentDescription="Studio logo"
+            android:src="@drawable/quibtig"
+            android:layout_marginTop="10dp"
+            />
 
         <ImageView
-            android:id="@+id/iv_card2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
-
-
-        <ImageView
-            android:id="@+id/iv_card3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
+            android:id="@+id/startgame_button"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="Start Game"
+            android:src="@drawable/taptostart"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="185dp"
+            android:layout_marginTop="300dp"
+            />
 
 
         <ImageView
-            android:id="@+id/iv_card4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
+            android:id="@+id/logout_button"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="Logout"
+            android:src="@drawable/logout"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="185dp"
+            android:layout_marginTop="400dp"
+            />
 
 
-        <ImageView
-            android:id="@+id/iv_card5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback" />
-
-
-        <ImageView
-            android:id="@+id/iv_card6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_Weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/cardback"/>
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_deck"
-        android:layout_width="150dp"
-        android:layout_height="700dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/cardback"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />-->
+    </RelativeLayout>
 
 
 

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/qubbg"
+>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:id="@+id/etUsername"
+        android:hint="Username"
+        android:textColorHint="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:maxLines="1" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:id="@+id/etPass"
+        android:hint="Password"
+        android:textColorHint="@color/black"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+
+        tools:ignore="HardcodedText"
+        android:maxLines="1" />
+
+
+
+    <ImageView
+        android:id="@+id/register_button"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="Register"
+        android:src="@drawable/registerbutton"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/goToLogin_button"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="Register"
+        android:src="@drawable/backtologin"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        />
+
+</LinearLayout>
