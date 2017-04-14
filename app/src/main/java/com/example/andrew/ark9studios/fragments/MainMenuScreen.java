@@ -43,7 +43,7 @@ public class MainMenuScreen extends GameScreen {
     private Bitmap quitBitmap;
 
 
-   private static final String MENU_SCREEN_NAME="MainMenuScreen";
+   private static final String SCREEN_NAME="MainMenuScreen";
 
 
 
@@ -58,7 +58,7 @@ public class MainMenuScreen extends GameScreen {
 
 
     public MainMenuScreen(Game game){
-          super(MENU_SCREEN_NAME, game);
+          super(SCREEN_NAME, game);
 
         AssetManager assetManager = game.getAssetManager();
 

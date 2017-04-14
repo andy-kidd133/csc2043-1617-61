@@ -21,14 +21,14 @@ public class ScoreBoardScreen extends GameScreen {
 
 
     private Rect backgroundBound;
-    private Rect menuTemplateBound;
+    private Rect scoreMenuBound;
 
 
     private Bitmap backgroundBitmap;
-    private Bitmap menuTemplateBitmap;
+    private Bitmap scoreMenuBitmap;
 
 
-    private static final String SCORE_SCREEN_NAME="ScoreBoardScreen";
+    private static final String SCREEN_NAME="ScoreBoardScreen";
 
     private static final int MENU_TEMPLATE_WIDTH =1100;
 
@@ -36,16 +36,16 @@ public class ScoreBoardScreen extends GameScreen {
 
 
     public ScoreBoardScreen(Game game){
-        super(SCORE_SCREEN_NAME, game);
+        super(SCREEN_NAME, game);
 
         AssetManager assetManager = game.getAssetManager();
-
+        assetManager.emptyAssets();
         assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("menuTemplate", "images/scoreboard_menu.png");
+        assetManager.loadAndAddBitmap("scoreboardmenu", "images/scoreboard_menu.png");
 
 
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
-        this.menuTemplateBitmap = assetManager.getBitmap("menuTemplate");
+       this.scoreMenuBitmap = assetManager.getBitmap("scoreboardmenu");
     }
 
     @Override
@@ -56,8 +56,8 @@ public class ScoreBoardScreen extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
-        int menuTop=140;
-        int menuLeft=120;
+        int scoreMenuTop=140;
+        int scoreMenuLeft=120;
 
 
         if(backgroundBound == null){
@@ -65,14 +65,14 @@ public class ScoreBoardScreen extends GameScreen {
                     graphics2DInterface.getSurfaceHeight());
         }
 
-        if(menuTemplateBound == null){
-            menuTemplateBound = new Rect(menuLeft, menuTop , MENU_TEMPLATE_WIDTH,
+        if(scoreMenuBound == null){
+           scoreMenuBound = new Rect(scoreMenuLeft, scoreMenuTop , MENU_TEMPLATE_WIDTH,
                     MENU_TEMPLATE_HEIGHT);
         }
 
 
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
-        graphics2DInterface.drawBitmap(menuTemplateBitmap, null, menuTemplateBound, null);
+        graphics2DInterface.drawBitmap(scoreMenuBitmap, null, scoreMenuBound, null);
 
     }
 
