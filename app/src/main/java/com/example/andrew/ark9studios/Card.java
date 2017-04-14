@@ -2,17 +2,6 @@ package com.example.andrew.ark9studios;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.support.v4.view.MotionEventCompat;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.RelativeLayout;
-
-import java.util.ArrayList;
-
-import static android.R.attr.bitmap;
-import static android.R.attr.width;
-import static android.view.MotionEvent.INVALID_POINTER_ID;
-import static com.example.andrew.ark9studios.R.attr.height;
 
 /**
  * Created by Emma and Megan 09/02/2017.
