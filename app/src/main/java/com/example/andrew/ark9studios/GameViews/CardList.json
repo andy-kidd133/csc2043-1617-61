@@ -1,0 +1,17 @@
+{
+  "length":9,
+  "cards": [
+    {"name":"Painter", "cardDepartment":"ART","cardBackground": "cardBack","cardImage":"card1", "health":"2","attackCost":"2", "attackDamage":"2"},
+    {"name":"Sketcher", "cardDepartment":"ART", "cardBackground":"cardBack","cardImage":"card2", "health":"3", "attackCost":"3","attackDamage":"3"},
+    {"name:":"PaintKit", "cardBackground":"cardBack","cardImage":"card3","description":"paintbox power up card","ENERGY_VALUE": "1"},
+    {"name":"Historian", "cardDepartment":"HUMANITIES","cardBackground": "cardBack","cardImage":"card4", "health":"2","attackCost":"2", "attackDamage":"2"},
+    {"name":"Geographer", "cardDepartment":"HUMANITIES", "cardBackground":"cardBack","cardImage":"card5", "health":"3", "attackCost":"3","attackDamage":"3"},
+    {"name:":"Globe", "cardBackground":"cardBack","cardImage":"card6","description":"increase attack power by 1","ENERGY_VALUE": "1"},
+    {"name":"Software Engineer", "cardDepartment":"COMPUTING","cardBackground": "cardBack","cardImage":"card7", "health":"2","attackCost":"2", "attackDamage":"2"},
+    {"name":"Computer Scientist", "cardDepartment":"COMPUTING", "cardBackground":"cardBack","cardImage":"card8", "health":"3", "attackCost":"3","attackDamage":"3"},
+    {"name:":"Controller", "cardBackground":"cardBack","cardImage":"card9","description":"+1 Computing Energy","ENERGY_VALUE": "1"},
+
+  ]
+
+
+}
