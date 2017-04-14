@@ -2,13 +2,12 @@ package com.example.andrew.ark9studios.fragments;
 
 
 import android.app.Fragment;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameScreen;

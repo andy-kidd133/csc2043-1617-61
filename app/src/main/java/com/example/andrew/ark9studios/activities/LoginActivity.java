@@ -1,6 +1,6 @@
 package com.example.andrew.ark9studios.activities;
 
-import android.app.Activity;
+/*import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.andrew.ark9studios.R;
 
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient;*/
 
 /*public class LoginActivity extends Activity implements View.OnClickListener {
 

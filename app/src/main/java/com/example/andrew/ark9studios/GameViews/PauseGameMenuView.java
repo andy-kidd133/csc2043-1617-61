@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import com.example.andrew.ark9studios.R;
 import com.example.andrew.ark9studios.activities.MainActivity;
 import com.example.andrew.ark9studios.fragments.GameFragment;
-import com.example.andrew.ark9studios.fragments.MainMenuFragment;
+import com.example.andrew.ark9studios.fragments.MainMenuScreen;
 */
 
 
@@ -86,7 +86,7 @@ import com.example.andrew.ark9studios.fragments.MainMenuFragment;
              break;
 
             case R.id.menupause_button:
-                transitionFragment(new MainMenuFragment());
+                transitionFragment(new MainMenuScreen());
                 dismiss();
               break;
 

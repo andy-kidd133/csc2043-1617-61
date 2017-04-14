@@ -13,6 +13,7 @@ import android.util.Log;
 
 
 
+/*
 public class DbHelper extends SQLiteOpenHelper {
 
     //variables
@@ -30,19 +31,23 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
+*/
 /**
      * create table users{
      *     id integer primary key autoincrement
      *     username text,
      *     password text);
      * }
-     */
+     *//*
 
 
+
+*/
 /*    public static final String CREATE_TABLE_USERS = "CREATE TABLE" + USER_TABLE + "("
             + COLUMN_ID + "INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_USERNAME + "TEXT, "
-            + COLUMN_PASS  + "TEXT);";*/
+            + COLUMN_PASS  + "TEXT);";*//*
+
 
 
 
@@ -66,10 +71,12 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
+*/
 /**
      *
      * storing user details in database
-     */
+     *//*
+
 
 
     public void addUser(String username, String password){
@@ -114,4 +121,5 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 }
+*/
 

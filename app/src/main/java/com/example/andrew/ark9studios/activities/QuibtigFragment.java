@@ -6,7 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.andrew.ark9studios.fragments.GameFragment;
-import com.example.andrew.ark9studios.fragments.MainMenuFragment;
+import com.example.andrew.ark9studios.fragments.MainMenuScreen;
+import com.example.andrew.ark9studios.fragments.ScoreBoardScreen;
 
 /**
  * Created by Megan on 13/04/2017.
@@ -30,7 +31,7 @@ public class QuibtigFragment extends GameFragment {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         // set up the main screen to be the screen that is shown
 
-        setupStartScreen(new MainMenuFragment(game));
+        setupStartScreen(new ScoreBoardScreen(game));
 
         return view;
     }

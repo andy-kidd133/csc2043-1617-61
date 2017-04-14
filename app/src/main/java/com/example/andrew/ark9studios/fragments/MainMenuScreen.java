@@ -16,7 +16,7 @@ import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 /**
  * Created by Megan on 23/02/2017.
  */
-public class MainMenuFragment extends GameScreen {
+public class MainMenuScreen extends GameScreen {
 
     private Rect backgroundBound;
     private Rect menuTemplateBound;
@@ -43,7 +43,7 @@ public class MainMenuFragment extends GameScreen {
     private Bitmap quitBitmap;
 
 
-   private static final String MENU_SCREEN_NAME="MainMenuFragment";
+   private static final String MENU_SCREEN_NAME="MainMenuScreen";
 
 
 
@@ -51,13 +51,13 @@ public class MainMenuFragment extends GameScreen {
 
    private static final int BUTTON_HEIGHT = 180;
 
-    private static final int MENU_WIDTH =1100;
+    private static final int MENU_TEMPLATE_WIDTH =1100;
 
-    private static final int MENU_HEIGHT = 1400;
+    private static final int MENU_TEMPLATE_HEIGHT = 1400;
 
 
 
-    public MainMenuFragment(Game game){
+    public MainMenuScreen(Game game){
           super(MENU_SCREEN_NAME, game);
 
         AssetManager assetManager = game.getAssetManager();
@@ -147,8 +147,8 @@ public class MainMenuFragment extends GameScreen {
 
 
         if(menuTemplateBound == null){
-            menuTemplateBound = new Rect(menuLeft, menuTop , MENU_WIDTH,
-                    MENU_HEIGHT);
+            menuTemplateBound = new Rect(menuLeft, menuTop , MENU_TEMPLATE_WIDTH,
+                    MENU_TEMPLATE_HEIGHT);
         }
 
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);

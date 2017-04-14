@@ -1,5 +1,5 @@
 package com.example.andrew.ark9studios.fragments;
-
+/*
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,9 @@ import android.widget.TextView;
 import com.example.andrew.ark9studios.R;
 
 
-/**
+*//**
  * Created by megan on 02/03/2017.
- * expanded by paul on the 15/03/2017.
- */
+ *//*
 
 public class RulesFragment extends Fragment {
 
@@ -49,4 +48,4 @@ private TextView rulesText;
         return view;
 
     }
-}
+}*/

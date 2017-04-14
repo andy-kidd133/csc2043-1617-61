@@ -1,6 +1,6 @@
 package com.example.andrew.ark9studios.activities;
 
-import android.app.Activity;
+/*import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.R;
-import com.example.andrew.ark9studios.fragments.MainMenuFragment;
+import com.example.andrew.ark9studios.fragments.MainMenuScreen;*/
 
 /**
  * Created by Megan on 23/02/2017.
@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
        tapToStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().add(R.id.container, new MainMenuFragment()).commit();
+                getFragmentManager().beginTransaction().add(R.id.container, new MainMenuScreen()).commit();
             }
         });
 

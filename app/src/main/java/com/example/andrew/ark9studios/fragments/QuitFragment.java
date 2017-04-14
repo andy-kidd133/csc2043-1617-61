@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.andrew.ark9studios.R;
+//import com.example.andrew.ark9studios.
 
 /**
  * Created by megan on 02/03/2017.
  */
 /*
-public class QuitFragment extends MainMenuFragment {
+public class QuitFragment extends MainMenuScreen {
 
     private ImageView quitYes, quitNo;
 
@@ -55,7 +55,7 @@ public class QuitFragment extends MainMenuFragment {
         quitNo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                MainMenuFragment menu = new MainMenuFragment();
+                MainMenuScreen menu = new MainMenuScreen();
                QuitFragment.super.transitionFragment(menu);
         }
         });
