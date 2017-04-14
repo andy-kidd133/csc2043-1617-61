@@ -1,5 +1,6 @@
 package com.example.andrew.ark9studios.GameViews;
 
+/*
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
@@ -13,15 +14,16 @@ import android.view.Window;
 import android.widget.ImageView;
 import com.example.andrew.ark9studios.R;
 import com.example.andrew.ark9studios.activities.MainActivity;
-import com.example.andrew.ark9studios.fragments.MainGameFragment;
+import com.example.andrew.ark9studios.fragments.GameFragment;
 import com.example.andrew.ark9studios.fragments.MainMenuFragment;
+*/
 
 
 /**
  * Created by Megan on 28/03/2017.
  */
 
-public class PauseGameMenuView extends Dialog  implements  android.view.View.OnClickListener  {
+/*public class PauseGameMenuView extends Dialog  implements  android.view.View.OnClickListener  {
 
     public Activity activity;
     public Fragment nextFragment;
@@ -64,11 +66,11 @@ public class PauseGameMenuView extends Dialog  implements  android.view.View.OnC
 
 
 
-    /**
+    *//**
      * This is a switch case which will be used to go through each pause menu button
      * and do the specific method for each
      * @param v: this is the id of the buttons
-     */
+     *//*
 
     @Override
     public void onClick(View v) {
@@ -76,10 +78,10 @@ public class PauseGameMenuView extends Dialog  implements  android.view.View.OnC
         {
             case R.id.resume_button:
                 dismiss();
-                MainGameFragment.getGameLoop().resume();
-                MainGameFragment.setPaused(false);
-                if(MainGameFragment.getGameMusic().hasPlayed()==true){
-                    MainGameFragment.getGameMusic().startGameMusic();
+                GameFragment.getGameLoop().resume();
+                GameFragment.setPaused(false);
+                if(GameFragment.getGameMusic().hasPlayed()==true){
+                    GameFragment.getGameMusic().startGameMusic();
                 }
              break;
 
@@ -98,16 +100,16 @@ public class PauseGameMenuView extends Dialog  implements  android.view.View.OnC
         dismiss();
     }
 
-    /**
+    *//**
      * The method below will transition through to the next fragment
-     */
+     *//*
     public void transitionFragment(Fragment frag){
 
         FragmentManager fragmentManager = activity.getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(nextFragment.getId(), frag);
         fragmentTransaction.commit();
-    }
+    }*/
 
 
 
@@ -145,4 +147,4 @@ public class PauseGameMenuView extends Dialog  implements  android.view.View.OnC
 
 
 
-}
+

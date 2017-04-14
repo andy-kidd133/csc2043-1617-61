@@ -1,5 +1,5 @@
 package com.example.andrew.ark9studios.fragments;
-
+/*
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,20 +11,20 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.andrew.ark9studios.R;
-import com.example.andrew.ark9studios.activities.MainActivity;
+import com.example.andrew.ark9studios.activities.MainActivity;*/
 
 /**
  * Created by megan on 02/03/2017.
  */
 
-public class OptionsFragment extends Fragment {
+/*public class OptionsFragment extends Fragment {
 
 
     private TextView musicText;
     private Switch musicSwitch;
     private MainActivity mainActivity;
 
-    //TODO : CREATE METHOD FOR RADIO BUTTONS WHEN MUSIC IS IMPLEMENTED
+    //TODO : CREATE METHOD FOR SETTING THE VOLUME IN THE GAME
 
 
     @Override
@@ -36,7 +36,7 @@ public class OptionsFragment extends Fragment {
         mainActivity = (MainActivity)getActivity();
         musicText = (TextView) view.findViewById(R.id.music_txt);
         musicSwitch = (Switch) view.findViewById(R.id.musicswitch);
-        musicSwitch.setChecked(!mainActivity.getPlayer().isOff());
+       musicSwitch.setChecked(!mainActivity.getPlayer().isOff());
 
         addListenerToMusic();
         return view;
@@ -45,11 +45,11 @@ public class OptionsFragment extends Fragment {
     }
 
 
-    /**
+    *//**
      * Functionality added to the on/off music switch button
      * Used Android documentation to understand compound button
      * http://developer.android.com/reference/android/widget/CompoundButton.OnCheckedChangeListener.html
-     */
+     *//*
   public void addListenerToMusic(){
       musicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
           @Override
@@ -70,4 +70,4 @@ public class OptionsFragment extends Fragment {
 
 
 
-}
+}*/

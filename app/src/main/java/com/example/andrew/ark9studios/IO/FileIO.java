@@ -1,4 +1,4 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.IO;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,8 @@ import android.media.SoundPool;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
+import com.example.andrew.ark9studios.Sound;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,7 +20,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * Created by Megan on 20/03/2017.
+ * Created by Megan on 20/11/2016
+ * edited by Megan on 12/03/2017.
  */
 
 public class FileIO {
@@ -43,6 +46,11 @@ public class FileIO {
      */
     private String mExternalStoragePath;
 
+    /**
+     * GameAssetStore loader is used to load in the assets
+     */
+    private AssetLoader gameAssetLoader;
+
     // /////////////////////////////////////////////////////////////////////////
     // Constructors
     // /////////////////////////////////////////////////////////////////////////
@@ -55,6 +63,7 @@ public class FileIO {
      */
     public FileIO(Context context) {
         mContext = context;
+        this.gameAssetLoader = new AssetLoader(context.getAssets());
         mAssetManager = context.getAssets();
         mExternalStoragePath = Environment.getExternalStorageDirectory()
                 .getAbsolutePath() + File.separator;
@@ -80,42 +89,17 @@ public class FileIO {
     /**
      * Load the specified bitmap using the specified format from the APK file.
      *
-     * @param fileName
+     * @param bitmapFile
      *            Name of the bitmap to be loaded
      * @param format
      *            Bitmap format to be used when loading the bitmap
      * @throws IOException
      *             if the asset cannot be opened or read.
      */
-    public Bitmap loadBitmap(String fileName, Bitmap.Config format)
+    public Bitmap loadBitmap(String bitmapFile, Bitmap.Config format)
             throws IOException {
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = format;
-        InputStream in = null;
-        Bitmap bitmap = null;
-        try {
-            in = mAssetManager.open(fileName);
-            bitmap = BitmapFactory.decodeStream(in);
-            if (bitmap == null) {
-                String message = "Unimon Warning" +
-                        "Could npt load bitmap" + fileName + "]";
-                throw new IOException(message);
-            }
-        } catch (IOException e) {
-            String message ="Unimon Warning:"
-                    + "Could not load bitmap [" + fileName + "]";
-            throw new IOException(message);
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-
-        return bitmap;
+        return gameAssetLoader.loadBitmap(bitmapFile,format );
     }
 
 
@@ -128,16 +112,14 @@ public class FileIO {
      */
     public Sound loadSound(String filename, SoundPool soundPool)
             throws IOException {
-        try {
-            AssetFileDescriptor assetDescriptor = mAssetManager.openFd(filename);
-            int soundId = soundPool.load(assetDescriptor, 0);
-            return new Sound(soundPool, soundId);
-        } catch (IOException e) {
-            String message = "Unimon Warning: "
-                    + "Could not load sound [" + filename + "]";
-            throw new IOException(message);
-        }
+           return gameAssetLoader.loadSound(filename, soundPool);
     }
+
+
+    public String loadText(String textFile) throws IOException{
+        return gameAssetLoader.loadText(textFile);
+    }
+
 
     // /////////////////////////////////////////////////////////////////////////
     // Device Storage IO //

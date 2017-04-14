@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/unimon_bg">
+    android:background="@drawable/qubbg">
 
 
     <ImageView
@@ -23,23 +23,11 @@
         tools:ignore="HardcodedText" />
 
 
-
-    <ImageView
-        android:id="@+id/unimon_logo"
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="100dp"
-        android:contentDescription="Studio logo"
-        android:src="@drawable/unimon_logo"
-        android:layout_marginTop="306dp"
-        />
-
     <ProgressBar
         style="?android:attr/progressBarStyle"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="300dp"
         android:id="@+id/progressBar"
         android:startColor="#447a29"
         android:endColor="#447a29"
