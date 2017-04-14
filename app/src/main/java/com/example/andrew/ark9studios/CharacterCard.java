@@ -30,11 +30,13 @@ public class CharacterCard extends Card {
 
     public int getHealth()
     {
+
         return health;
     }
 
 
     public int getAttackCost()
+
     {
         return attackCost;
     }

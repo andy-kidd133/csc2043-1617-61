@@ -17,12 +17,15 @@ import static com.example.andrew.ark9studios.R.attr.height;
 /**
  * Created by Emma and Megan 09/02/2017.
  */
-
-public abstract class Card {
+/*
+    Updated by Emma and Andrew 13/4/17
+ */
+public abstract class Card{
 
 
     private String name;                                    //name of the card
-    protected Bitmap cardImage;                             //bitmap used to render this card
+    private Bitmap cardBackground;                          //generic card background
+    protected Bitmap cardImage;                             //bitmap used to identify card
     public Vector2 position = new Vector2();                //position of this card
     protected BoundingBox Bound = new BoundingBox();        //bounding box for this card
 

@@ -15,6 +15,7 @@ import com.example.andrew.ark9studios.CoreServices.ScreenManager;
 
 public abstract class Game extends Fragment {
 
+
    /* //core game services
     protected AssetStore mAssetManager;
     protected ScreenManager mScreenManager;
