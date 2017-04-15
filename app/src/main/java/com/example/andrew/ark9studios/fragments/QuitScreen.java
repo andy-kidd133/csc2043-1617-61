@@ -37,7 +37,7 @@ public class QuitScreen extends GameScreen{
 
 
 
-    private static final String QUIT_SCREEN_NAME="QuitScreen";
+    private static final String SCREEN_NAME="QuitScreen";
 
 
 
@@ -54,7 +54,7 @@ public class QuitScreen extends GameScreen{
 
 
     public QuitScreen(Game game){
-        super(QUIT_SCREEN_NAME, game);
+        super(SCREEN_NAME, game);
 
         AssetManager assetManager = game.getAssetManager();
         assetManager.emptyAssets();

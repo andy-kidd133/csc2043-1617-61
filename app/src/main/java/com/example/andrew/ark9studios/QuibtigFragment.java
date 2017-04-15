@@ -1,4 +1,4 @@
-package com.example.andrew.ark9studios.activities;
+package com.example.andrew.ark9studios;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 
 import com.example.andrew.ark9studios.fragments.GameFragment;
 import com.example.andrew.ark9studios.fragments.MainMenuScreen;
-import com.example.andrew.ark9studios.fragments.QuitScreen;
-import com.example.andrew.ark9studios.fragments.ScoreBoardScreen;
 
 /**
  * Created by Megan on 13/04/2017.

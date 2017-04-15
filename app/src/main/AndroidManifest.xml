@@ -26,7 +26,7 @@
         </activity>
 
         !--Game Activity--!
-        <activity android:name=".activities.GameActivity">
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +34,9 @@
             </intent-filter>
         </activity>
 
-
+        !--Other Game activities--!
+        <activity android:name=".activities.GameActivity"/>
+        <activity android:name=".activities.RegisterActivity"/>
     </application>
 
 </manifest>

@@ -1,21 +1,20 @@
 package com.example.andrew.ark9studios.activities;
 
-/*import android.app.Activity;
+import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.andrew.ark9studios.Databases.DbHelper;
+import com.example.andrew.ark9studios.Databases.Session;
 import com.example.andrew.ark9studios.R;
 
-import com.google.android.gms.common.api.GoogleApiClient;*/
 
-/*public class LoginActivity extends Activity implements View.OnClickListener {
+
+public class LoginActivity extends Activity implements View.OnClickListener {
 
     private ImageView login, register;
     private EditText etUsername, etPassword;
@@ -42,11 +41,11 @@ import com.google.android.gms.common.api.GoogleApiClient;*/
         register.setOnClickListener(this);
 
         if (session.loggedIn()) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, GameActivity.class));
             finish();
         }
 
-;
+
     }
 
     @Override
@@ -72,7 +71,7 @@ import com.google.android.gms.common.api.GoogleApiClient;*/
 
         if (db.getUser(username, pass)) {
             session.setLoggedIn(true);
-            Intent mainAct = new Intent(LoginActivity.this, MainActivity.class);
+            Intent mainAct = new Intent(LoginActivity.this, GameActivity.class);
             mainAct.putExtra("Username", username);
             startActivity(mainAct);
             finish();
@@ -84,4 +83,4 @@ import com.google.android.gms.common.api.GoogleApiClient;*/
 
 
 
-}*/
+}

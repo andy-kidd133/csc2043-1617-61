@@ -1,16 +1,16 @@
 package com.example.andrew.ark9studios.activities;
 
-/*
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
+import com.example.andrew.ark9studios.Databases.DbHelper;
 import com.example.andrew.ark9studios.R;
 
 public class RegisterActivity extends Activity implements  View.OnClickListener {
@@ -79,4 +79,4 @@ public class RegisterActivity extends Activity implements  View.OnClickListener 
 
     }
 }
-*/
+
