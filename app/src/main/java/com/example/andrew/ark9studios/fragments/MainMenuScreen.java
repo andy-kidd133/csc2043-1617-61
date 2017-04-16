@@ -4,14 +4,20 @@ package com.example.andrew.ark9studios.fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;
-
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.AssetManager;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
+import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+
+import java.util.List;
 
 /**
  * Created by Megan on 23/02/2017.
@@ -94,6 +100,19 @@ public class MainMenuScreen extends GameScreen {
     @Override
     public void update(ElapsedTime elapsedTime) {
 
+        Input input = game.getInput();
+
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+
+        if (touchEvents.size() > 0) {
+           GameTouchEvent touchEvent = touchEvents.get(0);
+           if(optionsButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+
+                OptionsScreen optionsScreen = new OptionsScreen(game);
+                game.changeScreen(this, optionsScreen);
+
+            }
+        }
     }
 
     @Override
@@ -161,6 +180,8 @@ public class MainMenuScreen extends GameScreen {
 
     }
 
+
+
     @Override
     public void dispose() {
 
@@ -175,4 +196,6 @@ public class MainMenuScreen extends GameScreen {
     public void resume() {
 
     }
+
+
 }

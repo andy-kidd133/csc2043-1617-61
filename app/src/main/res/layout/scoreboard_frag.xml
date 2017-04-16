@@ -4,20 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/unimon_bg"
     android:weightSum="4"
     android:padding="5dp">
 
-    <ImageView
-        android:id="@+id/scoreboard_menu"
-        android:layout_width="500dp"
-        android:layout_height="700dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="Scoreboard"
-        android:src="@drawable/scoreboard_menu"
-        tools:ignore="HardcodedText,RtlHardcoded" />
+
 
 
 

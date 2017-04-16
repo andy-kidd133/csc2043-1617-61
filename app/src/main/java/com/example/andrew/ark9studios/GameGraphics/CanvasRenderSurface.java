@@ -28,7 +28,7 @@ public class CanvasRenderSurface extends View implements RenderSurfaceInterface 
     protected Context context;
 
 
-    protected GameScreen gameScreen;
+    protected GameScreen gameScreenToRender;
 
 
     protected ElapsedTime elapsedTime;
@@ -67,7 +67,7 @@ public class CanvasRenderSurface extends View implements RenderSurfaceInterface 
 
         // Store render target + time info
         this.elapsedTime = elapsedTime;
-        this.gameScreen = gameScreenToRender;
+        this.gameScreenToRender = gameScreenToRender;
 
         // posts invalidate message to the user interface thread
         //the onDraw method is then called by this UI thread
@@ -96,7 +96,8 @@ public class CanvasRenderSurface extends View implements RenderSurfaceInterface 
         //the game renders itself to this screen
         //using a canvasGraphics2D instance
         canvasGraphics2D.setCanvas(canvas);
-        gameScreen.draw(elapsedTime, canvasGraphics2D);
+        gameScreenToRender.draw(elapsedTime, canvasGraphics2D);
+
 
         //it notifies the game that the render is completed
         game.notifyIfDrawCompleted();

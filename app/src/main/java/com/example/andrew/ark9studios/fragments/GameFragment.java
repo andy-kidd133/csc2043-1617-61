@@ -4,7 +4,6 @@ package com.example.andrew.ark9studios.fragments;
 import android.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,13 @@ import android.view.ViewGroup;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameScreen;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 /*import com.example.andrew.ark9studios.gameInfrastructure.GameLoop;
 import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.GameViews.PauseGameMenuView;
 import com.example.andrew.ark9studios.R;
-import com.example.andrew.ark9studios.activities.MainActivity;*/
+import com.example.andrew.ark9studios.activities.GameActivity;*/
 
 
 

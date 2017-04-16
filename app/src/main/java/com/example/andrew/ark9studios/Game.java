@@ -1,24 +1,17 @@
 package com.example.andrew.ark9studios;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.hardware.input.InputManager;
 import android.media.AudioManager;
-import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.gameInfrastructure.ScreenManager;
 import com.example.andrew.ark9studios.GameGraphics.CanvasRenderSurface;
-import com.example.andrew.ark9studios.GameGraphics.RenderSurfaceInterface;
 import com.example.andrew.ark9studios.IO.FileIO;
 import com.example.andrew.ark9studios.fragments.GameFragment;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 import com.example.andrew.ark9studios.gameInfrastructure.GameLoop;
-import com.example.andrew.ark9studios.gameInfrastructure.ScreenManager;
 
 /**
  * Created by Andrew on 08/02/2017.
@@ -34,7 +27,7 @@ public class Game  {
         private static final int TARGET_GAME_FRAME_RATE=30;
         private AssetManager mAssetManager;
         private ScreenManager mScreenManager;
-        //PRIVATE AUDIOMANAGER AND INPUTMANAGER
+        private Input input;
         private FileIO mFileIO;
         private CanvasRenderSurface mRenderSurface;
         private GameLoop mLoop;
@@ -62,6 +55,7 @@ public class Game  {
         public GameLoop getmLoop(){
             return mLoop;
         }
+        public Input getInput(){ return input;}
         public Activity getActivity(){
             return  activity;
         }
@@ -97,11 +91,14 @@ public class Game  {
         public View setUpViewAndReturn(){
             mRenderSurface = new CanvasRenderSurface(this, activity);
             View view = mRenderSurface.getAsView();
-            //TODO: INPUT MANAGER CLASS NEEDS TO BE COMPLETED
+
+            input = new Input(activity, view);
+
             DisplayMetrics metrics = new DisplayMetrics();
             activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
             mScreenWidth = metrics.widthPixels;
             mScreenHeight = metrics.heightPixels;
+
             return view;
         }
         /***
@@ -141,11 +138,12 @@ public class Game  {
          */
         public void update(ElapsedTime elapsedTime) {
             // Reset accumulators for keys/touch events for the current frame
-            //((InputManager) inputManager).resetAccumulators();
+            input.resetAccumulators();
             // Get and update the current game screen
             GameScreen gameScreen = mScreenManager.getCurrentGameScreen();
             if (gameScreen != null)
                 gameScreen.update(elapsedTime);
+
             // It is assumed that if the update is multi-threaded then the
             // method call will not return until all update processes have
             // completed. Once this happens, notify the game loop.

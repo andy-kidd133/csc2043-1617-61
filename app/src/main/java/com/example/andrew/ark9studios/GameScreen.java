@@ -16,26 +16,26 @@ public abstract class GameScreen {
     //////////////////////////////////////////////////////////////////
 
 
-    protected final String mName;
-    protected final Game mGame;
+    protected final String name;
+    protected final Game game;
 
     //////////////////////////////////////////////////////////////////
     //Getters
     //////////////////////////////////////////////////////////////////
 
     public String getmName() {
-        return mName;
+        return name;
     }
 
     public Game getmGame() {
-        return mGame;
+        return game;
     }
 
     //constructor
 
     public GameScreen(String name, Game game) {
-        mName = name;
-        mGame = game;
+        this.name = name;
+        this.game = game;
     }
 
     //////////////////////////////////////////////////////////////////
