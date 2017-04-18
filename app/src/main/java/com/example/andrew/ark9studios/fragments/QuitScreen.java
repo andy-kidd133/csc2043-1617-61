@@ -65,7 +65,7 @@ public class QuitScreen extends GameScreen{
         assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
         assetManager.loadAndAddBitmap("quitmenu", "images/quit_menu.png");
         assetManager.loadAndAddBitmap("yesbutton", "images/yes_button.png");
-        assetManager.loadAndAddBitmap("nobutton", "images/no_button.png");
+       assetManager.loadAndAddBitmap("nobutton", "images/no_button.png");
 
 
 
@@ -93,12 +93,14 @@ public class QuitScreen extends GameScreen{
             GameTouchEvent touchEvent = touchEvents.get(0);
 
             if(yesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
-                System.exit(1);
-            }else if(noButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
 
-                MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
+                System.exit(0);
 
-                game.changeScreen(this, mainMenuScreen);
+            }else if (noButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+
+                MainMenuScreen mainScreen = new MainMenuScreen(game);
+                game.changeScreen(this, mainScreen);
+
             }
         }
 
@@ -138,17 +140,14 @@ public class QuitScreen extends GameScreen{
                     noButtonTop + BUTTON_HEIGHT);
         }
 
-        String text = "Are you sure you want to quit?";
-        Paint paint = new TextPaint();
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(60);
+
 
 
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(quitMenuBitmap, null, quitMenuBound, null);
         graphics2DInterface.drawBitmap(yesBitmap, null, yesButtonBound, null);
-        graphics2DInterface.drawBitmap(noBitmap, null, noButtonBound, null);
-        graphics2DInterface.drawText(text, 200, 370, paint );
+       graphics2DInterface.drawBitmap(noBitmap, null, noButtonBound, null);
+
 
     }
 

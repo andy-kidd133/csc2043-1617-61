@@ -2,6 +2,7 @@ package com.example.andrew.ark9studios.fragments;
 
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.activities.GameActivity;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -37,6 +39,7 @@ public class MainMenuScreen extends GameScreen {
 
 
     private Rect quitButtonBound;
+    private Rect backButtonBound;
 
 
 
@@ -48,6 +51,7 @@ public class MainMenuScreen extends GameScreen {
     private Bitmap rulesBitmap;
     private Bitmap scoreBoardBitmap;
     private Bitmap quitBitmap;
+    private Bitmap backButtonBitmap;
 
 
 
@@ -62,6 +66,9 @@ public class MainMenuScreen extends GameScreen {
     private static final int MENU_TEMPLATE_WIDTH =1100;
 
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
+
+    private static final int BACK_BUTTON_WIDTH = 150;
+    private static final int BACK_BUTTON_HEIGHT = 150;
 
 
 
@@ -81,6 +88,7 @@ public class MainMenuScreen extends GameScreen {
         assetManager.loadAndAddBitmap("rulesbutton", "images/button_rules.png");
         assetManager.loadAndAddBitmap("scoreboardbutton", "images/button_scoreboard.png");
         assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
+        assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
 
 
 
@@ -91,6 +99,7 @@ public class MainMenuScreen extends GameScreen {
         this.rulesBitmap  = assetManager.getBitmap("rulesbutton");
         this.scoreBoardBitmap = assetManager.getBitmap("scoreboardbutton");
         this.quitBitmap = assetManager.getBitmap("quitbutton");
+        this.backButtonBitmap = assetManager.getBitmap("backbutton");
 
 
 
@@ -119,6 +128,7 @@ public class MainMenuScreen extends GameScreen {
 
                 RulesScreen rulesScreen = new RulesScreen(game);
                 game.changeScreen(this, rulesScreen);
+
             } else if (scoreboardButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
 
                 ScoreBoardScreen scoreBoardScreen = new ScoreBoardScreen(game);
@@ -127,6 +137,10 @@ public class MainMenuScreen extends GameScreen {
 
                 QuitScreen quitScreen = new QuitScreen(game);
                 game.changeScreen(this, quitScreen);
+            }else if(backButtonBound.contains((int) touchEvent.x , (int) touchEvent.y)){
+
+
+
             }
         }
     }
@@ -145,6 +159,9 @@ public class MainMenuScreen extends GameScreen {
         int rulesTop = optionTop + verticalSpacer;
         int scoreboardTop = rulesTop + verticalSpacer;
         int quitTop = scoreboardTop + verticalSpacer;
+
+        int backTop= graphics2DInterface.getSurfaceHeight()-155;
+        int backLeft=20;
 
 
 
@@ -188,6 +205,12 @@ public class MainMenuScreen extends GameScreen {
                     MENU_TEMPLATE_HEIGHT);
         }
 
+
+        if(backButtonBound==null){
+            backButtonBound = new Rect(backLeft, backTop, backLeft+BACK_BUTTON_WIDTH,
+                    backTop+BACK_BUTTON_HEIGHT);
+        }
+
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(menuTemplateBitmap, null, menuTemplateBound, null);
         graphics2DInterface.drawBitmap(playGameBitmap, null, playGameButtonBound, null);
@@ -195,6 +218,7 @@ public class MainMenuScreen extends GameScreen {
         graphics2DInterface.drawBitmap(rulesBitmap, null, rulesButtonBound, null);
         graphics2DInterface.drawBitmap(scoreBoardBitmap, null, scoreboardButtonBound, null);
         graphics2DInterface.drawBitmap(quitBitmap, null, quitButtonBound, null);
+        graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);
 
 
     }

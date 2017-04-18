@@ -6,8 +6,12 @@ import android.graphics.Rect;
 import com.example.andrew.ark9studios.AssetManager;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
+import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+
+import java.util.List;
 
 
 /**
@@ -19,14 +23,19 @@ public class RulesScreen extends GameScreen {
 
     private Rect backgroundBound;
     private Rect rulesMenuBound;
+    private Rect backButtonBound;
 
 
     private Bitmap backgroundBitmap;
     private Bitmap rulesMenuBitmap;
+    private Bitmap backButtonBitmap;
 
     private static final String SCREEN_NAME="RulesScreen";
     private static final int MENU_TEMPLATE_WIDTH =1100;
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
+
+    private static final int BUTTON_WIDTH = 150;
+    private static final int BUTTON_HEIGHT = 150;
 
 
 
@@ -38,9 +47,11 @@ public class RulesScreen extends GameScreen {
 
         assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
         assetManager.loadAndAddBitmap("rulesmenu", "images/rules_menu.png");
+        assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
 
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.rulesMenuBitmap = assetManager.getBitmap("rulesmenu");
+        this.backButtonBitmap = assetManager.getBitmap("backbutton");
 
     }
 
@@ -52,6 +63,20 @@ public class RulesScreen extends GameScreen {
     @Override
     public void update(ElapsedTime elapsedTime) {
 
+        Input input = game.getInput();
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+        if (touchEvents.size() > 0) {
+            GameTouchEvent touchEvent = touchEvents.get(0);
+
+            if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+
+                MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
+                game.changeScreen(this, mainMenuScreen);
+
+
+            }
+        }
+
     }
 
     @Override
@@ -59,6 +84,8 @@ public class RulesScreen extends GameScreen {
 
         int rulesMenuTop=140;
         int rulesMenuLeft = 120;
+        int backTop= graphics2DInterface.getSurfaceHeight()-155;
+        int backLeft=20;
 
 
 
@@ -72,6 +99,11 @@ public class RulesScreen extends GameScreen {
                     MENU_TEMPLATE_HEIGHT);
         }
 
+        if(backButtonBound==null){
+            backButtonBound = new Rect(backLeft, backTop, backLeft+BUTTON_WIDTH,
+                    backTop+BUTTON_HEIGHT);
+        }
+
 
 
 
@@ -79,6 +111,7 @@ public class RulesScreen extends GameScreen {
        //TODO: ADD RULES ONTO THE SCREEN
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(rulesMenuBitmap, null, rulesMenuBound, null);
+        graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);
 
 
 

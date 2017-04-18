@@ -9,8 +9,12 @@ import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
+import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+
+import java.util.List;
 
 /**
  * Created by megan on 02/03/2017.
@@ -22,10 +26,12 @@ public class ScoreBoardScreen extends GameScreen {
 
     private Rect backgroundBound;
     private Rect scoreMenuBound;
+    private Rect backButtonBound;
 
 
     private Bitmap backgroundBitmap;
     private Bitmap scoreMenuBitmap;
+    private Bitmap backButtonBitmap;
 
 
     private static final String SCREEN_NAME="ScoreBoardScreen";
@@ -33,6 +39,9 @@ public class ScoreBoardScreen extends GameScreen {
     private static final int MENU_TEMPLATE_WIDTH =1100;
 
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
+
+    private static final int BUTTON_WIDTH = 150;
+    private static final int BUTTON_HEIGHT = 150;
 
 
     public ScoreBoardScreen(Game game){
@@ -42,14 +51,29 @@ public class ScoreBoardScreen extends GameScreen {
         assetManager.emptyAssets();
         assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
         assetManager.loadAndAddBitmap("scoreboardmenu", "images/scoreboard_menu.png");
+        assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
 
 
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
        this.scoreMenuBitmap = assetManager.getBitmap("scoreboardmenu");
+        this.backButtonBitmap = assetManager.getBitmap("backbutton");
     }
 
     @Override
     public void update(ElapsedTime elapsedTime) {
+
+        Input input = game.getInput();
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+        if (touchEvents.size() > 0) {
+            GameTouchEvent touchEvent = touchEvents.get(0);
+            if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+
+                MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
+                game.changeScreen(this, mainMenuScreen);
+
+
+            }
+        }
 
     }
 
@@ -58,6 +82,8 @@ public class ScoreBoardScreen extends GameScreen {
 
         int scoreMenuTop=140;
         int scoreMenuLeft=120;
+        int backTop= graphics2DInterface.getSurfaceHeight()-155;
+        int backLeft=20;
 
 
         if(backgroundBound == null){
@@ -70,9 +96,15 @@ public class ScoreBoardScreen extends GameScreen {
                     MENU_TEMPLATE_HEIGHT);
         }
 
+        if(backButtonBound==null){
+            backButtonBound = new Rect(backLeft, backTop, backLeft+BUTTON_WIDTH,
+                    backTop+BUTTON_HEIGHT);
+        }
+
 
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(scoreMenuBitmap, null, scoreMenuBound, null);
+        graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);
 
     }
 

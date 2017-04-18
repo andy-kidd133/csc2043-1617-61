@@ -43,7 +43,7 @@ public class OptionsScreen extends GameScreen {
 
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
 
-    private static final int BUTTON_WIDTH = 200;
+    private static final int BUTTON_WIDTH = 150;
     private static final int BUTTON_HEIGHT = 150;
 
 
@@ -56,8 +56,8 @@ public class OptionsScreen extends GameScreen {
         assetManager.emptyAssets();
 
         assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("optionsmenu", "images/options_menu.png");
-        assetManager.loadAndAddBitmap("backbutton", "images/back_button.png");
+        assetManager.loadAndAddBitmap("optionsmenu", "images/option_menu.png");
+        assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
 
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.optionsMenuBitmap = assetManager.getBitmap("optionsmenu");
@@ -89,8 +89,8 @@ public class OptionsScreen extends GameScreen {
 
         int optionsMenuTop=140;
         int optionsMenuLeft = 120;
-        int backTop= 1200;
-        int backLeft=150;
+        int backTop= graphics2DInterface.getSurfaceHeight()-155;
+        int backLeft=20;
 
 
 
