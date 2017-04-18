@@ -21,7 +21,7 @@ public class CanvasGraphics2D implements Graphics2DInterface {
     private Canvas canvas;
 
 
-    //width and height of the canvas we are renddering onto
+    //width and height of the canvas we are rendering onto
     private int width;
     private int height;
 
@@ -36,9 +36,6 @@ public class CanvasGraphics2D implements Graphics2DInterface {
     public CanvasGraphics2D(){
 
     }
-
-
-
 
 
     //////////////////////////////////////////////////////////////////

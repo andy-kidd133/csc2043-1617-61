@@ -11,8 +11,12 @@ import android.text.TextPaint;
 import com.example.andrew.ark9studios.AssetManager;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
+import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+
+import java.util.List;
 
 
 /**
@@ -80,6 +84,24 @@ public class QuitScreen extends GameScreen{
 
     @Override
     public void update(ElapsedTime elapsedTime) {
+
+     Input input = game.getInput();
+
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+
+        if(touchEvents.size() > 0){
+            GameTouchEvent touchEvent = touchEvents.get(0);
+
+            if(yesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                System.exit(1);
+            }else if(noButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+
+                MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
+
+                game.changeScreen(this, mainMenuScreen);
+            }
+        }
+
 
     }
 

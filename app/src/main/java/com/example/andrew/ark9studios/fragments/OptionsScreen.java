@@ -11,8 +11,12 @@ import android.text.TextPaint;
 import com.example.andrew.ark9studios.AssetManager;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
+import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+
+import java.util.List;
 
 
 /**
@@ -24,10 +28,12 @@ public class OptionsScreen extends GameScreen {
 
     private Rect backgroundBound;
     private Rect optionsMenuBound;
+    private Rect backButtonBound;
 
 
     private Bitmap backgroundBitmap;
     private Bitmap optionsMenuBitmap;
+    private Bitmap backButtonBitmap;
 
 
     private static final String SCREEN_NAME="OptionsScreen";
@@ -36,6 +42,9 @@ public class OptionsScreen extends GameScreen {
     private static final int MENU_TEMPLATE_WIDTH =1100;
 
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
+
+    private static final int BUTTON_WIDTH = 200;
+    private static final int BUTTON_HEIGHT = 150;
 
 
 
@@ -48,15 +57,28 @@ public class OptionsScreen extends GameScreen {
 
         assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
         assetManager.loadAndAddBitmap("optionsmenu", "images/options_menu.png");
-
+        assetManager.loadAndAddBitmap("backbutton", "images/back_button.png");
 
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.optionsMenuBitmap = assetManager.getBitmap("optionsmenu");
+        this.backButtonBitmap = assetManager.getBitmap("backbutton");
     }
 
     @Override
     public void update(ElapsedTime elapsedTime) {
 
+        Input input = game.getInput();
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+        if (touchEvents.size() > 0) {
+            GameTouchEvent touchEvent = touchEvents.get(0);
+            if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+
+                MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
+                game.changeScreen(this, mainMenuScreen);
+
+
+            }
+        }
     }
 
     @Override
@@ -67,6 +89,8 @@ public class OptionsScreen extends GameScreen {
 
         int optionsMenuTop=140;
         int optionsMenuLeft = 120;
+        int backTop= 1200;
+        int backLeft=150;
 
 
 
@@ -81,6 +105,11 @@ public class OptionsScreen extends GameScreen {
                     MENU_TEMPLATE_HEIGHT);
         }
 
+        if(backButtonBound==null){
+            backButtonBound = new Rect(backLeft, backTop, backLeft+BUTTON_WIDTH,
+                    backTop+BUTTON_HEIGHT);
+        }
+
 
         String text = "Music On : ";
         Paint paint = new TextPaint();
@@ -93,6 +122,7 @@ public class OptionsScreen extends GameScreen {
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(optionsMenuBitmap, null, optionsMenuBound, null);
         graphics2DInterface.drawText(text, 200, 400, paint );
+        graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);
 
     }
 

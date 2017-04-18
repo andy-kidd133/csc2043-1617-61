@@ -40,6 +40,7 @@ public class MainMenuScreen extends GameScreen {
 
 
 
+
     private Bitmap backgroundBitmap;
     private Bitmap menuTemplateBitmap;
     private Bitmap playGameBitmap;
@@ -47,6 +48,7 @@ public class MainMenuScreen extends GameScreen {
     private Bitmap rulesBitmap;
     private Bitmap scoreBoardBitmap;
     private Bitmap quitBitmap;
+
 
 
    private static final String SCREEN_NAME="MainMenuScreen";
@@ -81,6 +83,7 @@ public class MainMenuScreen extends GameScreen {
         assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
 
 
+
         this.playGameBitmap = assetManager.getBitmap("playgamebutton");
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.menuTemplateBitmap = assetManager.getBitmap("menuTemplate");
@@ -88,6 +91,7 @@ public class MainMenuScreen extends GameScreen {
         this.rulesBitmap  = assetManager.getBitmap("rulesbutton");
         this.scoreBoardBitmap = assetManager.getBitmap("scoreboardbutton");
         this.quitBitmap = assetManager.getBitmap("quitbutton");
+
 
 
 
@@ -105,12 +109,24 @@ public class MainMenuScreen extends GameScreen {
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
 
         if (touchEvents.size() > 0) {
-           GameTouchEvent touchEvent = touchEvents.get(0);
-           if(optionsButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+            GameTouchEvent touchEvent = touchEvents.get(0);
+            if (optionsButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
 
                 OptionsScreen optionsScreen = new OptionsScreen(game);
                 game.changeScreen(this, optionsScreen);
 
+            } else if (rulesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+
+                RulesScreen rulesScreen = new RulesScreen(game);
+                game.changeScreen(this, rulesScreen);
+            } else if (scoreboardButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+
+                ScoreBoardScreen scoreBoardScreen = new ScoreBoardScreen(game);
+                game.changeScreen(this, scoreBoardScreen);
+            }else if(quitButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+
+                QuitScreen quitScreen = new QuitScreen(game);
+                game.changeScreen(this, quitScreen);
             }
         }
     }
@@ -129,6 +145,7 @@ public class MainMenuScreen extends GameScreen {
         int rulesTop = optionTop + verticalSpacer;
         int scoreboardTop = rulesTop + verticalSpacer;
         int quitTop = scoreboardTop + verticalSpacer;
+
 
 
         if(playGameButtonBound == null){
@@ -156,6 +173,7 @@ public class MainMenuScreen extends GameScreen {
                     quitTop + BUTTON_HEIGHT);
         }
 
+
         if(backgroundBound == null){
             backgroundBound = new Rect(0, 0, graphics2DInterface.getSurfaceWidth(),
                     graphics2DInterface.getSurfaceHeight());
@@ -177,6 +195,7 @@ public class MainMenuScreen extends GameScreen {
         graphics2DInterface.drawBitmap(rulesBitmap, null, rulesButtonBound, null);
         graphics2DInterface.drawBitmap(scoreBoardBitmap, null, scoreboardButtonBound, null);
         graphics2DInterface.drawBitmap(quitBitmap, null, quitButtonBound, null);
+
 
     }
 
