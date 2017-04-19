@@ -141,6 +141,12 @@ public class MainMenuScreen extends GameScreen {
 
 
 
+            }else if(playGameButtonBound.contains((int) touchEvent.x , (int) touchEvent.y)){
+
+                MainGameScreen mainGameScreen = new MainGameScreen(game);
+                game.changeScreen(this, mainGameScreen);
+
+
             }
         }
     }
