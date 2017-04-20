@@ -15,7 +15,7 @@
         android:id="@+id/player1deck"
         android:layout_width="800dp"
         android:layout_height="150dp"
-        android:src="@drawable/card_deck"
+        android:src="@drawable/player1_deck"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="16dp"

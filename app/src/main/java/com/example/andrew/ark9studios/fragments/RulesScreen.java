@@ -68,10 +68,11 @@ public class RulesScreen extends GameScreen {
         if (touchEvents.size() > 0) {
             GameTouchEvent touchEvent = touchEvents.get(0);
 
-            if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+            if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == 0) {
 
-                MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
-                game.changeScreen(this, mainMenuScreen);
+                game.getScreenManager().removeScreen(this.getmName());
+                MainMenuScreen mainMenuScreen = new MainMenuScreen(this.getmGame());
+                game.getScreenManager().addGameScreen(mainMenuScreen);
 
 
             }
@@ -108,7 +109,6 @@ public class RulesScreen extends GameScreen {
 
 
 
-       //TODO: ADD RULES ONTO THE SCREEN
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(rulesMenuBitmap, null, rulesMenuBound, null);
         graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);

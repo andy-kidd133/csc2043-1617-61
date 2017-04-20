@@ -119,36 +119,57 @@ public class MainMenuScreen extends GameScreen {
 
         if (touchEvents.size() > 0) {
             GameTouchEvent touchEvent = touchEvents.get(0);
+
+            if (playGameButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+
+                game.getScreenManager().removeScreen(this.getmName());
+                MainGameScreen mainGameScreen = new MainGameScreen(this.getmGame());
+
+
+                game.getScreenManager().addGameScreen(mainGameScreen);
+
+
+            }
             if (optionsButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
 
-                OptionsScreen optionsScreen = new OptionsScreen(game);
-                game.changeScreen(this, optionsScreen);
+                game.getScreenManager().removeScreen(this.getmName());
+                OptionsScreen optionsScreen = new OptionsScreen(this.getmGame());
+                game.getScreenManager().addGameScreen(optionsScreen);
 
-            } else if (rulesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+            }
 
-                RulesScreen rulesScreen = new RulesScreen(game);
-                game.changeScreen(this, rulesScreen);
+            if (rulesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN) {
+                game.getScreenManager().removeScreen(this.getmName());
 
-            } else if (scoreboardButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                RulesScreen rulesScreen = new RulesScreen(this.getmGame());
+                game.getScreenManager().addGameScreen(rulesScreen);
 
-                ScoreBoardScreen scoreBoardScreen = new ScoreBoardScreen(game);
-                game.changeScreen(this, scoreBoardScreen);
-            }else if(quitButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+            }
 
-                QuitScreen quitScreen = new QuitScreen(game);
-                game.changeScreen(this, quitScreen);
-            }else if(backButtonBound.contains((int) touchEvent.x , (int) touchEvent.y)){
+            if (scoreboardButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+                game.getScreenManager().removeScreen(this.getmName());
+
+                ScoreBoardScreen scoreBoardScreen = new ScoreBoardScreen(this.getmGame());
+                game.getScreenManager().addGameScreen(scoreBoardScreen);
 
 
+            }
 
-            }else if(playGameButtonBound.contains((int) touchEvent.x , (int) touchEvent.y)){
+            if (quitButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+                game.getScreenManager().removeScreen(this.getmName());
 
-                MainGameScreen mainGameScreen = new MainGameScreen(game);
-                game.changeScreen(this, mainGameScreen);
+                QuitScreen quitScreen = new QuitScreen(this.getmGame());
+                game.getScreenManager().addGameScreen(quitScreen);
+
+
+            }
+
+            if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
 
 
             }
         }
+
     }
 
     @Override

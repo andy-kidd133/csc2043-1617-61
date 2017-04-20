@@ -68,8 +68,10 @@ public class ScoreBoardScreen extends GameScreen {
             GameTouchEvent touchEvent = touchEvents.get(0);
             if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
 
-                MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
-                game.changeScreen(this, mainMenuScreen);
+                game.getScreenManager().removeScreen(this.getmName());
+
+                MainMenuScreen mainMenuScreen = new MainMenuScreen(this.getmGame());
+                game.getScreenManager().addGameScreen(mainMenuScreen);
 
 
             }

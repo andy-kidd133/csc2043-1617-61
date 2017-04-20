@@ -90,22 +90,29 @@ public class QuitScreen extends GameScreen{
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
 
         if(touchEvents.size() > 0){
-            GameTouchEvent touchEvent = touchEvents.get(0);
+                GameTouchEvent touchEvent = touchEvents.get(0);
 
-            if(yesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                if(yesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
 
-                System.exit(0);
+                    System.exit(0);
 
-            }else if (noButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                }
 
-                MainMenuScreen mainScreen = new MainMenuScreen(game);
-                game.changeScreen(this, mainScreen);
+                if (noButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN){
+
+                    game.getScreenManager().removeScreen(this.getmName());
+
+                    MainMenuScreen mainScreen = new MainMenuScreen(this.getmGame());
+                    game.getScreenManager().addGameScreen(mainScreen);
+
+                }
 
             }
+
         }
 
 
-    }
+
 
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {

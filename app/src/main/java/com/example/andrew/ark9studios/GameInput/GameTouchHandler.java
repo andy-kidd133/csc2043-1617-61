@@ -155,6 +155,7 @@ public class GameTouchHandler implements OnTouchListener {
                 gameTouchEvent.typeOfTouchEvent = GameTouchEvent.TOUCH_DRAGGED;
                 existsTouch[pointerID]= false;
 
+            case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
                 gameTouchEvent.typeOfTouchEvent = GameTouchEvent.TOUCH_UP;
                 existsTouch[pointerID] = false;
