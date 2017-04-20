@@ -1,23 +1,22 @@
 package com.example.andrew.ark9studios;
 
 import android.graphics.Bitmap;
+import java.util.ArrayList;
 
 /**
- * Created by Andrew on 13/03/2017.
- * Updated by Emma 20/04/2017
- *
- **/
+ * Created by Emma on 20/04/2017.
+ */
 
-public class EnergyCard extends Card {
+public class ActionCard extends Card {
 
     private String description;
-    private final int ENERGY_VALUE = 1;
+    private CardDepartment cardDepartment;
+    private Bitmap cardImage;
 
-    public EnergyCard(String name, String cardImage, Bitmap description) {
-        super(name, cardImage);
-        this.description = description;
+    public ActionCard(String name, String description, CardDepartment cardDepartment, Bitmap cardImg) {
+        super(name, cardImg);
+        this.cardImage = cardImg;
     }
-
 
 
     //methods

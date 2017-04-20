@@ -25,7 +25,6 @@ public class CharacterCard extends Card {
     }
 
 
-
     //accessors
 
     public int getHealth()

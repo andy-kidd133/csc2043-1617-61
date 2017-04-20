@@ -7,11 +7,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.widget.ImageView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
  * Created by megan on 02/03/2017.
+ * updated by Emma 20/4/17
  */
 
 public class Deck {
@@ -20,6 +22,9 @@ public class Deck {
     private Rect deckRect;
     private static final int SIZEOFDECK=3;
     private ArrayList<CharacterCard> player1Deck;
+    private ArrayList<ActionCard> player2Deck;
+    private ArrayList<EnergyCard> player3Deck;
+
 
     //constructor
     public Deck() {
@@ -47,6 +52,18 @@ public class Deck {
 
     }
 
+    public void addActionCardsToDeck(ArrayList<ActionCard> player2Deck){
+
+        player2Deck = CardHelperAction.generateCards();
+
+    }
+
+
+    public void addEnergyCardsToDeck(ArrayList<EnergyCard> player3Deck){
+
+        player3Deck = CardHelperEnergy.generateCards();
+
+    }
 
     public void createAIDeck(){}
 
