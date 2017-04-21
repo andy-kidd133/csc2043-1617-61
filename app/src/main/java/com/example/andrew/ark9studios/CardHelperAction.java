@@ -19,7 +19,7 @@ package com.example.andrew.ark9studios;
 public class CardHelperAction {
 
 
-
+/*
     private static Context context;
 
     public CardHelperAction(Context context){
@@ -60,7 +60,7 @@ public class CardHelperAction {
         }
 
         return actionCards;
-    }
+    }*/
 
 
 

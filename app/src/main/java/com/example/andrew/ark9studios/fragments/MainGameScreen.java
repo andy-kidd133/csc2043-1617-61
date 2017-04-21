@@ -91,8 +91,8 @@ public class MainGameScreen extends GameScreen {
           int pauseLeft= graphics2DInterface.getSurfaceWidth()-145;
           int pauseTop = graphics2DInterface.getSurfaceHeight()-1750;
 
-        int deckLeft=100;
-        int enemyDeckTop=130;
+        int deckLeft=60;
+        int enemyDeckTop=60;
 
 
 
@@ -108,11 +108,15 @@ public class MainGameScreen extends GameScreen {
         }
 
         if(enemyDeckBound == null){
-                enemyDeckBound = new Rect(deckLeft, enemyDeckTop,  DECK_WIDTH,
-                      DECK_HEIGHT);
+                enemyDeckBound = new Rect(deckLeft,enemyDeckTop, graphics2DInterface.getSurfaceWidth()-50, 420);
         }
 
 
+        if(player1DeckBound == null){
+
+           player1DeckBound = new Rect(deckLeft, graphics2DInterface.getSurfaceHeight()-350, graphics2DInterface.getSurfaceWidth()-30,
+                    graphics2DInterface.getSurfaceHeight()-30);
+        }
 
         if(card1Bound == null){
             card1Bound = new Rect(20, 20, 20 + CARD_WIDTH,

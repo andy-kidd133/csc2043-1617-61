@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
  *
  **/
 
-public class EnergyCard extends Card {
+/*public class EnergyCard extends Card {
 
     private String description;
     private CardDepartment cardDepartment;
@@ -39,5 +39,5 @@ public class EnergyCard extends Card {
     public void cardDeath() {
         //send it to graveyard
     }
-}
+}*/
 
