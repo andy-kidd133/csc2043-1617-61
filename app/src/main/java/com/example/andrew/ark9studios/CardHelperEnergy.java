@@ -24,19 +24,35 @@ public class CardHelperEnergy {
         }
 
 
-        private static String[] cardNames = { "Energy_Card"
+        private static String[] cardNames = {
+                "PaintKit","Globe", "Computer"
         };
 
-        private static String[] description = {"Use energy to upgrade level and attacks"
+        private static String[] description = {
+                "Power up your Unimon with this professional Paint Kit",
+                "Power up your Unimon with this Globe",
+                "Power up your Unimon with this Computer"
+
+        };
+
+
+        private static CardDepartment[] cardDepartment = {
+                CardDepartment.ART,
+                CardDepartment.HUMANITITES,
+                CardDepartment.COMPUTING
 
         };
 
 
 
-        private static Bitmap energyCard= BitmapFactory.decodeResource(context.getResources(), R.drawable.card7);
+        private static Bitmap paintKit= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
+        private static Bitmap globe= BitmapFactory.decodeResource(context.getResources(), R.drawable.card8);
+        private static Bitmap computer= BitmapFactory.decodeResource(context.getResources(), R.drawable.card13);
 
-        private static Bitmap[] cardImages = {energyCard
 
+        private static Bitmap[] cardImages = {
+
+                paintKit, globe, computer
         };
 
 
@@ -45,14 +61,11 @@ public class CardHelperEnergy {
             ArrayList<EnergyCard> actionCards = new ArrayList<EnergyCard>();
 
             for(int i=0; i < cardNames.length; i++){
-                actionCards.add(new EnergyCard(cardNames[i], description[i], cardImages[i]));
+                actionCards.add(new EnergyCard(cardNames[i], cardImages[i],cardDepartment[i],description[i]));
             }
 
             return actionCards;
         }
-
-
-
 
 
     }

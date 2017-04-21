@@ -28,21 +28,25 @@ public class CardHelperAction {
     }
 
 
-    private static String[] cardNames = { "Paintbox"
-    };
-
-    private static String[] description = {"paintbox does...."
-
-    };
-
-    private static CardDepartment[] cardDepartments = {CardDepartment.HUMANITITES
-
+    private static String[] cardNames = {
+            "Revive", "HealthRefill", "GrimReaper"
     };
 
 
-    private static Bitmap paintbox= BitmapFactory.decodeResource(context.getResources(), R.drawable.card9);
+    private static String[] description = {
+        "Bring one card back from the graveyard!",
+            "Refill one of your Unimon's health",
+            "Send one of your opponents Unimon to the graveyard"
 
-    private static Bitmap[] cardImages = {paintbox
+    };
+
+
+    private static Bitmap revive= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
+    private static Bitmap healthRefill = BitmapFactory.decodeResource(context.getResources(), R.drawable.card8);
+    private static Bitmap grimReaper = BitmapFactory.decodeResource(context.getResources(),R.drawable.card13);
+
+
+    private static Bitmap[] cardImages = {revive, healthRefill, grimReaper
 
     };
 
@@ -52,8 +56,7 @@ public class CardHelperAction {
         ArrayList<ActionCard> actionCards = new ArrayList<ActionCard>();
 
         for(int i=0; i < cardNames.length; i++){
-            actionCards.add(new ActionCard(cardNames[i], description[i],
-                    cardDepartments[i], cardImages[i]));
+            actionCards.add(new ActionCard(cardNames[i], description[i],cardImages[i]));
         }
 
         return actionCards;

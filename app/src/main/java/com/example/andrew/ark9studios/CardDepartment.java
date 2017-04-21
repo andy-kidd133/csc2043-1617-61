@@ -5,6 +5,6 @@ package com.example.andrew.ark9studios;
  */
 
 public enum CardDepartment {
-    ART, MEDICINE, COMPUTING, HUMANITITES
+    ART, COMPUTING, HUMANITITES
 
 }
