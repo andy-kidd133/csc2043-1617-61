@@ -19,7 +19,6 @@ package com.example.andrew.ark9studios;
 public class CardHelperAction {
 
 
-
     private static Context context;
 
     public CardHelperAction(Context context){
@@ -29,14 +28,15 @@ public class CardHelperAction {
 
 
     private static String[] cardNames = {
-            "Revive", "HealthRefill", "GrimReaper"
+            "Revive", "HealthRefill", "GrimReaper", "LoseATurn"
     };
 
 
     private static String[] description = {
         "Bring one card back from the graveyard!",
             "Refill one of your Unimon's health",
-            "Send one of your opponents Unimon to the graveyard"
+            "Send one of your opponents Unimon to the graveyard",
+            "Use this card and your opponent will miss a go"
 
     };
 
@@ -44,9 +44,10 @@ public class CardHelperAction {
     private static Bitmap revive= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
     private static Bitmap healthRefill = BitmapFactory.decodeResource(context.getResources(), R.drawable.card8);
     private static Bitmap grimReaper = BitmapFactory.decodeResource(context.getResources(),R.drawable.card13);
+    private static Bitmap loseATurn = BitmapFactory.decodeResource(context.getResources(),R.drawable.card19);
 
 
-    private static Bitmap[] cardImages = {revive, healthRefill, grimReaper
+    private static Bitmap[] cardImages = {revive, healthRefill, grimReaper, loseATurn
 
     };
 

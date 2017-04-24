@@ -4,6 +4,9 @@ package com.example.andrew.ark9studios.CoreServices;
  * Created by Emma on 21/03/2017.
  */
 
+
+/*
+
 public class ScoreBoardManager {
 
 
@@ -27,3 +30,4 @@ public class ScoreBoardManager {
 
 
 
+*/

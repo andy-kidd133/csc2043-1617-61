@@ -46,13 +46,16 @@ public class Deck {
     }
 
 
-    public void addCardsToDeck(ArrayList<CharacterCard> p1Deck){
+    public void addCardsToDeck(ArrayList<CharacterCard> p1Deck)
+    {
 
       p1Deck = CardHelper.generateCards();
 
     }
 
-    public void addActionCardsToDeck(ArrayList<ActionCard> player2Deck){
+
+    public void addActionCardsToDeck(ArrayList<ActionCard> player2Deck)
+    {
 
         player2Deck = CardHelperAction.generateCards();
 
@@ -65,7 +68,11 @@ public class Deck {
 
     }
 
-    public void createAIDeck(){}
+
+
+    public void createAIDeck(){
+
+    }
 
 
 

@@ -9,17 +9,21 @@ import android.graphics.Bitmap;
 /*
     Screen to display top 10 highscores
  */
-public class HighScoreScreen {
 
     /*
-    HighScore Screen Title bitmap
-     */
+public class HighScoreScreen {
+
+
+    //HighScore Screen Title bitmap
+
 
     private Bitmap titleBitmap;
 
-    /*
-    Button to take you from Highscore screen back to Main Menu
-     */
+
+    //Button to take you from Highscore screen back to Main Menu
 
     private Bitmap backButton;
 }
+
+
+*/
