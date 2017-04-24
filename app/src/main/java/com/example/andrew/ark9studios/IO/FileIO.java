@@ -10,6 +10,7 @@ import android.media.SoundPool;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
+import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.Sound;
 
 import java.io.File;
@@ -100,6 +101,19 @@ public class FileIO {
             throws IOException {
 
         return gameAssetLoader.loadBitmap(bitmapFile,format );
+    }
+
+    /***
+     * Wrapper method to load in a given music file via the GameAssetLoader
+     *
+     * @param musicFile
+     *            - path of the music file that is to be loaded
+     * @return Music instance that has been loaded for given music file path
+     * @throws IOException
+     *             - if the asset cannot be loaded
+     */
+    public GameMusic loadMusic(String musicFile) throws IOException {
+        return gameAssetLoader.loadMusic(musicFile);
     }
 
 

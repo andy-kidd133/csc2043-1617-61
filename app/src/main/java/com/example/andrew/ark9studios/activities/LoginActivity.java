@@ -13,6 +13,9 @@ import com.example.andrew.ark9studios.Databases.Session;
 import com.example.andrew.ark9studios.R;
 
 
+/**
+ * Created by megan on 09/04/2017.
+ */
 
 public class LoginActivity extends Activity implements View.OnClickListener {
 

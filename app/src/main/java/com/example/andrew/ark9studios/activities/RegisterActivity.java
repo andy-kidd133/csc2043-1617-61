@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.example.andrew.ark9studios.Databases.DbHelper;
 import com.example.andrew.ark9studios.R;
+/**
+ * Created by megan on 09/04/2017.
+ */
 
 public class RegisterActivity extends Activity implements  View.OnClickListener {
 

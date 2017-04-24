@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.example.andrew.ark9studios.GameInput.Input;
+import com.example.andrew.ark9studios.fragments.MainMenuScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ScreenManager;
 import com.example.andrew.ark9studios.GameGraphics.CanvasRenderSurface;
 import com.example.andrew.ark9studios.IO.FileIO;
@@ -34,6 +35,7 @@ public class Game  {
         private int mScreenWidth = -1;
         private int mScreenHeight = -1;
         private Activity activity;
+        private GameAudioManager audioManager;
         //////////////////////////////////////////////////////////////////
         //Getters
         //////////////////////////////////////////////////////////////////
@@ -59,6 +61,7 @@ public class Game  {
         public Activity getActivity(){
             return  activity;
         }
+        public GameAudioManager getAudioManager(){ return audioManager;}
         //////////////////////////////////////////////////////////////////
         //Constructor
         //////////////////////////////////////////////////////////////////
@@ -82,6 +85,8 @@ public class Game  {
             mScreenManager = new ScreenManager();
             //request control of the phone/tablet volume
             activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+            //create the audio manager
+            audioManager = new GameAudioManager(activity.getApplicationContext());
         }
         /***
          * Creates and returns the render surface the game will be displayed on
@@ -199,6 +204,37 @@ public class Game  {
             mScreenManager.transitionScreens(fromScreen, toScreen);
         }
 
+
+    /***
+     * Handle the Back hardware button being pressed while the game is in play.
+     * Used to transisition to an appropriate screen instead of exiting the
+     * application
+     *
+     * @return boolean indicating whether to exit the application or not
+     */
+  /*  public boolean backPressed() {
+        // If we are already at the menu screen then exit
+        if (mScreenManager.getCurrentGameScreen().getmName().equals("MenuScreen")) {
+            return false;
+        }
+
+        // Go back to the menu screen
+        GameScreen currentScreen = mScreenManager.getCurrentGameScreen();
+        MainMenuScreen menuScreen = new MainMenuScreen(this);
+        changeScreen(currentScreen, menuScreen);
+        return true;
+    }*/
+
+    /***
+     * Toggle the in game audio.
+     */
+    public void toggleSound() {
+        if (GameAudioManager.SOUND_ENABLED) {
+            audioManager.muteSound();
+        } else {
+            audioManager.unmuteSound();
+        }
+    }
 
 
     }

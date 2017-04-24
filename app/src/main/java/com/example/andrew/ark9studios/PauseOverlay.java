@@ -8,6 +8,12 @@ package com.example.andrew.ark9studios;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
+import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+
+import viewports.LayerViewport;
+import viewports.ScreenViewport;
+
 /**
  * This is the pause overlay object which represents the pause dialog that is shown
  * when the user pauses the game. This allows the user to perform actions such as resume
@@ -60,7 +66,7 @@ public class PauseOverlay extends OverlayObject {
 
       AssetManager assetManager = gameScreen.getmGame().getAssetManager();
 
-      this.pausedBitmap = assetManager.getBitmap("PausedButton");
+      this.pausedBitmap = assetManager.getBitmap("pauseIcon");
 
 
       int pausedWidth = 600;
@@ -99,8 +105,40 @@ public class PauseOverlay extends OverlayObject {
 
   }
 
+    public void update(ElapsedTime elapsedTime){
+
+    }
+
+    @Override
+    public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface,
+                     LayerViewport layerViewport, ScreenViewport screenViewport) {
+        super.draw(elapsedTime, graphics2DInterface, layerViewport, screenViewport);
+
+        graphics2DInterface.drawBitmap(pausedBitmap, null, pausedRect, null);
+
+        resumeButton.draw(elapsedTime, graphics2DInterface, layerViewport,
+                screenViewport);
+        quitButton.draw(elapsedTime, graphics2DInterface, layerViewport, screenViewport);
 
 
+    }
+
+
+    /***
+     *
+     * @return boolean indicating whether the resume button has a touch up
+     */
+    public boolean isResumed() {
+        return resumeButton.hasTouchUp();
+    }
+
+    /***
+     *
+     * @return boolean indicating whether the exit button has a touch up
+     */
+    public boolean isExited() {
+        return quitButton.hasTouchUp();
+    }
 
 
 

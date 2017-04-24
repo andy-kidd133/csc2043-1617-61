@@ -86,9 +86,21 @@ import java.io.InputStream;
         }
 
 
-        @Override
-        public GameMusic loadMusic(String musicFileName) throws IOException {
-            return null;
+        /**
+         * Load in the specified music file.
+         *
+         * @param filename
+         *            Name of the music asset to be loaded
+         * @return Loaded Music instance, or null if the effect could not be loaded
+         */
+        public GameMusic loadMusic(String filename) throws IOException {
+            try {
+                AssetFileDescriptor assetDescriptor = assetManager.openFd(filename);
+                return new GameMusic(assetDescriptor);
+            } catch (IOException e) {
+                String message = "Could not load music [" + filename + "]";
+                throw new IOException(message);
+            }
         }
 
         /**

@@ -2,116 +2,175 @@ package com.example.andrew.ark9studios;
 
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.util.Log;
+
+import java.io.IOException;
 
 
 /**
  * Created by Megan on 06/03/2017.
  */
 
-public class GameMusic extends MediaPlayer {
-
-
-    private MediaPlayer backPlayer;
-    private int curPos;
-    private boolean played, off, gamePlaying;
+public class GameMusic implements MediaPlayer.OnCompletionListener {
 
     /**
-     * BackgroundMusic extends MediaPlayer
-     * Constructor loads in raw file and prepares
-     *
-     * @param context - application context from activity
-     * @param resid - the raw id of the file to be loaded
+     * Media player that will be used to playback this music clip
      */
-    public GameMusic(Context context, int resid){
-        super();
-        backPlayer = MediaPlayer.create(context, resid);
-        backPlayer.setLooping(true);
-        played = false;
-        off = false;
-        gamePlaying = false;
-    }
+    private MediaPlayer mediaPlayer;
 
-    // Starts the playback of music, sets a boolean that it has played
+    /**
+     * Flag indicating if playback can commence
+     */
+    private boolean isPrepared = false;
 
-    public void startGameMusic() {
-        backPlayer.start();
-        played = true;
-    }
+    /**
+     * Asset filename
+     */
+    private String assetFile;
 
-    //Pauses music and saves current position
-    public void pauseGameMusic() {
-        curPos = backPlayer.getCurrentPosition();
-        backPlayer.pause();
-    }
+    /**
+     * Create a new music clip
+     *
+     * @param assetDescriptor
+     *            Asset descriptor linked to this audio file
+     */
+    public GameMusic(AssetFileDescriptor assetDescriptor) {
+        this.assetFile = assetDescriptor.getFileDescriptor().toString();
 
-    //Resumes playback
-    public void resumeGameMusic(){
-        if (off == false && gamePlaying == false){
-            backPlayer.start();
-            backPlayer.seekTo(curPos);
+        // Create a new play player linked to the specified music asset
+        this.mediaPlayer = new MediaPlayer();
+        try {
+            // Link the data source
+            mediaPlayer.setDataSource(assetDescriptor.getFileDescriptor(),
+                    assetDescriptor.getStartOffset(),
+                    assetDescriptor.getLength());
+
+            // Prep the audio for playback
+            mediaPlayer.prepare();
+            this.isPrepared = true;
+
+            // Add an on completion listener for the clip
+            mediaPlayer.setOnCompletionListener(this);
+        } catch (IOException e) {
+            String errorTag = "Quibtig";
+            String errorMessage = "Music clip " + assetFile
+                    + " cannot be loaded.";
+            Log.w(errorTag, errorMessage);
         }
     }
 
-    //Stops music and resets to zero
-    public void stopGameMusic() {
-        backPlayer.pause();
-        curPos = 0;
-    }
-
-    //Releases music when finished
-    public void destroyGameMusic() {
-        backPlayer.stop();
-        backPlayer.release();
-    }
-
-    //Setters
-    //Sets off variable false
-    public void turnOn() {
-        off = false;
-    }
-
-    //Sets off variable true
-    public void turnOff() {
-        off = true;
-    }
-
-    //Sets gamePlaying variable
-    public void setGamePlaying(boolean n) {
-        gamePlaying = n;
-    }
-
-    //Getters
     /**
-     * @return
-     * returns variable indicating if the music is off
+     * Play the music clip.
+     *
+     * Note: If the music clip is already playing the play request is ignored.
      */
-    public boolean isOff() {
-        return off;
+    public void play() {
+        if (mediaPlayer.isPlaying())
+            return;
+        try {
+            synchronized (this) {
+                // Start the clip, preparing it if needed
+                if (!isPrepared) {
+                    mediaPlayer.prepare();
+                }
+                mediaPlayer.start();
+            }
+        } catch (Exception e) {
+            String errorTag = "Quibtig";
+            String errorMessage = "Music clip " + assetFile
+                    + " cannot be played.";
+            Log.w(errorTag, errorMessage);
+        }
     }
 
     /**
-     * @return
-     * returns variable indicating if main game fragment is playing
+     * Stop the music clip.
      */
-    public boolean isGamePlaying() {
-        return gamePlaying;
+    public void stop() {
+        mediaPlayer.stop();
+        synchronized (this) {
+            isPrepared = false;
+        }
     }
 
     /**
-     * @return
-     * returns variable indicating if the music has played
+     * Pause the music clip.
      */
-    public boolean hasPlayed() {
-        return played;
+    public void pause() {
+        if (mediaPlayer.isPlaying())
+            mediaPlayer.pause();
     }
 
+    /**
+     * Determine if the music clip will loop
+     *
+     * @param looping
+     *            Boolean true to loop, false for play once.
+     */
+    public void setLooping(boolean looping) {
+        mediaPlayer.setLooping(looping);
+    }
 
+    /**
+     * Set the playback volume
+     *
+     * @param volume
+     *            Playback volume (0-1)
+     */
+    public void setVolume(float volume) {
+        mediaPlayer.setVolume(volume, volume);
+    }
+
+    /**
+     * Set the playback volume
+     *
+     * @param leftVolume
+     *            Left channel playback volume (0-1)
+     * @param rightVolume
+     *            Right channel playback volume (0-1)
+     */
+    public void setVolume(float leftVolume, float rightVolume) {
+        mediaPlayer.setVolume(leftVolume, rightVolume);
+    }
+
+    /**
+     * Determine if the music clip is currently playing
+     *
+     * @return Boolean true if the music clip is currently playing, otherwise
+     *         false
+     */
+    public boolean isPlaying() {
+        return mediaPlayer.isPlaying();
+    }
+
+    /**
+     * Determine if the music clip is set to loop
+     *
+     * @return Boolean true if the clip is looping, otherwise false
+     */
+    public boolean isLooping() {
+        return mediaPlayer.isLooping();
+    }
+
+    /**
+     * Dispose of the music clip
+     */
+    public void dispose() {
+        if (mediaPlayer.isPlaying())
+            mediaPlayer.stop();
+        mediaPlayer.release();
+    }
+
+    /***
+     * Implementation of OnCompleteListener interface
+     */
+    public void onCompletion(MediaPlayer player) {
+        synchronized (this) {
+            isPrepared = false;
+        }
+    }
 }
-
-
-
-
-
 
 

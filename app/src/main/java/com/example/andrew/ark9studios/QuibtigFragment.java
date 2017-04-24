@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.andrew.ark9studios.fragments.GameFragment;
 import com.example.andrew.ark9studios.fragments.MainMenuScreen;
+import com.example.andrew.ark9studios.fragments.QuitScreen;
 
 
 /**
@@ -31,19 +32,27 @@ public class QuibtigFragment extends GameFragment {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         // set up the main screen to be the screen that is shown
 
-        setupStartScreen(new MainMenuScreen(game));
+       setupStartScreen( new MainMenuScreen(game));
 
         return view;
     }
 
 
-
-
-
-
-
-
-
-
-
+    /***
+     *
+     * @return whether game should manage back pressed or application
+     */
+   /* public boolean isBackPressed() {
+        return game.backPressed();
+    }*/
 }
+
+
+
+
+
+
+
+
+
+

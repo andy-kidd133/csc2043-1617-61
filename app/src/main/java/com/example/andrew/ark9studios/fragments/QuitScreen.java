@@ -13,6 +13,7 @@ import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
+import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
@@ -52,7 +53,6 @@ public class QuitScreen extends GameScreen{
     private static final int MENU_TEMPLATE_WIDTH =1100;
 
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
-
 
 
 

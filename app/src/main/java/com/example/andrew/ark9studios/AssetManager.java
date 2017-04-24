@@ -98,6 +98,24 @@ public class AssetManager {
 
 
     /**
+     * Add the specified music asset to the dictionary
+     *
+     * @param assetName
+     *            Name given to the asset
+     * @param asset
+     *            Music asset to add
+     * @return boolean true if the asset could be added, false it not (e.g. an
+     *         asset with the specified name already exists).
+     */
+    private boolean add(String assetName, GameMusic asset) {
+        if (bitmaps.containsKey(assetName)) {
+            return false;
+        }
+        music.put(assetName, asset);
+        return true;
+    }
+
+    /**
      * Add the specified sound asset to the dictionary
      *
      * @param assetName Name given to the asset
@@ -152,6 +170,31 @@ public class AssetManager {
         return success;
     }
 
+
+
+    /**
+     * Load and add the specified music asset to the dictionary
+     *
+     * @param assetName
+     *            Name given to the asset
+     * @param musicFile
+     *            Location of the music asset
+     * @return boolean true if the asset could be loaded and added, false if not
+     */
+    public boolean loadAndAddMusic(String assetName, String musicFile) {
+        boolean success = true;
+        try {
+            GameMusic music = gameIO.loadMusic(musicFile);
+            success = add(assetName, music);
+        } catch (IOException e) {
+            Log.e("Quibtig",
+                    "Assetdictionary.loadAndAddMusic: Cannot load ["
+                            + musicFile + "]");
+            success = false;
+        }
+
+        return success;
+    }
 
 
     /**
@@ -252,6 +295,18 @@ public class AssetManager {
     }
 
 
+
+
+    /**
+     * Retrieve the specified music asset from the dictionary
+     *
+     * @param assetName
+     *            Name of the asset to retrieve
+     * @return Music asset, null if the named asset could not be found
+     */
+    public GameMusic getMusic(String assetName) {
+        return music.get(assetName);
+    }
     /**
      * Retrieve the specified sound asset from the dictionary
      *
@@ -279,6 +334,7 @@ public class AssetManager {
         bitmaps = new HashMap<String, Bitmap>();
         text = new HashMap<String, String>();
         sounds = new HashMap<String, Sound>();
+        music = new HashMap<String, GameMusic>();
 
     }
 
