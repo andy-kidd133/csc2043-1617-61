@@ -3,7 +3,10 @@ package com.example.andrew.ark9studios.CoreServices;
 /**
  * Created by Emma on 21/03/2017.
  */
+
+
 /*
+
 public class ScoreBoardManager {
 
 
@@ -18,8 +21,13 @@ public class ScoreBoardManager {
         loadTopScores();
         return highScores;
     }
-    }*/
+
+    private void loadTopScores() {
+        //load top 5 scores from array of saved high scores
+    }
+}
 
 
 
 
+*/

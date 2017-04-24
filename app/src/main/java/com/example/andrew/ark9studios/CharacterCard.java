@@ -15,8 +15,11 @@ public class CharacterCard extends Card {
     private int attackDamage;
     private CardDepartment cardDepartment;
     private Bitmap cardImage;
+    private Strength strength;
+    private Weakness weakness;
 
-    public CharacterCard(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment, Bitmap cardImg) {
+    public CharacterCard(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment,
+                         Strength strength, Weakness weakness, Bitmap cardImg) {
         super(name, cardImg);
         this.health = health;
         this.attackCost = attackCost;
@@ -85,5 +88,9 @@ public class CharacterCard extends Card {
 
     public void cardDeath() {
         //send it to graveyard
+    }
+
+    public void cardEvolve() {
+        //if energy is attached basic character card can be evolved into a higher level card
     }
 }

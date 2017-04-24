@@ -15,7 +15,7 @@ import java.util.Collections;
  * Created by megan on 02/03/2017.
  * updated by Emma 20/4/17
  */
-/*
+
 public class Deck {
 
     private boolean deckEmpty = true;
@@ -46,13 +46,16 @@ public class Deck {
     }
 
 
-    public void addCardsToDeck(ArrayList<CharacterCard> p1Deck){
+    public void addCardsToDeck(ArrayList<CharacterCard> p1Deck)
+    {
 
       p1Deck = CardHelper.generateCards();
 
     }
 
-    public void addActionCardsToDeck(ArrayList<ActionCard> player2Deck){
+
+    public void addActionCardsToDeck(ArrayList<ActionCard> player2Deck)
+    {
 
         player2Deck = CardHelperAction.generateCards();
 
@@ -65,7 +68,11 @@ public class Deck {
 
     }
 
-    public void createAIDeck(){}
+
+
+    public void createAIDeck(){
+
+    }
 
 
 
@@ -102,4 +109,4 @@ public class Deck {
 
 
 
-}*/
+}

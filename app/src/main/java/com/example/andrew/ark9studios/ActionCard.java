@@ -10,10 +10,9 @@ import java.util.ArrayList;
 public class ActionCard extends Card {
 
     private String description;
-    private CardDepartment cardDepartment;
     private Bitmap cardImage;
 
-    public ActionCard(String name, String description, CardDepartment cardDepartment, Bitmap cardImg) {
+    public ActionCard(String name, String description, Bitmap cardImg) {
         super(name, cardImg);
         this.cardImage = cardImg;
     }

@@ -8,12 +8,13 @@ import android.graphics.Bitmap;
  *
  **/
 
-/*public class EnergyCard extends Card {
+public class EnergyCard extends Card {
 
     private String description;
+    private CardDepartment cardDepartment;
     private final int ENERGY_VALUE = 1;
 
-    public EnergyCard(String name, String cardImage, Bitmap description) {
+    public EnergyCard(String name, Bitmap cardImage, CardDepartment cardDepartment, String description) {
         super(name, cardImage);
         this.description = description;
     }
@@ -38,5 +39,5 @@ import android.graphics.Bitmap;
     public void cardDeath() {
         //send it to graveyard
     }
-}*/
+}
 

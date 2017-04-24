@@ -2,6 +2,7 @@ package com.example.andrew.ark9studios;
 
 /**
  * Created by Megan on 20/03/2017.
+ * updated by Emma 21/4/17
  */
 
 
@@ -18,8 +19,8 @@ import java.util.ArrayList;
  */
 
 
-public class CardHelper {
 
+public class CardHelper {
 
 
     private static Context context;
@@ -30,32 +31,93 @@ public class CardHelper {
     }
 
 
-    private static String[] cardNames = { "HistoryLvl1"
+    private static String[] cardNames = { "PainterLvl1",
+            "HistoryLvl1",
+            "GeographyLvl1",
+            "CompSciLvl1",
+            "SoftwareEngineerLvl1",
+            "ProductDesignerLvl1",
+            "PhotographerLvl1",
+            "ComputerGameDeveloperLvl1",
+            "PoliticianLvl1"
     };
 
-    private static int[] health = {8
-
-    };
-
-
-    private static int[] attackCost = {3
-
-    };
-
-    private static int[] attackDamage = {3
-
-    };
-
-
-    private static CardDepartment[] cardDepartments = {CardDepartment.HUMANITITES
+    private static int[] health = {3,2,1,2,3,3,2,3,1
 
     };
 
 
+    private static int[] attackCost = {3,1,2,2,2,2,2,1,2
 
-     private static Bitmap historyLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card5);
+    };
 
-    private static Bitmap[] cardImages = {historyLvl1
+    private static int[] attackDamage = {2,2,3,3,2,1,3,2,2
+
+    };
+
+
+    private static CardDepartment[] cardDepartments = {
+            CardDepartment.ART,
+            CardDepartment.HUMANITITES,
+            CardDepartment.HUMANITITES,
+            CardDepartment.COMPUTING,
+            CardDepartment.COMPUTING,
+            CardDepartment.ART,
+            CardDepartment.ART,
+            CardDepartment.COMPUTING,
+            CardDepartment.HUMANITITES,
+
+    };
+
+    private static Strength[] strength = {
+            Strength.HUMANITIES,
+            Strength.COMPUTING,
+            Strength.COMPUTING,
+            Strength.ART,
+            Strength.ART,
+            Strength.HUMANITIES,
+            Strength.HUMANITIES,
+            Strength.ART,
+            Strength.COMPUTING
+
+    };
+
+    private static Weakness[] weakness = {
+            Weakness.COMPUTING,
+            Weakness.ART,
+            Weakness.ART,
+            Weakness.HUMANITIES,
+            Weakness.HUMANITIES,
+            Weakness.COMPUTING,
+            Weakness.COMPUTING,
+            Weakness.HUMANITIES,
+            Weakness.ART,
+
+    };
+
+
+    private static Bitmap painterLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card1);
+    private static Bitmap historyLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card4);
+    private static Bitmap geographyLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card6);
+    private static Bitmap compSciLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card9);
+    private static Bitmap softwareEngineerLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card11);
+    private static Bitmap productDesignerLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card14);
+    private static Bitmap photographerLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card23);
+    private static Bitmap compGamesDevLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card25);
+    private static Bitmap politicianLvl1= BitmapFactory.decodeResource(context.getResources(), R.drawable.card27);
+
+
+
+    private static Bitmap[] cardImages = {
+            painterLvl1,
+            historyLvl1,
+            geographyLvl1,
+            compSciLvl1,
+            softwareEngineerLvl1,
+            productDesignerLvl1,
+            photographerLvl1,
+            compGamesDevLvl1,
+            politicianLvl1
 
     };
 
@@ -66,14 +128,11 @@ public class CardHelper {
 
         for(int i=0; i < cardNames.length; i++){
             characterCards.add(new CharacterCard(cardNames[i], health[i], attackCost[i], attackDamage[i],
-                    cardDepartments[i], cardImages[i]));
+                    cardDepartments[i], strength[i], weakness[i], cardImages[i]));
         }
 
         return characterCards;
     }
-
-
-
 
 
 }
