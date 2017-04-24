@@ -89,4 +89,8 @@ public class CharacterCard extends Card {
     public void cardDeath() {
         //send it to graveyard
     }
+
+    public void cardEvolve() {
+        //if energy is attached basic character card can be evolved into a higher level card
+    }
 }
