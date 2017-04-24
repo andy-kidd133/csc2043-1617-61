@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * This class will hold the info for each of the energy cards within the decks and will
  * pass this info into the ArrayList of the energy cards in the Deck class
  */
-/*
+
 public class CardHelperEnergy {
 
         private static Context context;
@@ -70,4 +70,4 @@ public class CardHelperEnergy {
 
 
     }
-*/
+
