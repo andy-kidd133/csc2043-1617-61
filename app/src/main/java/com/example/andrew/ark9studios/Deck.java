@@ -15,7 +15,7 @@ import java.util.Collections;
  * Created by megan on 02/03/2017.
  * updated by Emma 20/4/17
  */
-
+/*
 public class Deck {
 
     private boolean deckEmpty = true;
@@ -109,4 +109,4 @@ public class Deck {
 
 
 
-}
+}*/

@@ -6,11 +6,10 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.example.andrew.ark9studios.GameInput.Input;
-import com.example.andrew.ark9studios.fragments.MainMenuScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ScreenManager;
 import com.example.andrew.ark9studios.GameGraphics.CanvasRenderSurface;
 import com.example.andrew.ark9studios.IO.FileIO;
-import com.example.andrew.ark9studios.fragments.GameFragment;
+import com.example.andrew.ark9studios.Screens.GameFragment;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 import com.example.andrew.ark9studios.gameInfrastructure.GameLoop;
 

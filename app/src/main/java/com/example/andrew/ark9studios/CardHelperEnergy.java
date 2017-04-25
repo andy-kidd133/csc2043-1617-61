@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * pass this info into the ArrayList of the energy cards in the Deck class
  */
 
-public class CardHelperEnergy {
+/*public class CardHelperEnergy {
 
         private static Context context;
 
@@ -34,11 +34,12 @@ public class CardHelperEnergy {
                 "Power up your Unimon with this Globe",
                 "Power up your Unimon with this Computer",
                 "Power up your Unimon with this Controller",
-                "Power up your Unimon with this Camera"
-        };      "Power up your Unimon with this Scroll"
+                "Power up your Unimon with this Camera",
+            "Power up your Unimon with this Scroll"
+        };
 
 
-        private static CardDepartment[] cardDepartment = {
+    private static CardDepartment[] cardDepartment = {
                 CardDepartment.ART,
                 CardDepartment.HUMANITITES,
                 CardDepartment.COMPUTING,
@@ -77,5 +78,5 @@ public class CardHelperEnergy {
         }
 
 
-    }
+    }*/
 

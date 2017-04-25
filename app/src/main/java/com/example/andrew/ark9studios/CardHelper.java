@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * will pass this information into the ArrayList of character cards in the Deck class
  */
 
-
+/*
 
 public class CardHelper {
 
@@ -135,4 +135,4 @@ public class CardHelper {
     }
 
 
-}
+}*/

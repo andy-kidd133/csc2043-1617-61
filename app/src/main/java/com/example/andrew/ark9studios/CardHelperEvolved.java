@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * This class will store information for each instance variable of the evolved character card objects
  * */
 
-public class CardHelperEvolved {
+/*public class CardHelperEvolved {
 
 
 
@@ -125,5 +125,5 @@ public class CardHelperEvolved {
     }
 
 
-}
+}*/
 

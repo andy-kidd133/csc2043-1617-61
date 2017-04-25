@@ -15,6 +15,7 @@ package com.example.andrew.ark9studios;
  * this class will contain the information for each of the different action cards within the deck
  * and will pass this information into the ArrayList of the action cards in the Deck class
  **/
+/*
 
 public class CardHelperAction {
 
@@ -67,4 +68,4 @@ public class CardHelperAction {
 
 
 
-}
+}*/

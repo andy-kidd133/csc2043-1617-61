@@ -45,18 +45,16 @@ public class GameActivity extends Activity {
 
 
 
-
-
         String username = getIntent().getStringExtra("Username");
         TextView tvUsername = (TextView) findViewById(R.id.welcomeTxt);
         tvUsername.setText(username);
 
         session = new Session(this);
-        if(!session.loggedIn()){
+        if (!session.loggedIn()) {
             logout();
         }
-        logout= (ImageView) findViewById(R.id.logout_button);
-        tapToStart=(ImageView) findViewById(R.id.startgame_button);
+        logout = (ImageView) findViewById(R.id.logout_button);
+        tapToStart = (ImageView) findViewById(R.id.startgame_button);
 
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -66,37 +64,33 @@ public class GameActivity extends Activity {
             }
         });
 
-       tapToStart.setOnClickListener(new View.OnClickListener() {
+        tapToStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().add(R.id.container,  new QuibtigFragment()).commit();
+                getFragmentManager().beginTransaction().add(R.id.container, new QuibtigFragment()).commit();
             }
         });
 
 
-
     }
 
+
+    public GameActivity getActivity() {
+        return getActivity();
+    }
 
     /**
      * logout method
      */
-    private void logout(){
+    private void logout() {
         session.setLoggedIn(false);
         finish();
         startActivity(new Intent(GameActivity.this, LoginActivity.class));
+
+
     }
 
-
-/*
-    public void onBackPressed(){
-        if(!quibtigFragment.isBackPressed()){
-            super.onBackPressed();
-        }
-    }*/
-
 }
-
 
 
 

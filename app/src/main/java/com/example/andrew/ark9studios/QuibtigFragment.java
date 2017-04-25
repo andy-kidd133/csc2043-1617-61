@@ -5,9 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.andrew.ark9studios.fragments.GameFragment;
-import com.example.andrew.ark9studios.fragments.MainMenuScreen;
-import com.example.andrew.ark9studios.fragments.QuitScreen;
+import com.example.andrew.ark9studios.Screens.GameFragment;
+import com.example.andrew.ark9studios.Screens.MainMenuScreen;
 
 
 /**
