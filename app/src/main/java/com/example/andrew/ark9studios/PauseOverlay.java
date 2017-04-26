@@ -22,16 +22,6 @@ import viewports.ScreenViewport;
 public class PauseOverlay extends OverlayObject {
 
 
-    /**
-     * The bitmap for the Overlay frame
-     */
-    private Bitmap pausedBitmap;
-
-    /**
-     * Rectangle for draw of pausedBitmap
-     */
-    private Rect pausedRect;
-
 
     /**
      * Resume Button
@@ -50,15 +40,6 @@ public class PauseOverlay extends OverlayObject {
     private InputControl quitButton;
 
 
-    /**
-     * Sound Button Bitmaps
-     */
-    private Bitmap soundOnBitmap, soundOffBitmap;
-
-
-
-
-
 
   public PauseOverlay(float x, float y, float width, float height,
                       Bitmap bitmap, GameScreen gameScreen){
@@ -66,41 +47,33 @@ public class PauseOverlay extends OverlayObject {
 
       AssetManager assetManager = gameScreen.getmGame().getAssetManager();
 
-      this.pausedBitmap = assetManager.getBitmap("pauseIcon");
 
 
-      int pausedWidth = 600;
-      int pausedTop = (int) (y - 500.0f);
+
+      float buttonWidth =250.0f;
+      float buttonHeight = 110.0f;
 
 
-      int pausedHeight = 80;
-      int pausedBottom = pausedTop + pausedHeight;
+      float quitButtonX = bound.getLeft() + 460.0f;
+      float menuButtonX= bound.getLeft() + 460.0f;
+      float resumeButtonX = bound.getLeft() +460.0f;
 
-      int pausedX = (int) ((gameScreen.getmGame().getScreenWidth()/2.0f)
-      - (pausedWidth / 2.0f) + 50.0f);
-
-
-      this.pausedRect = new Rect(pausedX, pausedTop, pausedX + pausedWidth, pausedBottom);
-
-
-      float buttonWidth = 150.0f;
-      float buttonHeight = 100.0f;
-
-      float buttonY = pausedBottom + 200.0f;
-
-      float thirdWidth = width / 3.0f;
-      float quitButtonX = bound.getLeft() + thirdWidth;
-      float resumeButtonX = bound.getRight() - thirdWidth;
+      float quitbuttonY =  1060.0f;
+      float menubuttonY = 860.0f;
+      float resumebuttonY = 660.0f;
 
 
-      this.resumeButton = new InputControl(resumeButtonX, buttonY,
+
+
+     this.resumeButton = new InputControl(resumeButtonX, resumebuttonY,
               buttonWidth, buttonHeight,
               assetManager.getBitmap("ResumeButton"), gameScreen);
 
-      this.soundOnBitmap = assetManager.getBitmap("SoundButtonOn");
-      this.soundOffBitmap = assetManager.getBitmap("SoundButtonOff");
 
-      this.quitButton = new InputControl(quitButtonX, buttonY, buttonWidth,
+     this.menuButton = new InputControl(menuButtonX, menubuttonY, buttonWidth,
+              buttonHeight, assetManager.getBitmap("mainMenuButton"), gameScreen);
+
+      this.quitButton = new InputControl(quitButtonX, quitbuttonY, buttonWidth,
               buttonHeight, assetManager.getBitmap("QuitButton"), gameScreen);
 
   }
@@ -114,10 +87,11 @@ public class PauseOverlay extends OverlayObject {
                      LayerViewport layerViewport, ScreenViewport screenViewport) {
         super.draw(elapsedTime, graphics2DInterface, layerViewport, screenViewport);
 
-        graphics2DInterface.drawBitmap(pausedBitmap, null, pausedRect, null);
+
 
         resumeButton.draw(elapsedTime, graphics2DInterface, layerViewport,
                 screenViewport);
+        menuButton.draw(elapsedTime, graphics2DInterface , layerViewport, screenViewport);
         quitButton.draw(elapsedTime, graphics2DInterface, layerViewport, screenViewport);
 
 
@@ -129,6 +103,7 @@ public class PauseOverlay extends OverlayObject {
      * @return boolean indicating whether the resume button has a touch up
      */
     public boolean isResumed() {
+
         return resumeButton.hasTouchUp();
     }
 
@@ -138,6 +113,11 @@ public class PauseOverlay extends OverlayObject {
      */
     public boolean isExited() {
         return quitButton.hasTouchUp();
+    }
+
+
+    public boolean isMainMenu(){
+        return menuButton.hasTouchUp();
     }
 
 

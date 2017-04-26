@@ -12,6 +12,7 @@ import com.example.andrew.ark9studios.GameAudioManager;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
+import com.example.andrew.ark9studios.GameLevelOne;
 import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
@@ -220,8 +221,8 @@ public class MainMenuScreen extends GameScreen {
             if (playGameButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN) {
 
                 game.getScreenManager().removeScreen(this.getmName());
-                MainGameScreen mainGameScreen = new MainGameScreen(this.getmGame());
-                game.getScreenManager().addGameScreen(mainGameScreen);
+               GameLevelOne gameLevelOne = new GameLevelOne(this.getmGame());
+                game.getScreenManager().addGameScreen(gameLevelOne);
 
                 backgroundMusic.stop();
 

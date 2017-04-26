@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameGraphics.GraphicsHelper;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import viewports.LayerViewport;
@@ -16,39 +17,77 @@ import viewports.ScreenViewport;
 public class GameObjects {
 
 
+    /**
+     * Game screen to which this game object belongs to
+     */
 
     protected GameScreen gameScreen;
 
-
+    /**
+     * set the gamescreen that the game object belongs to
+     * @param gameScreen
+     */
     public void setGameScreen(GameScreen gameScreen){
         this.gameScreen = gameScreen;
     }
 
+
+    /**
+     * Bitmap used to render this game object
+     */
     protected Bitmap bitmap;
 
+
+    /**
+     * Position of this game object
+     */
     public Vector2 position = new Vector2();
 
+
+    /**
+     * Bounding box for this game object
+     */
     protected BoundingBox bound = new BoundingBox();
 
+
+    /**
+     * Reusable Rect's used to draw this game object
+     */
     protected Rect drawRectSource = new Rect();
     protected Rect drawScreenRect = new Rect();
 
 
-
+    /**
+     * getter for drawScreenRect
+     * @return
+     */
     public Rect getDrawScreenRect(){
         return drawScreenRect;
     }
 
 
-
-
+    /**
+     * create a new game object
+     * @param gameScreen- gamescreen to which the object belongs to
+     */
     public GameObjects(GameScreen gameScreen){
         this.gameScreen = gameScreen;
     }
 
 
 
-
+    /***
+     * Create a new game object
+     *
+     * @param x
+     *            x location of the object
+     * @param y
+     *            y location of the object
+     * @param bitmap
+     *            Bitmap used to represent this object
+     * @param gameScreen
+     *            Gamescreen to which this object belongs
+     */
 
     public GameObjects(float x, float y, Bitmap bitmap, GameScreen gameScreen){
 
@@ -66,7 +105,22 @@ public class GameObjects {
     }
 
 
-
+    /***
+     * Create a new game object
+     *
+     * @param x
+     *            x location of the object
+     * @param y
+     *            y location of the object
+     * @param width
+     *            width of the object
+     * @param height
+     *            height of the object
+     * @param bitmap
+     *            Bitmap used to represent this object
+     * @param gameScreen
+     *            Gamescreen to which this object belongs
+     */
 
     public GameObjects(float x, float y, float width, float height,
                      Bitmap bitmap, GameScreen gameScreen) {
@@ -83,7 +137,24 @@ public class GameObjects {
     }
 
 
-
+    /***
+     * Create a new game object
+     *
+     * @param x
+     *            x location of the object
+     * @param y
+     *            y location of the object
+     * @param width
+     *            width of the object
+     * @param height
+     *            height of the object
+     * @param bitmap
+     *            Bitmap used to represent this object
+     * @param gameScreen
+     *            Gamescreen to which this object belongs
+     * @param drawRectSource
+     *            specific draw source to set
+     */
     public GameObjects(float x, float y, float width, float height,
                       Bitmap bitmap, GameScreen gameScreen, Rect drawRectSource) {
         this.gameScreen = gameScreen;
@@ -181,10 +252,10 @@ public class GameObjects {
      */
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface,
                      LayerViewport layerViewport, ScreenViewport screenViewport) {
-       /* if (GraphicsHelper.getClippedSourceAndScreenRect(this, layerViewport,
+        if (GraphicsHelper.getClippedSourceAndScreenRect(this, layerViewport,
                 screenViewport, drawRectSource, drawScreenRect)) {
          graphics2DInterface.drawBitmap(bitmap, drawRectSource, drawScreenRect, null);
-        }*/
+        }
     }
 
 

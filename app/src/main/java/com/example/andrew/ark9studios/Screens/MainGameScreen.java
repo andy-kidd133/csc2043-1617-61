@@ -27,37 +27,81 @@ public class MainGameScreen extends GameScreen {
     public static final String SCREEN_NAME = "MainGameScreen";
 
     private Rect card1Bound;
+
+    /**
+     * Draw Rect for the background bitmap
+     */
     private Rect backgroundBound;
+
+    /**
+     * Draw Rect for the pause icon bitmap
+     */
     private Rect pauseIconBound;
+
+    /**
+     * Draw Rect for the player deck bitmap
+     */
     private Rect player1DeckBound;
+
+    /**
+     * Draw Rect for the enemy deck bitmap
+     */
     private Rect enemyDeckBound;
 
 
     private Bitmap card1Bitmap;
+
+    /**
+     * background bitmap
+     */
     private Bitmap backgroundBitmap;
+
+
+    /**
+     * pause icon bitmap
+     */
     private Bitmap pauseIconBitmap;
+
+    /**
+     * player  deck bitmap
+     */
     private Bitmap player1DeckBitmap;
+
+    /**
+     * enemy deck bitmap
+     */
     private Bitmap enemyDeckBitmap;
 
-
+    /**
+     * width of the card deck
+     */
     private static final int CARD_WIDTH = 150;
+    /**
+     * card height of the card deck
+     */
     private static final int CARD_HEIGHT = 150;
 
+    /**
+     * width of the deck
+     */
     private static final int DECK_WIDTH = 1100;
+    /**
+     * height of the deck
+     */
     private static final int DECK_HEIGHT = 400;
 
-
+    /**
+     * pause button width
+     */
     private static final int PAUSE_BUTTON_WIDTH= 120;
+
+    /**
+     * pause button height
+     */
     private static final int PAUSE_BUTTON_HEIGHT=130;
 
-    protected PauseOverlay pauseOverlay;
-    protected ScreenViewport screenViewport;
-    protected LayerViewport layerViewport;
 
 
-    //private GameMusic gameMusic;
-
-    AssetManager assetManager = game.getAssetManager();
 
     protected enum GameLevelState {
         paused, running
@@ -65,10 +109,15 @@ public class MainGameScreen extends GameScreen {
 
     protected GameLevelState levelState;
 
-   public MainGameScreen(Game game){
+
+    /**
+     * create a new main game screen
+     * @param game-screen the game belongs to
+     */
+    public MainGameScreen(Game game){
        super(SCREEN_NAME, game);
 
-
+       AssetManager assetManager = game.getAssetManager();
        assetManager.emptyAssets();
 
        assetManager.loadAndAddBitmap("card1", "images/card1.png");
@@ -85,17 +134,17 @@ public class MainGameScreen extends GameScreen {
        this.player1DeckBitmap = assetManager.getBitmap("player1Deck");
        this.enemyDeckBitmap = assetManager.getBitmap("enemyDeck");
 
-        this.levelState = levelState.running;
 
-       setUpPause();
-       setupViewports();
-     //  startBackgroundMusic();
+
+
 
    }
 
 
-
-
+    /**
+     * Draw method
+     * @param elapsedTime- elapsed time info for the frame
+     */
     @Override
     public void update(ElapsedTime elapsedTime) {
         Input input = game.getInput();
@@ -112,6 +161,12 @@ public class MainGameScreen extends GameScreen {
 
     }
 
+
+    /**
+     * update method
+     * @param elapsedTime- elapsed time info for the frame
+     * @param graphics2DInterface- graphics interface which is used to draw the game screen
+     */
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
@@ -173,31 +228,7 @@ public class MainGameScreen extends GameScreen {
     }
 
 
-  /*  protected void startBackgroundMusic(){
-        gameMusic = assetManager.getMusic("backgroundMusic");
-        gameMusic.setLooping(true);
-        gameMusic.startGameMusic();
-    }
-*/
 
-    protected void setupViewports() {
-        // Create the view ports
-        layerViewport = new LayerViewport(600.0f, 400.0f, 600.0f, 400.0f);
-        screenViewport = new ScreenViewport();
-    }
-
-    protected void setUpPause(){
-
-
-        int width = 800;
-        int height=800;
-        float x = 500.0f;
-        float y = 1000.0f;
-
-
-        pauseOverlay = new PauseOverlay(x, y, width, height, assetManager.getBitmap("PauseMenu"), this);
-
-    }
 
 
     /**
@@ -205,8 +236,7 @@ public class MainGameScreen extends GameScreen {
      */
     @Override
     public void dispose() {
-     //gameMusic.destroyGameMusic();
-        assetManager.emptyAssets();
+     return;
     }
 
 
@@ -216,8 +246,7 @@ public class MainGameScreen extends GameScreen {
     @Override
     public void pause() {
 
-        levelState = GameLevelState.paused;
-        //gameMusic.pause();
+       return;
     }
 
 
@@ -226,7 +255,7 @@ public class MainGameScreen extends GameScreen {
      */
     @Override
     public void resume() {
-        //gameMusic.play();
+        return;
 
     }
 
