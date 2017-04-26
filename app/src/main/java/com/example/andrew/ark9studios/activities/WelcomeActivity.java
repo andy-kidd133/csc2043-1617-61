@@ -2,7 +2,6 @@ package com.example.andrew.ark9studios.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 
 
 import com.example.andrew.ark9studios.Databases.Session;
-import com.example.andrew.ark9studios.GameMusic;
+import com.example.andrew.ark9studios.GameActivity;
 import com.example.andrew.ark9studios.QuibtigFragment;
 import com.example.andrew.ark9studios.R;
 
@@ -19,7 +18,7 @@ import com.example.andrew.ark9studios.R;
  */
 
 
-public class GameActivity extends Activity {
+public class WelcomeActivity extends Activity {
 
 
     private Session session;
@@ -67,7 +66,8 @@ public class GameActivity extends Activity {
         tapToStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().add(R.id.container, new QuibtigFragment()).commit();
+                Intent intent = new Intent(WelcomeActivity.this, GameActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -75,9 +75,7 @@ public class GameActivity extends Activity {
     }
 
 
-    public GameActivity getActivity() {
-        return getActivity();
-    }
+
 
     /**
      * logout method
@@ -85,10 +83,11 @@ public class GameActivity extends Activity {
     private void logout() {
         session.setLoggedIn(false);
         finish();
-        startActivity(new Intent(GameActivity.this, LoginActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
 
 
     }
+
 
 }
 

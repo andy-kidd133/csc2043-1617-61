@@ -57,15 +57,13 @@ public class Game  {
             return mLoop;
         }
         public Input getInput(){ return input;}
-        public Activity getActivity(){
-            return  activity;
-        }
+        public Activity getActivity(){ return activity;}
         public GameAudioManager getAudioManager(){ return audioManager;}
         //////////////////////////////////////////////////////////////////
         //Constructor
         //////////////////////////////////////////////////////////////////
-        public Game(GameFragment mainGameFragment){
-            this.activity = mainGameFragment.getActivity();
+        public Game(GameFragment gameFragment){
+            this.activity = gameFragment.getActivity();
         }
         //////////////////////////////////////////////////////////////////
         //Methods
@@ -86,6 +84,8 @@ public class Game  {
             activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
             //create the audio manager
             audioManager = new GameAudioManager(activity.getApplicationContext());
+
+            activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         }
         /***
          * Creates and returns the render surface the game will be displayed on
@@ -111,7 +111,7 @@ public class Game  {
         public void resume(){
             //pauses the current game screen
             if(mScreenManager.getCurrentGameScreen() != null){
-                mScreenManager.getCurrentGameScreen().pause();
+                mScreenManager.getCurrentGameScreen().resume();
             }
             mLoop.resume();
         }

@@ -60,11 +60,6 @@ public class MainMenuScreen extends GameScreen {
      */
     private Rect quitButtonBound;
 
-    /**
-     * Draw Rect for the back button bitmap
-     */
-    private Rect backButtonBound;
-
 
 
     /**
@@ -102,12 +97,6 @@ public class MainMenuScreen extends GameScreen {
      */
     private Bitmap quitBitmap;
 
-    /**
-     * back button bitmap
-     */
-    private Bitmap backButtonBitmap;
-
-
 
     /**
      * Menu screen name
@@ -137,17 +126,6 @@ public class MainMenuScreen extends GameScreen {
 
 
     /**
-     * back button width
-     */
-    private static final int BACK_BUTTON_WIDTH = 150;
-
-    /**
-     * back button height
-     */
-    private static final int BACK_BUTTON_HEIGHT = 150;
-
-
-    /**
      * The background music that is to be played
      */
     private GameMusic backgroundMusic;
@@ -174,7 +152,6 @@ public class MainMenuScreen extends GameScreen {
         assetManager.loadAndAddBitmap("rulesbutton", "images/button_rules.png");
         assetManager.loadAndAddBitmap("scoreboardbutton", "images/button_scoreboard.png");
         assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
-        assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
         assetManager.loadAndAddMusic("backgroundMusic", "raw/backgroundmusic.mp3");
 
 
@@ -187,7 +164,6 @@ public class MainMenuScreen extends GameScreen {
         this.rulesBitmap  = assetManager.getBitmap("rulesbutton");
         this.scoreBoardBitmap = assetManager.getBitmap("scoreboardbutton");
         this.quitBitmap = assetManager.getBitmap("quitbutton");
-        this.backButtonBitmap = assetManager.getBitmap("backbutton");
         this.backgroundMusic = assetManager.getMusic("backgroundMusic");
 
 
@@ -266,14 +242,6 @@ public class MainMenuScreen extends GameScreen {
 
             }
 
-            if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
-
-
-            }
-
-
-
-
 
 
 
@@ -302,8 +270,7 @@ public class MainMenuScreen extends GameScreen {
         int scoreboardTop = rulesTop + verticalSpacer;
         int quitTop = scoreboardTop + verticalSpacer;
 
-        int backTop = graphics2DInterface.getSurfaceHeight() - 155;
-        int backLeft = 20;
+
 
 
         if (playGameButtonBound == null) {
@@ -344,12 +311,6 @@ public class MainMenuScreen extends GameScreen {
         }
 
 
-        if (backButtonBound == null) {
-            backButtonBound = new Rect(backLeft, backTop, backLeft + BACK_BUTTON_WIDTH,
-                    backTop + BACK_BUTTON_HEIGHT);
-        }
-
-
 
 
 
@@ -360,7 +321,6 @@ public class MainMenuScreen extends GameScreen {
             graphics2DInterface.drawBitmap(rulesBitmap, null, rulesButtonBound, null);
             graphics2DInterface.drawBitmap(scoreBoardBitmap, null, scoreboardButtonBound, null);
             graphics2DInterface.drawBitmap(quitBitmap, null, quitButtonBound, null);
-            graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);
 
 
 

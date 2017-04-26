@@ -11,32 +11,6 @@ public class GameObjectFactory {
 
 
 
-
-	/***
-	 * Create a new generic GameObject
-	 * 
-	 * @param x
-	 *            - starting x coordinate
-	 * @param y
-	 *            - starting y coordinate
-	 * @param bitmap
-	 *            - bitmap to be drawn
-	 * @param width
-	 *            - GameObject width
-	 * @param height
-	 *            - GameObject height
-	 * @param gameScreen
-	 *            - gameScreen belongs to
-	 * @return new PlayGameObjecter instance
-	 */
-	public static GameObjects createGameObject(float x, float y, Bitmap bitmap,
-			float width, float height, GameScreen gameScreen) {
-		return new GameObjects(x, y, width, height, bitmap, gameScreen);
-	}
-
-
-
-
 	/***
 	 * Create a new InputControl
 	 *

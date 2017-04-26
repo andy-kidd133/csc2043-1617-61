@@ -30,7 +30,7 @@ public class SplashScreen extends Activity {
         setContentView(R.layout.splash_screen);
 
      /*  We have used a thread and included the code in the run method that we want to run on the thread
-       it simply loads the splash screen and through the intent method switches to the GameActivity class
+       it simply loads the splash screen and through the intent method switches to the WelcomeActivity class
       */
         Thread timer = new Thread(){
             public void run(){

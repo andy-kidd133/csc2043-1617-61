@@ -44,7 +44,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         register.setOnClickListener(this);
 
         if (session.loggedIn()) {
-            startActivity(new Intent(LoginActivity.this, GameActivity.class));
+            startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
             finish();
         }
 
@@ -74,7 +74,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         if (db.getUser(username, pass)) {
             session.setLoggedIn(true);
-            Intent mainAct = new Intent(LoginActivity.this, GameActivity.class);
+            Intent mainAct = new Intent(LoginActivity.this, WelcomeActivity.class);
             mainAct.putExtra("Username", username);
             startActivity(mainAct);
             finish();

@@ -35,12 +35,33 @@ public class PauseOverlay extends OverlayObject {
     private InputControl menuButton;
 
     /**
-     * Quit Button
+     *sound toggle Button
      */
-    private InputControl quitButton;
+    private InputControl soundControl;
 
 
+    /**
+     * sound bitmaps
+     */
+    private Bitmap soundOn, soundOff;
 
+
+    /***
+     * Create a new Pause Overlay
+     *
+     * @param x
+     *            - starting x coordinate
+     * @param y
+     *            - starting y coordinate
+     * @param width
+     *            - width of overlay object
+     * @param height
+     *            - height of overlay object
+     * @param bitmap
+     *            - bitmap to be drawn
+     * @param gameScreen
+     *            - gameScreen overlayObject being rendered to
+     */
   public PauseOverlay(float x, float y, float width, float height,
                       Bitmap bitmap, GameScreen gameScreen){
       super(x, y, width, height, bitmap, gameScreen);
@@ -48,20 +69,33 @@ public class PauseOverlay extends OverlayObject {
       AssetManager assetManager = gameScreen.getmGame().getAssetManager();
 
 
+      float buttonWidth =270.0f;
+      float buttonHeight = 90.0f;
+
+      float soundButtonWidth=150.0f;
+      float soundButtonHeight=150.0f;
 
 
-      float buttonWidth =250.0f;
-      float buttonHeight = 110.0f;
-
-
-      float quitButtonX = bound.getLeft() + 460.0f;
+      float soundButtonX = bound.getLeft() + 450.0f;
       float menuButtonX= bound.getLeft() + 460.0f;
       float resumeButtonX = bound.getLeft() +460.0f;
 
-      float quitbuttonY =  1060.0f;
+      float soundbuttonY =  1020.0f;
       float menubuttonY = 860.0f;
       float resumebuttonY = 660.0f;
 
+
+
+      this.soundOn = assetManager.getBitmap("SoundOnButton");
+      this.soundOff= assetManager.getBitmap("SoundOffButton");
+
+
+
+      if(GameAudioManager.SOUND_ENABLED)
+          this.soundControl = new InputControl(soundButtonX, soundbuttonY, soundButtonWidth,
+                  soundButtonHeight, soundOn, gameScreen);
+      else this.soundControl = new InputControl(soundButtonX, soundbuttonY, soundButtonWidth,
+                  soundButtonHeight, soundOff, gameScreen);
 
 
 
@@ -73,14 +107,27 @@ public class PauseOverlay extends OverlayObject {
      this.menuButton = new InputControl(menuButtonX, menubuttonY, buttonWidth,
               buttonHeight, assetManager.getBitmap("mainMenuButton"), gameScreen);
 
-      this.quitButton = new InputControl(quitButtonX, quitbuttonY, buttonWidth,
-              buttonHeight, assetManager.getBitmap("QuitButton"), gameScreen);
 
   }
 
-    public void update(ElapsedTime elapsedTime){
+
+    /**
+     * update pauseOverlay
+     */
+    public void update(ElapsedTime elapsedTime) {
+
+
+        if (GameAudioManager.SOUND_ENABLED && soundControl.getBitmap() != soundOn) {
+            soundControl.setBitmap(soundOn);
+        } else if (!GameAudioManager.SOUND_ENABLED && soundControl.getBitmap() != soundOff) {
+            soundControl.setBitmap(soundOff);
+        }
 
     }
+
+    /**
+     * draw method
+     */
 
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface,
@@ -92,7 +139,7 @@ public class PauseOverlay extends OverlayObject {
         resumeButton.draw(elapsedTime, graphics2DInterface, layerViewport,
                 screenViewport);
         menuButton.draw(elapsedTime, graphics2DInterface , layerViewport, screenViewport);
-        quitButton.draw(elapsedTime, graphics2DInterface, layerViewport, screenViewport);
+        soundControl.draw(elapsedTime, graphics2DInterface, layerViewport, screenViewport);
 
 
     }
@@ -111,11 +158,15 @@ public class PauseOverlay extends OverlayObject {
      *
      * @return boolean indicating whether the exit button has a touch up
      */
-    public boolean isExited() {
-        return quitButton.hasTouchUp();
+    public boolean isSoundToggled() {
+        return soundControl.hasTouchUp();
     }
 
 
+    /***
+     *
+     * @return boolean indicating whether the menu button has a touch up
+     */
     public boolean isMainMenu(){
         return menuButton.hasTouchUp();
     }

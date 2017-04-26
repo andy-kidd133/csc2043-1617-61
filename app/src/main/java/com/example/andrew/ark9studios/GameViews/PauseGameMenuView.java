@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import com.example.andrew.ark9studios.R;
-import com.example.andrew.ark9studios.activities.GameActivity;
+import com.example.andrew.ark9studios.activities.WelcomeActivity;
 import com.example.andrew.ark9studios.fragments.GameFragment;
 import com.example.andrew.ark9studios.fragments.MainMenuScreen;
 */
@@ -28,7 +28,7 @@ import com.example.andrew.ark9studios.fragments.MainMenuScreen;
     public Activity activity;
     public Fragment nextFragment;
     public ImageView resumeButton, mainMenuButton, pauseQuitButton;
-    private GameActivity mainActivity;
+    private WelcomeActivity mainActivity;
 
 
     public PauseGameMenuView(Activity activity, Fragment fragment) {

@@ -1,5 +1,6 @@
 package com.example.andrew.ark9studios.Screens;
 
+
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
@@ -26,44 +27,91 @@ import viewports.ScreenViewport;
  * Created by Megan on 25/04/2017.
  */
 
+/**
+ * this is an abstract class that provides the common functionality that is available  to a game level
+ */
+
 public abstract class GameLevel extends GameScreen {
 
 
+    /**
+     * Width of the Level in the Game
+     */
     protected final float levelWidth;
 
+    /**
+     * Height of the Level in the game
+     */
     protected final float levelHeight;
 
-
-
+    /**
+     * AssetManager used to access games assets
+     */
     protected AssetManager assetManager;
 
+    /**
+     * game music
+     */
     protected GameMusic gameMusic;
 
-
+    /***
+     * Screen window
+     */
     protected ScreenViewport screenViewport;
 
+
+    /***
+     * Window into GameWorld
+     */
     protected LayerViewport layerViewport;
 
-
+    /**
+     * User input controls for managing the game
+     */
     protected InputControl pauseButton;
 
 
+    /***
+     *
+     * Enum that describes possible level states
+     *
+     */
     protected  enum gameLvlState{
-        Running, mainMenu, Paused, Exited, Over, Finishing, Complete
+        Running, mainMenu, Paused, Finishing
     }
 
-
+    /**
+     * Current game state
+     */
     protected gameLvlState gameLvlState;
 
 
+    /***
+     * PauseOverlay Object shown on Pause
+     */
     protected PauseOverlay pauseOverlay;
 
+    /**
+     * Draw Rect for the background bitmap
+     */
     private Rect backgroundBound;
+
+    /**
+     * Bitmap for the background
+     */
     private Bitmap background;
 
 
 
 
+
+    /**
+     * create a new game level
+     * @param name- name of the gameScreen
+     * @param game- game instance of the game level
+     * @param levelWidth- width of the level
+     * @param levelHeight- height of the level
+     */
     public GameLevel(String name, Game game, float levelWidth, float levelHeight){
         super(name, game);
 
@@ -75,14 +123,10 @@ public abstract class GameLevel extends GameScreen {
     }
 
 
-    public void canFinish(){
-        gameLvlState = gameLvlState.Finishing;
-    }
-
-
-
-
-
+    /**
+     * Update the game level
+     * @param elapsedTime- elapsed time info for the frame
+     */
 
     @Override
     public void update(ElapsedTime elapsedTime) {
@@ -93,24 +137,20 @@ public abstract class GameLevel extends GameScreen {
                 gameLvlState = gameLvlState.Paused;
             }
 
-        }
-
-        if(gameLvlState == gameLvlState.Paused){
+        }else if(gameLvlState == gameLvlState.Paused){
             pauseOverlay.update(elapsedTime);
-
             if(pauseOverlay.isResumed()){
                 gameLvlState = gameLvlState.Running;
-            }else if(pauseOverlay.isExited()){
-                gameLvlState = gameLvlState.Exited;
             }else if(pauseOverlay.isMainMenu()){
-                gameLvlState =gameLvlState.mainMenu;
+                backToMenu();
             }
 
-        }else if (gameLvlState == gameLvlState.Exited) {
-            exitLevel();
-        }else if(gameLvlState == gameLvlState.mainMenu){
-            backToMenu();
+            if(pauseOverlay.isSoundToggled()){
+                game.toggleSound();
+            }
+
         }
+
 
 
         // Ensure the viewport cannot leave the confines of the world
@@ -126,73 +166,110 @@ public abstract class GameLevel extends GameScreen {
         }
     }
 
+
+    /**
+     * draw game level
+     * @param elapsedTime- elapsed time info for the frame
+     * @param graphics2DInterface- graphics interface which is used to draw the game screen
+     */
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
+
+        if (backgroundBound == null) {
+            backgroundBound = new Rect(0, 0, graphics2DInterface.getSurfaceWidth(),
+                    graphics2DInterface.getSurfaceHeight());
+        }
+
+        graphics2DInterface.drawBitmap(background,null,backgroundBound,null);
 
 
         if(gameLvlState == gameLvlState.Running || gameLvlState ==
              gameLvlState.Finishing){
 
-            if (backgroundBound == null) {
-                backgroundBound = new Rect(0, 0, graphics2DInterface.getSurfaceWidth(),
-                        graphics2DInterface.getSurfaceHeight());
-            }
-
-
-            graphics2DInterface.drawBitmap(background, null, backgroundBound, null);
-
             pauseButton.draw(elapsedTime, graphics2DInterface, layerViewport,
                     screenViewport);
-        }
-
-
-        if(gameLvlState == gameLvlState.Paused){
+        } else  if(gameLvlState == gameLvlState.Paused){
 
             //draw the paused screen
             pauseOverlay.draw(elapsedTime,graphics2DInterface, layerViewport, screenViewport);
         }
+
+
     }
 
 
-    /***
-     * Functionality to run upon level exit
-     */
-    public abstract void exitLevel();
+
 
 
 
     /***
      * Functionality to run upon back to menu
      */
-    public abstract void backToMenu();
+    public void backToMenu(){
+        gameMusic.stop();
+    }
 
 
-
-
+    /**
+     * load common bitmaps
+     */
     public void loadLevelAssets(){
       assetManager.emptyAssets();
 
+       assetManager.loadAndAddBitmap("Background", "images/qubbg.png");
         assetManager.loadAndAddBitmap("pauseButton", "images/pause_button.png");
         assetManager.loadAndAddBitmap("ResumeButton", "images/pauseresume.png");
         assetManager.loadAndAddBitmap("pauseMenu", "images/pausemenu.png");
-        assetManager.loadAndAddBitmap("QuitButton", "images/pausequit.png");
+        assetManager.loadAndAddBitmap("SoundOnButton", "images/music_on.png");
+        assetManager.loadAndAddMusic("SoundOffButton", "images/music_off.png");
         assetManager.loadAndAddBitmap("mainMenuButton", "images/pausemainmenu.png");
-        assetManager.loadAndAddBitmap("Background", "images/qubbg.png");
-        this.background = assetManager.getBitmap("Background");
-
+        assetManager.loadAndAddMusic("playGameMusic", "raw/laser_groove.mp3");
+        this.background =   assetManager.getBitmap("Background");
 
     }
 
 
-
-
+    /**
+     * set up the common game level objects
+     */
     public void setUpLevel(){
 
         setupViewports();
-
         setupInputControls();
+        startBackgroundMusic();
         setupPauseOverlay();
 
+    }
+
+
+    /**
+     * game level disposed
+     */
+    @Override
+    public void dispose() {
+        gameMusic.dispose();
+        assetManager.emptyAssets();
+
+    }
+
+    /**
+     * game level paused
+     */
+    @Override
+    public void pause() {
+        gameLvlState = gameLvlState.Paused;
+        gameMusic.pause();
+
+    }
+
+    /**
+     * game level resumed
+     */
+
+    @Override
+    public void resume() {
+
+        gameMusic.play();
     }
 
 
@@ -233,7 +310,7 @@ public abstract class GameLevel extends GameScreen {
     protected void setupInputControls() {
         // Create the touch controls
         int screenWidth = game.getScreenWidth();
-        int screenHeight = game.getScreenHeight();
+
 
 
         pauseButton = GameObjectFactory.createInputControl(
@@ -241,6 +318,15 @@ public abstract class GameLevel extends GameScreen {
                 assetManager.getBitmap("pauseButton"), 70.0f, 70.0f, this);
     }
 
+
+    /***
+     * start game music
+     */
+    protected void startBackgroundMusic() {
+        this.gameMusic = assetManager.getMusic("playGameMusic");
+        gameMusic.setLooping(true);
+        gameMusic.play();
+    }
 
     /***
      * Check whether only the screen has been tapped. If input controls have
@@ -268,20 +354,6 @@ public abstract class GameLevel extends GameScreen {
         }
         return false;
     }
-    @Override
-    public void dispose() {
-    assetManager.emptyAssets();
-    }
 
-    @Override
-    public void pause() {
 
-        gameLvlState = gameLvlState.Paused;
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
 }

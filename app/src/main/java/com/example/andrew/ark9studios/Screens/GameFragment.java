@@ -18,7 +18,7 @@ import java.io.InputStream;
 import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.GameViews.PauseGameMenuView;
 import com.example.andrew.ark9studios.R;
-import com.example.andrew.ark9studios.activities.GameActivity;*/
+import com.example.andrew.ark9studios.activities.WelcomeActivity;*/
 
 
 
