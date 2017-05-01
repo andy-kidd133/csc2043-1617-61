@@ -1,6 +1,9 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.card;
 
 import android.graphics.Bitmap;
+
+import com.example.andrew.ark9studios.card.Card;
+import com.example.andrew.ark9studios.card.CardDepartment;
 
 /**
  * Created by Andrew on 13/03/2017.

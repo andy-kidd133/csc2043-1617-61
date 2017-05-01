@@ -1,7 +1,8 @@
 package com.example.andrew.ark9studios;
 
 import android.graphics.Bitmap;
-import java.util.ArrayList;
+
+import com.example.andrew.ark9studios.card.Card;
 
 /**
  * Created by Emma on 20/04/2017.

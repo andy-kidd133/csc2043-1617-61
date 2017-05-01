@@ -6,7 +6,6 @@ import android.content.Intent;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.Screens.GameLevel;
 import com.example.andrew.ark9studios.Screens.MainMenuScreen;
-import com.example.andrew.ark9studios.activities.WelcomeActivity;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 /**

@@ -26,6 +26,10 @@ import java.util.List;
 
 public class OptionsScreen extends GameScreen {
 
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
+
     /**
      * Draw Rect for background bitmap
      */
@@ -135,6 +139,11 @@ public class OptionsScreen extends GameScreen {
 
     private MainMenuScreen mainMenuScreen;
 
+
+
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
     /**
      * create a new options screen
      * @param game- game options screen belongs
@@ -166,6 +175,11 @@ public class OptionsScreen extends GameScreen {
         mainMenuScreen.getBackgroundMusic();
 
     }
+
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
     /**
      * options update
      * @param elapsedTime- elapsed time info for the frame

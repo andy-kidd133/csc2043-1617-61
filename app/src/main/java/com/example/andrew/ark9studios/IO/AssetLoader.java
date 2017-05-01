@@ -7,9 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.SoundPool;
 
-import com.example.andrew.ark9studios.GameMusic;
-import com.example.andrew.ark9studios.Sound;
-import android.graphics.BitmapFactory.Options;
+import com.example.andrew.ark9studios.Music.GameMusic;
+import com.example.andrew.ark9studios.Music.Sound;
+
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;

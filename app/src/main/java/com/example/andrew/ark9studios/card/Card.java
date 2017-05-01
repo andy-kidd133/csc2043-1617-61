@@ -1,7 +1,10 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.card;
 
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+
+import com.example.andrew.ark9studios.BoundingBox;
+import com.example.andrew.ark9studios.Vector2;
 
 /**
  * Created by Emma and Megan 09/02/2017.
@@ -48,20 +51,17 @@ public abstract class Card{
         return name;
     }
 
-    public Bitmap getCardImg()
+    public Bitmap getCardImg(Bitmap bitmap)
     {
         return cardImage;
 
     }
 
-    /*
-    public void dragCard(final Bitmap cardImage)
+
+    /*public void dragCard(final Bitmap cardImage)
     {
         cardImage.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) cardImage.getLayoutParams();
 
                 switch (motionEvent.getAction())
                 {
@@ -85,7 +85,6 @@ public abstract class Card{
                         break;
                 }
                 return true;
-            }
         });
     }*/
 

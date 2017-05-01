@@ -24,8 +24,16 @@ import viewports.ScreenViewport;
  * Created by megan on 02/03/2017.
  */
 
+/**
+ * score board screen
+ */
+
 public class ScoreBoardScreen extends GameScreen {
 
+
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
 
     /**
      *Draw Rect for the background bitmap
@@ -136,6 +144,10 @@ public class ScoreBoardScreen extends GameScreen {
     private Rect[] topScoreDrawRects;
 
 
+
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
     /**
      * create a bew score board screen
      * @param game
@@ -175,6 +187,10 @@ public class ScoreBoardScreen extends GameScreen {
     }
 
 
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
     /**
      * update method
      * @param elapsedTime- elapsed time info for the frame
@@ -243,16 +259,26 @@ public class ScoreBoardScreen extends GameScreen {
 
     }
 
+
+    /**
+     * pause method
+     */
     @Override
     public void dispose() {
 
     }
 
+    /**
+     * pause method
+     */
     @Override
     public void pause() {
 
     }
 
+    /**
+     * resume method
+     */
     @Override
     public void resume() {
 

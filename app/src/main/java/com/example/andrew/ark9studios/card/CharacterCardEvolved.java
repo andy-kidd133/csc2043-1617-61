@@ -1,10 +1,15 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.card;
 
 /**
  * Created by Emma on 24/04/2017.
  */
 
 import android.graphics.Bitmap;
+
+import com.example.andrew.ark9studios.Strength;
+import com.example.andrew.ark9studios.Weakness;
+import com.example.andrew.ark9studios.card.Card;
+import com.example.andrew.ark9studios.card.CardDepartment;
 
 /**
  * This class will contain all the evolved versions of the basic character cards

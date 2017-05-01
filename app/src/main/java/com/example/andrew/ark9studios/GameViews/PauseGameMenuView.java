@@ -21,6 +21,7 @@ import com.example.andrew.ark9studios.fragments.MainMenuScreen;
 
 /**
  * Created by Megan on 28/03/2017.
+ * This is not currently being used as we decided not to use fragments anymore
  */
 
 /*public class PauseGameMenuView extends Dialog  implements  android.view.View.OnClickListener  {

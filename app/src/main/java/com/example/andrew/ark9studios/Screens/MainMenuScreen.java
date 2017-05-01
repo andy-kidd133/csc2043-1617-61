@@ -8,12 +8,11 @@ import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.AssetManager;
-import com.example.andrew.ark9studios.GameAudioManager;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameLevelOne;
-import com.example.andrew.ark9studios.GameMusic;
+import com.example.andrew.ark9studios.Music.GameMusic;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
@@ -22,8 +21,16 @@ import java.util.List;
 /**
  * Created by Megan on 23/02/2017.
  */
+
+/**
+ * This is the main menu screen and it will provide the user with 5 options: play game, options, rules, scoreboard and
+ * quit
+ */
 public class MainMenuScreen extends GameScreen {
 
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
 
     /**
      * Draw Rect for the background bitmap
@@ -131,6 +138,11 @@ public class MainMenuScreen extends GameScreen {
     private GameMusic backgroundMusic;
 
 
+
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
+
     /**
      * Create a new MenuScreen
      * @param game - game menu screen belongs to
@@ -171,12 +183,13 @@ public class MainMenuScreen extends GameScreen {
             backgroundMusic.play();
             backgroundMusic.setLooping(true);
 
-
-
-
-
-
     }
+
+
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
 
 
     /**
@@ -197,7 +210,7 @@ public class MainMenuScreen extends GameScreen {
             if (playGameButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN) {
 
                 game.getScreenManager().removeScreen(this.getmName());
-               GameLevelOne gameLevelOne = new GameLevelOne(this.getmGame());
+               GameLevelOne  gameLevelOne = new GameLevelOne(this.getmGame());
                 game.getScreenManager().addGameScreen(gameLevelOne);
 
                 backgroundMusic.stop();

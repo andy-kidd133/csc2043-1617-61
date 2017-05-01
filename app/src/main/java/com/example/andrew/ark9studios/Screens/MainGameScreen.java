@@ -1,264 +1,246 @@
 package com.example.andrew.ark9studios.Screens;
 
+
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
+
 import com.example.andrew.ark9studios.AssetManager;
+
+import com.example.andrew.ark9studios.DeckSetup;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
-import com.example.andrew.ark9studios.GameMusic;
 import com.example.andrew.ark9studios.GameScreen;
-import com.example.andrew.ark9studios.PauseOverlay;
+import com.example.andrew.ark9studios.card.CardHelper;
+import com.example.andrew.ark9studios.card.Deck;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
-
 import java.util.List;
 
-import viewports.LayerViewport;
-import viewports.ScreenViewport;
+
+
 
 /**
- * Created by megan on 15/04/2017.
+ * Created by Andrew and Karl on 18/04/2017.
  */
-
+//Test push for "Checkout as new local branch"
 public class MainGameScreen extends GameScreen {
 
     public static final String SCREEN_NAME = "MainGameScreen";
 
-    private Rect card1Bound;
-
-    /**
-     * Draw Rect for the background bitmap
-     */
-    private Rect backgroundBound;
-
-    /**
-     * Draw Rect for the pause icon bitmap
-     */
-    private Rect pauseIconBound;
-
-    /**
-     * Draw Rect for the player deck bitmap
-     */
-    private Rect player1DeckBound;
-
-    /**
-     * Draw Rect for the enemy deck bitmap
-     */
-    private Rect enemyDeckBound;
+    private Rect deck_cardBound1;
+    private Rect deck_cardBound2;
+    // private Rect card1Bound;
+    // private Rect cardTempBound;
 
 
-    private Bitmap card1Bitmap;
+    private Bitmap deck_cardBitmap1;
+    private Bitmap deck_cardBitmap2;
 
-    /**
-     * background bitmap
-     */
-    private Bitmap backgroundBitmap;
+    //private static final int CARD_WIDTH = 110;
+    //private static final int CARD_HEIGHT = 150;
 
+    //private static final int CARD_DECK_WIDTH = 1100;
+    //private static final int CARD_DECK_HEIGHT = 400;
 
-    /**
-     * pause icon bitmap
-     */
-    private Bitmap pauseIconBitmap;
+    //BoardSetupHelper boardSetupHelper = new BoardSetupHelper(game);
+   // BoardLocation boardLocation = new BoardLocation();
+    DeckSetup deckSetup = new DeckSetup(game);
+    Deck deck = new Deck();
 
-    /**
-     * player  deck bitmap
-     */
-    private Bitmap player1DeckBitmap;
+    boolean touchedP1 = false;
+    boolean touchedP2 = false;
+    boolean firstDrawP1 = true;
+    boolean firstDrawP2 = true;
+    boolean enableDragP1 = false;
+    boolean enableDragP2 = false;
+    boolean snapped = false;
 
-    /**
-     * enemy deck bitmap
-     */
-    private Bitmap enemyDeckBitmap;
+    float x1,x2,y1,y2;
 
-    /**
-     * width of the card deck
-     */
-    private static final int CARD_WIDTH = 150;
-    /**
-     * card height of the card deck
-     */
-    private static final int CARD_HEIGHT = 150;
+    //ArrayList<Bitmap> bitmapArrayOriginal = new ArrayList<Bitmap>();
+    // ArrayList<Bitmap> bitmapArrayp1 = new ArrayList<Bitmap>();
 
-    /**
-     * width of the deck
-     */
-    private static final int DECK_WIDTH = 1100;
-    /**
-     * height of the deck
-     */
-    private static final int DECK_HEIGHT = 400;
+    public MainGameScreen(Game game){
+        super(SCREEN_NAME, game);
 
-    /**
-     * pause button width
-     */
-    private static final int PAUSE_BUTTON_WIDTH= 120;
+        AssetManager assetManager = game.getAssetManager();
+        assetManager.emptyAssets();
 
-    /**
-     * pause button height
-     */
-    private static final int PAUSE_BUTTON_HEIGHT=130;
+        assetManager.loadAndAddBitmap("deck_card1", "images/deck_card1.png");
+        assetManager.loadAndAddBitmap("deck_card2", "images/deck_card1.png");
 
+        this.deck_cardBitmap1 = assetManager.getBitmap("deck_card1");
+        this.deck_cardBitmap2 = assetManager.getBitmap("deck_card2");
 
-
-
-    protected enum GameLevelState {
-        paused, running
     }
 
-    protected GameLevelState levelState;
-
-
-    /**
-     * create a new main game screen
-     * @param game-screen the game belongs to
-     */
-    public MainGameScreen(Game game){
-       super(SCREEN_NAME, game);
-
-       AssetManager assetManager = game.getAssetManager();
-       assetManager.emptyAssets();
-
-       assetManager.loadAndAddBitmap("card1", "images/card1.png");
-       assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-       assetManager.loadAndAddBitmap("pauseIcon", "images/pause_button.png");
-       assetManager.loadAndAddBitmap("player1Deck", "images/player1_deck.png");
-       assetManager.loadAndAddBitmap("enemyDeck", "images/enemy_deck.png");
-       assetManager.loadAndAddBitmap("PauseMenu", "images/pausemenu.png");
-      // assetManager.loadAndAddMusic("backgroundMusic", "raw/laser_groove.mp3");
-
-       this.card1Bitmap = assetManager.getBitmap("card1");
-       this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
-       this.pauseIconBitmap = assetManager.getBitmap("pauseIcon");
-       this.player1DeckBitmap = assetManager.getBitmap("player1Deck");
-       this.enemyDeckBitmap = assetManager.getBitmap("enemyDeck");
-
-
-
-
-
-   }
-
-
-    /**
-     * Draw method
-     * @param elapsedTime- elapsed time info for the frame
-     */
     @Override
     public void update(ElapsedTime elapsedTime) {
         Input input = game.getInput();
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
 
-        if(touchEvents.size()>0){
-            GameTouchEvent touchEvent = touchEvents.get(0);
-
-            if(pauseIconBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN){
-                this.levelState = levelState.paused;
-
-            }
-        }
 
     }
 
-
-    /**
-     * update method
-     * @param elapsedTime- elapsed time info for the frame
-     * @param graphics2DInterface- graphics interface which is used to draw the game screen
-     */
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
-        int pauseLeft= graphics2DInterface.getSurfaceWidth()-145;
-        int pauseTop = graphics2DInterface.getSurfaceHeight()-1750;
+      //  boardSetupHelper.drawGameSetup(graphics2DInterface);
 
-        int deckLeft=60;
-        int enemyDeckTop=60;
+        /*Input input = game.getInput();
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+
+        if (deck_cardBound1 == null) {
+            deck_cardBound1 = new Rect(50, graphics2DInterface.getSurfaceHeight() - 430, 150,
+                    graphics2DInterface.getSurfaceHeight() - 300);
+        }
+        if (deck_cardBound2 == null) {
+            deck_cardBound2 = new Rect(1050, 300, 1150, 430);
+        }
+        graphics2DInterface.drawBitmap(deck_cardBitmap1, null, deck_cardBound1, null);
+        graphics2DInterface.drawBitmap(deck_cardBitmap2, null, deck_cardBound2, null);
 
 
+        if (touchEvents.size() > 0) {
+            GameTouchEvent touchEvent = touchEvents.get(0);
+            if(firstDrawP1==true) {
 
+                if (deck_cardBound1.contains((int) touchEvent.x, (int) touchEvent.y)) {
+                    deck.setUpDeck();
+                    touchedP1 = true;
+                    firstDrawP1 = false;
+                }
+            }
+            if(firstDrawP2==true) {
 
-        if(backgroundBound == null){
-            backgroundBound = new Rect(0, 0, graphics2DInterface.getSurfaceWidth(),
-                    graphics2DInterface.getSurfaceHeight());
+                if (deck_cardBound2.contains((int) touchEvent.x, (int) touchEvent.y)) {
+                    touchedP2 = true;
+                    firstDrawP2 = false;
+                }
+            }*/
+            /*if(touchedP1 == true && enableDragP1 == true) {
+                if(deckSetup.card1Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    x1 = touchEvent.x - 55;
+                    x2 = touchEvent.x + 55;
+                    y1 = touchEvent.y - 75;
+                    y2 = touchEvent.y + 75;
+
+                    deckSetup.card1Bound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+                   // graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(0), null, deckSetup.card1Bound, null);
+                    if(deckSetup.card1Bound.intersects(DeckSetup.card1Bound,DeckSetup.card13Bound) && snapped == false){
+                        deckSetup.card1Bound.set(deckSetup.card13Bound);
+                        snapped = true;
+                    }
+                    if(!deckSetup.card1Bound.intersects(DeckSetup.card1Bound,DeckSetup.card13Bound) && snapped == true){
+                        deckSetup.card1Bound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+                        snapped = false;
+
+                    }
+
+                }
+            }*/
         }
 
-        if(pauseIconBound == null){
-            pauseIconBound = new Rect(pauseLeft, pauseTop, pauseLeft+PAUSE_BUTTON_WIDTH,
-                    pauseTop+PAUSE_BUTTON_HEIGHT);
-        }
 
-        if(enemyDeckBound == null){
-                enemyDeckBound = new Rect(deckLeft,enemyDeckTop, graphics2DInterface.getSurfaceWidth()-50, 420);
-        }
+/*
+        if (touchedP1 == true) {
+            enableDragP1 = true;
+
+            if (deckSetup.card1Bound == null) {
+                deckSetup.card1Bound = new Rect(boardLocation.getP1Hand1Location());
+            }
+            if (deckSetup.card2Bound == null) {
+                deckSetup.card2Bound = new Rect(boardLocation.getP1Hand2Location());
+            }
+            if (deckSetup.card3Bound == null) {
+                deckSetup.card3Bound = new Rect(boardLocation.getP1Hand3Location());
+            }
+            if (deckSetup.card4Bound == null) {
+                deckSetup.card4Bound = new Rect(boardLocation.getP1Hand4Location());
+            }
+            if (deckSetup.card5Bound == null) {
+                deckSetup.card5Bound = new Rect(boardLocation.getP1Hand5Location());
+            }
+            if (deckSetup.card6Bound == null) {
+                deckSetup.card6Bound = new Rect(boardLocation.getP1Hand6Location());
+            }
+            if (deckSetup.card13Bound == null) {
+                deckSetup.card13Bound = new Rect(boardLocation.getP1Bench1Location());
+            }
+            if (deckSetup.card14Bound == null) {
+                deckSetup.card14Bound = new Rect(boardLocation.getP1Bench2Location());
+            }
+            if (deckSetup.card15Bound == null) {
+                deckSetup.card15Bound = new Rect(boardLocation.getP1Bench3Location());
+            }
 
 
-        if(player1DeckBound == null){
+            graphics2DInterface.drawBitmap(deck.getDeck().get(0).getCardImg(CardHelper.getCardImages(0)), null, deckSetup.card1Bound, null);
+//            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(1), null, deckSetup.card2Bound, null);
+//            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(2), null, deckSetup.card3Bound, null);
+//            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(3), null, deckSetup.card4Bound, null);
+//            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(4), null, deckSetup.card5Bound, null);
+//            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(5), null, deckSetup.card6Bound, null);
 
-           player1DeckBound = new Rect(deckLeft, graphics2DInterface.getSurfaceHeight()-350, graphics2DInterface.getSurfaceWidth()-30,
-                    graphics2DInterface.getSurfaceHeight()-30);
-        }
 
-        if(card1Bound == null){
-            card1Bound = new Rect(20, 20, 20 + CARD_WIDTH,
-                    20 + CARD_HEIGHT);
-        }
+        }*/
+       /* if(touchedP2 == true){
 
-        if(pauseIconBound == null){
-            pauseIconBound = new Rect(deckLeft, graphics2DInterface.getSurfaceHeight()-350, graphics2DInterface.getSurfaceWidth()-30,
-                    graphics2DInterface.getSurfaceHeight()-30);
-        }
+            if (deckSetup.card7Bound == null) {
+                deckSetup.card7Bound = new Rect(boardLocation.getP2Hand1Location());
+            }
+            if (deckSetup.card8Bound == null) {
+                deckSetup.card8Bound = new Rect(boardLocation.getP2Hand2Location());
+            }
+            if (deckSetup.card9Bound == null) {
+                deckSetup.card9Bound = new Rect(boardLocation.getP2Hand3Location());
+            }
+            if (deckSetup.card10Bound == null) {
+                deckSetup.card10Bound = new Rect(boardLocation.getP2Hand4Location());
+            }
+            if (deckSetup.card11Bound == null) {
+                deckSetup.card11Bound = new Rect(boardLocation.getP2Hand5Location());
+            }
+            if (deckSetup.card12Bound == null) {
+                deckSetup.card12Bound = new Rect(boardLocation.getP2Hand6Location());
+            }
+            if (deckSetup.card16Bound == null) {
+                deckSetup.card16Bound = new Rect(boardLocation.getP2Bench1Location());
+            }
+            if (deckSetup.card17Bound == null) {
+                deckSetup.card17Bound = new Rect(boardLocation.getP2Bench2Location());
+            }
+            if (deckSetup.card18Bound == null) {
+                deckSetup.card18Bound = new Rect(boardLocation.getP2Bench3Location());
+            }
 
-        /*if(levelState == levelState.paused){
-            pauseOverlay.draw(elapsedTime, graphics2DInterface, layerViewport,
-                    screenViewport);
+            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp2().get(0), null, deckSetup.card7Bound, null);
+            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp2().get(1), null, deckSetup.card8Bound, null);
+            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp2().get(2), null, deckSetup.card9Bound, null);
+            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp2().get(3), null, deckSetup.card10Bound, null);
+            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp2().get(4), null, deckSetup.card11Bound, null);
+            graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp2().get(5), null, deckSetup.card12Bound, null);
+
         }*/
 
 
 
-        graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
-        graphics2DInterface.drawBitmap(pauseIconBitmap, null, pauseIconBound, null);
-        graphics2DInterface.drawBitmap(enemyDeckBitmap, null, enemyDeckBound, null);
-        graphics2DInterface.drawBitmap(player1DeckBitmap, null, player1DeckBound, null);
-        graphics2DInterface.drawBitmap(pauseIconBitmap, null, pauseIconBound, null);
-       // graphics2DInterface.drawBitmap(card1Bitmap, null, card1Bound, null);
-
-
-    }
-
-
-
-
-
-    /**
-     * game dispose
-     */
     @Override
     public void dispose() {
-     return;
+
     }
 
-
-    /**
-     * game pause
-     */
     @Override
     public void pause() {
 
-       return;
     }
 
-
-    /**
-     * game resume
-     */
     @Override
     public void resume() {
-        return;
 
     }
-
-
+    //TODO: DRAW AND UPDATE THIS SCREEN
 }
 

@@ -15,7 +15,7 @@ import com.example.andrew.ark9studios.GameScreen;
 import java.io.IOException;
 import java.io.InputStream;
 /*import com.example.andrew.ark9studios.gameInfrastructure.GameLoop;
-import com.example.andrew.ark9studios.GameMusic;
+import com.example.andrew.ark9studios.Music.GameMusic;
 import com.example.andrew.ark9studios.GameViews.PauseGameMenuView;
 import com.example.andrew.ark9studios.R;
 import com.example.andrew.ark9studios.activities.WelcomeActivity;*/

@@ -2,16 +2,14 @@ package com.example.andrew.ark9studios.IO;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.SoundPool;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
-import com.example.andrew.ark9studios.GameMusic;
-import com.example.andrew.ark9studios.Sound;
+import com.example.andrew.ark9studios.Music.GameMusic;
+import com.example.andrew.ark9studios.Music.Sound;
 
 import java.io.File;
 import java.io.FileInputStream;

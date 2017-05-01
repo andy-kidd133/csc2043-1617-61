@@ -9,25 +9,36 @@ import android.widget.TextView;
 
 
 import com.example.andrew.ark9studios.Databases.Session;
-import com.example.andrew.ark9studios.GameActivity;
-import com.example.andrew.ark9studios.QuibtigFragment;
 import com.example.andrew.ark9studios.R;
 
 /**
  * Created by Megan on 23/02/2017.
  */
 
-
+/**
+ * this is the welcome screen that the user is redirected to when they login
+ */
 public class WelcomeActivity extends Activity {
 
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
 
-    private Session session;
+    /**
+     * An imageview of the tap to start and logout button
+     */
     private ImageView tapToStart, logout;
 
+    /**
+     * instance of the session class
+     */
+    private Session session;
 
 
 
-
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
 
 
     /*(non-Javadoc)
@@ -39,6 +50,8 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //set the content view
         setContentView(R.layout.activity_main);
 
 
@@ -73,8 +86,6 @@ public class WelcomeActivity extends Activity {
 
 
     }
-
-
 
 
     /**

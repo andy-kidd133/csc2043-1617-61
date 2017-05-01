@@ -1,4 +1,4 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.card;
 
 /**
  * Created by Emma on 20/04/2017.

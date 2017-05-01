@@ -11,16 +11,32 @@ import android.util.Log;
  * Created by megan on 09/04/2017.
  */
 
-
+/**
+ * Thia is the database helper class
+ */
 
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    //variables
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
 
     private static final String TAG = DbHelper.class.getSimpleName();
+
+    /**
+     * name of the database
+     */
     private static final String DB_NAME="quibtig.db";
+
+    /**
+     * the version of the database
+     */
     private static final int DB_VERSION = 1;
+
+    /**
+     * instance of the SQL database
+     */
     SQLiteDatabase db;
 
 
@@ -31,32 +47,32 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
-
-/**
-     * create table users{
-     *     id integer primary key autoincrement
-     *     username text,
-     *     password text);
-     * }
-     */
-
-
-
-
-
-
-    //constructor
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
 
     public DbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
+
+    /**
+     * SQL on create method
+     * @param db- name of the sql database to be created
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("create table " + USER_TABLE + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT, PASSWORD TEXT)");
     }
 
+
+    /**
+     * upgrade database method
+     * @param db- name of the database
+     * @param oldVersion- number of the old version
+     * @param newVersion- number of the new version
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP IF EXISTS " + USER_TABLE );
@@ -65,13 +81,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
-/**
+     /**
      *
      * storing user details in database
      */
-
-
-
     public void addUser(String username, String password){
        db = this.getWritableDatabase();
 
@@ -85,6 +98,13 @@ public class DbHelper extends SQLiteOpenHelper {
         Log.d(TAG, "user inserted" + id);
 
     }
+
+    /**
+     * Returns the user that has the username and password entered
+     * @param username
+     * @param pass
+     * @return
+     */
 
     public boolean getUser(String username, String pass){
         //HashMap<String, String> user = new HashMap<String, String>();

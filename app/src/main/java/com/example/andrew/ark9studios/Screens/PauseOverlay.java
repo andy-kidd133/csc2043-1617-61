@@ -1,4 +1,4 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.Screens;
 
 /**
  * Created by Megan on 21/04/2017.
@@ -8,7 +8,12 @@ package com.example.andrew.ark9studios;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
+import com.example.andrew.ark9studios.AssetManager;
+import com.example.andrew.ark9studios.GameAudioManager;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.InputControl;
+import com.example.andrew.ark9studios.OverlayObject;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import viewports.LayerViewport;
@@ -23,6 +28,9 @@ public class PauseOverlay extends OverlayObject {
 
 
 
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
     /**
      * Resume Button
      */
@@ -46,6 +54,10 @@ public class PauseOverlay extends OverlayObject {
     private Bitmap soundOn, soundOff;
 
 
+
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
     /***
      * Create a new Pause Overlay
      *
@@ -87,7 +99,7 @@ public class PauseOverlay extends OverlayObject {
 
 
       this.soundOn = assetManager.getBitmap("SoundOnButton");
-      this.soundOff= assetManager.getBitmap("SoundOffButton");
+      this.soundOff = assetManager.getBitmap("SoundOnButton");
 
 
 
@@ -110,6 +122,10 @@ public class PauseOverlay extends OverlayObject {
 
   }
 
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
 
     /**
      * update pauseOverlay
@@ -156,7 +172,7 @@ public class PauseOverlay extends OverlayObject {
 
     /***
      *
-     * @return boolean indicating whether the exit button has a touch up
+     * @return boolean indicating whether the sound button has a touch up
      */
     public boolean isSoundToggled() {
         return soundControl.hasTouchUp();

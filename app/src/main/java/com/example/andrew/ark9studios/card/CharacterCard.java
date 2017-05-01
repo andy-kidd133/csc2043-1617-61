@@ -1,8 +1,11 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.card;
 
 import android.graphics.Bitmap;
 
-import java.util.ArrayList;
+import com.example.andrew.ark9studios.Strength;
+import com.example.andrew.ark9studios.Weakness;
+import com.example.andrew.ark9studios.card.Card;
+import com.example.andrew.ark9studios.card.CardDepartment;
 
 /**
  * Created by Andrew on 13/03/2017.
@@ -18,8 +21,7 @@ public class CharacterCard extends Card {
     private Strength strength;
     private Weakness weakness;
 
-    public CharacterCard(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment,
-                         Strength strength, Weakness weakness, Bitmap cardImg) {
+    public CharacterCard(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment, Bitmap cardImg) {
         super(name, cardImg);
         this.health = health;
         this.attackCost = attackCost;

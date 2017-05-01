@@ -2,6 +2,8 @@ package com.example.andrew.ark9studios.Screens;
 
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
@@ -11,6 +13,7 @@ import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.activities.ClosingActivity;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -20,7 +23,14 @@ import java.util.List;
  * Created by megan on 02/03/2017.
  */
 
+/**
+ * Quit Screen
+ */
 public class QuitScreen extends GameScreen{
+
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
 
     /**
      * Draw Rect for the background bitmap
@@ -85,6 +95,12 @@ public class QuitScreen extends GameScreen{
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
 
 
+
+
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
+
     /**
      * create a new quit screen
      * @param game- quit screen belongs to
@@ -106,9 +122,15 @@ public class QuitScreen extends GameScreen{
         this.yesBitmap = assetManager.getBitmap("yesbutton");
         this.noBitmap = assetManager.getBitmap("nobutton");
 
+
+
     }
 
 
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
     /**
      * quit screen update
      * @param elapsedTime- elapsed time info for the frame
@@ -125,7 +147,9 @@ public class QuitScreen extends GameScreen{
 
                 if(yesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
 
-                    System.exit(0);
+
+                   System.exit(0);
+
 
                 }
 
@@ -192,18 +216,29 @@ public class QuitScreen extends GameScreen{
 
     }
 
+    /**
+     * dispose method
+     */
     @Override
     public void dispose() {
 
     }
 
+    /**
+     * pause method
+     */
     @Override
     public void pause() {
 
     }
 
+    /**
+     * resume method
+     */
     @Override
     public void resume() {
 
     }
+
+
 }

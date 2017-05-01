@@ -11,13 +11,18 @@ import android.media.SoundPool.OnLoadCompleteListener;
 import android.util.Log;
 
 import com.example.andrew.ark9studios.IO.FileIO;
+import com.example.andrew.ark9studios.Music.GameMusic;
+import com.example.andrew.ark9studios.Music.Sound;
 
 
 /**
- * Asset dictionary for holding loaded assets.
- *
+ * created by Megan on 17/03/2017
  */
 public class AssetManager {
+
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
 
     /**
      * Bitmap asset dictionary
@@ -54,6 +59,11 @@ public class AssetManager {
      */
     private FileIO  gameIO;
 
+
+
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
     /**
      * Create a new asset dictionary
      *
@@ -79,6 +89,11 @@ public class AssetManager {
         });
     }
 
+
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
     /**
      * Add the specified bitmap asset to the dictionary
      *

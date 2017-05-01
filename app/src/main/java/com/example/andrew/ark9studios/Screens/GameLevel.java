@@ -6,16 +6,17 @@ import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.AssetManager;
 import com.example.andrew.ark9studios.BoundingBox;
+import com.example.andrew.ark9studios.DeckSetup;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameGraphics.GraphicsHelper;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
-import com.example.andrew.ark9studios.GameMusic;
+import com.example.andrew.ark9studios.Music.GameMusic;
 import com.example.andrew.ark9studios.GameObjectFactory;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.InputControl;
-import com.example.andrew.ark9studios.PauseOverlay;
+import com.example.andrew.ark9studios.card.Deck;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -97,11 +98,65 @@ public abstract class GameLevel extends GameScreen {
     private Rect backgroundBound;
 
     /**
+     * Draw Rect for the card bitmap
+     */
+    private Rect enemyBench_Bound;
+    /**
+     * Draw Rect for the enemy deck
+     */
+    private Rect player1BenchBound;
+
+
+    /**
+     * Draw rect for the deck 1
+     */
+    private Rect deck_cardBound1;
+
+    /**
+     * Draw Rect for the deck 2
+     */
+    private Rect deck_cardBound2;
+
+
+    /**
      * Bitmap for the background
      */
     private Bitmap background;
 
 
+    /**
+     * Bitmap for the enemydeck
+     */
+    private Bitmap enemyBenchBitmap;
+    /**
+     * Bitmap for the player 1 deck
+     */
+    private Bitmap player1BenchBitmap;
+
+    /**
+     * Bitmap for deck card 1
+     */
+    private Bitmap deck_cardBitmap1;
+
+    /**
+     * Bitmap for deck card 2
+     */
+    private Bitmap deck_cardBitmap2;
+
+
+
+    DeckSetup deckSetup = new DeckSetup(game);
+    Deck deck = new Deck();
+
+    boolean touchedP1 = false;
+    boolean touchedP2 = false;
+    boolean firstDrawP1 = true;
+    boolean firstDrawP2 = true;
+    boolean enableDragP1 = false;
+    boolean enableDragP2 = false;
+    boolean snapped = false;
+
+    float x1,x2,y1,y2;
 
 
 
@@ -180,7 +235,31 @@ public abstract class GameLevel extends GameScreen {
                     graphics2DInterface.getSurfaceHeight());
         }
 
+        if (player1BenchBound == null) {
+           player1BenchBound =  new Rect(30, graphics2DInterface.getSurfaceHeight() - 325, graphics2DInterface.getSurfaceWidth() - 30,
+                    graphics2DInterface.getSurfaceHeight() - 25);
+        }
+
+        if (enemyBench_Bound == null) {
+            enemyBench_Bound = new Rect(30, 25, graphics2DInterface.getSurfaceWidth() - 30, 325);
+        }
+
+        if (deck_cardBound1 == null) {
+            deck_cardBound1 = new Rect(50, graphics2DInterface.getSurfaceHeight() - 430, 150,
+                    graphics2DInterface.getSurfaceHeight() - 300);
+        }
+        if (deck_cardBound2 == null) {
+            deck_cardBound2 = new Rect(1050, 300, 1150, 430);
+        }
+
+
         graphics2DInterface.drawBitmap(background,null,backgroundBound,null);
+        graphics2DInterface.drawBitmap(enemyBenchBitmap, null, enemyBench_Bound, null);
+        graphics2DInterface.drawBitmap(player1BenchBitmap, null, player1BenchBound, null);
+        graphics2DInterface.drawBitmap(deck_cardBitmap1, null, deck_cardBound1, null);
+        graphics2DInterface.drawBitmap(deck_cardBitmap2, null, deck_cardBound2, null);
+
+
 
 
         if(gameLvlState == gameLvlState.Running || gameLvlState ==
@@ -218,13 +297,24 @@ public abstract class GameLevel extends GameScreen {
 
        assetManager.loadAndAddBitmap("Background", "images/qubbg.png");
         assetManager.loadAndAddBitmap("pauseButton", "images/pause_button.png");
+        assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
+        assetManager.loadAndAddBitmap("player1_bench", "images/player1bench.png");
+        assetManager.loadAndAddBitmap("enemy_bench", "images/enemy_bench.png");
+        assetManager.loadAndAddBitmap("deck_card1", "images/deck_card1.png");
+        assetManager.loadAndAddBitmap("deck_card2", "images/deck_card2.png");
         assetManager.loadAndAddBitmap("ResumeButton", "images/pauseresume.png");
         assetManager.loadAndAddBitmap("pauseMenu", "images/pausemenu.png");
         assetManager.loadAndAddBitmap("SoundOnButton", "images/music_on.png");
-        assetManager.loadAndAddMusic("SoundOffButton", "images/music_off.png");
+        assetManager.loadAndAddBitmap("SoundOff", "images/music_off.png");
         assetManager.loadAndAddBitmap("mainMenuButton", "images/pausemainmenu.png");
         assetManager.loadAndAddMusic("playGameMusic", "raw/laser_groove.mp3");
+
+
         this.background =   assetManager.getBitmap("Background");
+        this.player1BenchBitmap = assetManager.getBitmap("player1_bench");
+        this.enemyBenchBitmap = assetManager.getBitmap("enemy_bench");
+        this.deck_cardBitmap1 = assetManager.getBitmap("deck_card1");
+        this.deck_cardBitmap2 = assetManager.getBitmap("deck_card2");
 
     }
 
@@ -314,7 +404,7 @@ public abstract class GameLevel extends GameScreen {
 
 
         pauseButton = GameObjectFactory.createInputControl(
-                screenWidth - 100.0f, 65.0f,
+                screenWidth - 50.0f, 65.0f,
                 assetManager.getBitmap("pauseButton"), 70.0f, 70.0f, this);
     }
 

@@ -9,10 +9,35 @@ import android.content.SharedPreferences;
 
 public class Session {
 
+
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
+
+    /**
+     * instance of the shared perferences
+     */
     SharedPreferences prefs;
+
+    /**
+     * instance of the shared perferences editor
+     */
     SharedPreferences.Editor editor;
+
+    /**
+     * Instance of context
+     */
     Context context;
 
+
+    //////////////////////////////////////
+    ///////Constructor
+    /////////////////////////////////////
+
+    /**
+     * create a new session
+     * @param context
+     */
     public Session(Context context){
         this.context = context;
         prefs = context.getSharedPreferences("quibtig", Context.MODE_PRIVATE);
@@ -20,10 +45,24 @@ public class Session {
     }
 
 
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
+    /**
+     * changes the logged in boolean
+     * @param loggedIn
+     */
     public void setLoggedIn(boolean loggedIn){
         editor.putBoolean("loggedInmode", loggedIn);
         editor.commit();
     }
+
+
+    /**
+     * logged in boolean
+     * @return
+     */
 
     public boolean loggedIn(){
         return prefs.getBoolean("loggedInmode", false);

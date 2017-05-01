@@ -16,11 +16,6 @@ import com.example.andrew.ark9studios.Screens.MainMenuScreen;
 public class QuibtigFragment extends GameFragment {
 
 
-
-
-
-
-
     /***
      * Fragment Android Application LifeCycle Override
      */
@@ -37,13 +32,6 @@ public class QuibtigFragment extends GameFragment {
     }
 
 
-    /***
-     *
-     * @return whether game should manage back pressed or application
-     */
-   /* public boolean isBackPressed() {
-        return game.backPressed();
-    }*/
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.card;
 
 import android.content.Context;
 import android.graphics.Bitmap;

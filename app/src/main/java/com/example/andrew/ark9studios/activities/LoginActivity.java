@@ -17,14 +17,50 @@ import com.example.andrew.ark9studios.R;
  * Created by megan on 09/04/2017.
  */
 
+/**
+ * This is the login screen, where the user can enter their username and password
+ */
+
 public class LoginActivity extends Activity implements View.OnClickListener {
 
+    //////////////////////////////////////
+    ///////Variables
+    /////////////////////////////////////
+
+    /**
+     * An imageview of the login and register button
+     */
     private ImageView login, register;
+
+    /**
+     * Edit text of the username and password
+     */
     private EditText etUsername, etPassword;
+
+    /**
+     * instance of the database helper class
+     */
     private DbHelper db;
+    /**
+     * instance of the session class
+     */
     private Session session;
 
 
+
+
+
+
+    //////////////////////////////////////
+    ///////Methods
+    /////////////////////////////////////
+
+
+    /*(non-Javadoc)
+   * @see android.app.Activity#onCreate(android.os.Bundle)
+   *
+   * The onCreate method is called by android when the activity is created
+   */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +68,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         //set the content view
         setContentView(R.layout.activity_login);
+
+        //creating an instance of the database and session
         db = new DbHelper(this);
         session = new Session(this);
+
+        //setting the imageviews and edit texts to their buttons
         login = (ImageView) findViewById(R.id.login_button);
         register = (ImageView) findViewById(R.id.register_button);
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -43,6 +83,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         login.setOnClickListener(this);
         register.setOnClickListener(this);
 
+
+        /**
+         * if the session is logged in then this will take the user
+         * to the welcome screen/activity
+         */
         if (session.loggedIn()) {
             startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
             finish();
@@ -51,6 +96,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
 
+
+    /**
+     * This is the OnClick method which is overrrided
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -66,6 +117,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         }
     }
+
+
 
 
     private void login() {

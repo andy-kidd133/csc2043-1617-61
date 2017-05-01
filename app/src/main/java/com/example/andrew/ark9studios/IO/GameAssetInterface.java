@@ -8,8 +8,8 @@ package com.example.andrew.ark9studios.IO;
 import android.graphics.Bitmap;
 import android.media.SoundPool;
 
-import com.example.andrew.ark9studios.GameMusic;
-import com.example.andrew.ark9studios.Sound;
+import com.example.andrew.ark9studios.Music.GameMusic;
+import com.example.andrew.ark9studios.Music.Sound;
 
 import java.io.IOException;
 
