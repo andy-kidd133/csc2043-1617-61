@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 
 
-import com.example.andrew.ark9studios.ActionCard;
 import com.example.andrew.ark9studios.Game;
 
 import java.util.ArrayList;
@@ -106,5 +105,40 @@ public class Deck {
 
 
         return null;
+    }
+
+    /**
+     * Created by Emma on 20/04/2017.
+     */
+
+    public static class ActionCard extends Card {
+
+        private String description;
+        private Bitmap cardImage;
+
+        public ActionCard(String name, String description, Bitmap cardImg) {
+            super(name, cardImg);
+            this.cardImage = cardImg;
+        }
+
+
+        //methods
+
+        public void cardAdvance() {
+            //when card moves from hand to bench/active
+        }
+
+        public void cardRetreat(){
+            //moves from active to bench
+        }
+
+        public void cardAttack() {
+
+
+        }
+
+        public void cardDeath() {
+            //send it to graveyard
+        }
     }
 }

@@ -10,6 +10,9 @@ public class MainTest {
             HighscoreManager highScores = new HighscoreManager();
             highScores.addScore("Emma" ,22);
             highScores.addScore("Andrew",18);
+            highScores.addScore("Megan", 21);
+            highScores.addScore("Karl",17);
+            highScores.addScore("Emily",15);
 
             System.out.print(highScores.getHighscoreString());
         }

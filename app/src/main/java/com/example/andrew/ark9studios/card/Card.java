@@ -92,4 +92,28 @@ public abstract class Card{
 
     }
 
+    //only active card can attack opponents card
+    public void attack(){
+
+
+
+    }
+
+    //taking a card back from bench to hand or active to bench
+    public void retreat() {
+
+    }
+
+    //moving the card from the hand to bench or bench to active
+    public void advance(){
+
+    }
+
+    //when a card is defeated or user can choose to send card to graveyard
+    public void sendToGraveyard(){
+
+
+    }
+
+
 }

@@ -23,24 +23,5 @@ public class EnergyCard extends Card {
     }
 
 
-
-    //methods
-
-    public void cardAdvance() {
-        //when card moves from hand to bench/active
-    }
-
-    public void cardRetreat(){
-        //moves from active to bench
-    }
-
-    public void cardAttack() {
-
-
-    }
-
-    public void cardDeath() {
-        //send it to graveyard
-    }
 }
 

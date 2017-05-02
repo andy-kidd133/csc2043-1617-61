@@ -15,71 +15,16 @@ import com.example.andrew.ark9studios.card.CardDepartment;
  * This class will contain all the evolved versions of the basic character cards
  * it will allow them to be saved in an array in the same position as their basic card
  * without having to add them to the deck so that they cannot be drawn into the hand
+ * by using inheritance it makes it easier if wanted to implement extra levels for example
+ * level 3 and level 4 cards
  */
 
-public class CharacterCardEvolved extends Card {
+public class CharacterCardEvolved extends CharacterCard {
 
 
-        private int health;
-        private int attackCost;
-        private int attackDamage;
-        private CardDepartment cardDepartment;
-        private Bitmap cardImage;
-        private Strength strength;
-        private Weakness weakness;
-
-        public CharacterCardEvolved(String name, int health, int attackCost,
-        int attackDamage, CardDepartment cardDepartment,
-                Strength strength, Weakness weakness, Bitmap cardImg){
-            super(name, cardImg);
-            this.health = health;
-            this.attackCost = attackCost;
-            this.attackDamage = attackDamage;
-            this.cardImage = cardImg;
-        }
-
-
-        //accessors
-    public int getHealth() {
-        return health;
+    public CharacterCardEvolved(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment, Bitmap cardImg, boolean isActive, int numberEnergiesAttached) {
+        super(name, health, attackCost, attackDamage, cardDepartment, cardImg, isActive, numberEnergiesAttached);
     }
-
-    public int getAttackCost()
-    {
-        return attackCost;
-    }
-
-    public int getAttackDamage() {
-        return attackDamage;
-    }
-
-    //mutators
-    public void setHealth(int health) {
-
-        this.health = health;
-    }
-    public void setAttackCost(int attackCost) {
-        this.attackCost = attackCost;
-    }
-    public void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
-    }
-
-
-    //methods
-    public void cardAdvance() {
-        //when card moves from hand to bench/active
-    }
-    public void cardRetreat() {
-        //moves from active to bench
-    }
-    public void cardAttack() {
-    }
-    public void cardDeath() {
-        //send it to graveyard
-    }
-
-
 }
 
 
