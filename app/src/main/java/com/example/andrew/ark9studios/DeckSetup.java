@@ -3,14 +3,21 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.AssetManager;
+import com.example.andrew.ark9studios.BoardLocation;
 import com.example.andrew.ark9studios.Game;
+import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
+import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
+import com.example.andrew.ark9studios.GameInput.Input;
+import com.example.andrew.ark9studios.fragments.GameFragment;
+import com.example.andrew.ark9studios.fragments.MainGameScreen;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 /**
- * Created by Karlm on 26/04/2017.
+ * Created by Karl and Andy on 26/04/2017.
  */
 
 //
@@ -21,17 +28,17 @@ public class DeckSetup {
     public Bitmap card1Bitmap,card2Bitmap,card3Bitmap,card4Bitmap,card5Bitmap,card6Bitmap,card7Bitmap,card8Bitmap,
             card9Bitmap,card10Bitmap,card11Bitmap,card12Bitmap,card13Bitmap,card14Bitmap,card15Bitmap,card16Bitmap,
             card17Bitmap,card18Bitmap,card19Bitmap,card20Bitmap,card21Bitmap,card22Bitmap,card23Bitmap,card24Bitmap,
-            card25Bitmap,card26Bitmap,card27Bitmap,card28Bitmap;
+            card25Bitmap,card26Bitmap,card27Bitmap,card28Bitmap, deck_cardBitmap1, deck_cardBitmap2;
 
 
 
     public static Rect card1Bound,card2Bound,card3Bound,card4Bound,card5Bound,card6Bound,card7Bound,card8Bound,card9Bound,
             card10Bound,card11Bound,card12Bound,card13Bound, card14Bound,card15Bound,card16Bound,card17Bound,
-            card18Bound;
+            card18Bound,  deck_cardBound1, deck_cardBound2;
 
     public enum cardType{character, action, energy}
 
-
+    private BoardLocation boardLocation;
 
     ArrayList<Bitmap> bitmapArrayOriginal = new ArrayList<Bitmap>(28);
     ArrayList<Bitmap> bitmapArrayp1 = new ArrayList<Bitmap>(28);
@@ -45,8 +52,20 @@ public class DeckSetup {
         return bitmapArrayp2;
     }
 
+    private boolean touchedP1 = false;
+    private boolean touchedP2 = false;
+    private boolean firstDrawP1 = true;
+    private boolean firstDrawP2 = true;
+    private boolean enableDragP1 = false;
+    private boolean enableDragP2 = false;
+    private boolean snapped = false;
+
+    float x1,x2,y1,y2;
+
 
     public DeckSetup(Game game) {
+
+        boardLocation = new BoardLocation();
 
         AssetManager assetManager = game.getAssetManager();
         assetManager.emptyAssets();
@@ -79,6 +98,8 @@ public class DeckSetup {
         assetManager.loadAndAddBitmap("card26", "images/card26.png");
         assetManager.loadAndAddBitmap("card27", "images/card27.png");
         assetManager.loadAndAddBitmap("card28", "images/card28.png");
+        assetManager.loadAndAddBitmap("deck_card1", "images/deck_card.png");
+        assetManager.loadAndAddBitmap("deck_card2", "images/deck_card.png");
 
         this.card1Bitmap = assetManager.getBitmap("card1");
         this.card2Bitmap = assetManager.getBitmap("card2");
@@ -108,6 +129,8 @@ public class DeckSetup {
         this.card26Bitmap = assetManager.getBitmap("card26");
         this.card27Bitmap = assetManager.getBitmap("card27");
         this.card28Bitmap = assetManager.getBitmap("card28");
+        this.deck_cardBitmap1 = assetManager.getBitmap("deck_card1");
+        this.deck_cardBitmap2 = assetManager.getBitmap("deck_card2");
 
 
 
@@ -159,6 +182,146 @@ public class DeckSetup {
         addToArray();
         bitmapArrayp2.addAll(bitmapArrayOriginal);
         Collections.shuffle(bitmapArrayp2);
+    }
+
+    public void initialGamePlay(Graphics2DInterface graphics2DInterface, Game game)
+    {
+        Input input = game.getInput();
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+
+        if (deck_cardBound1 == null) {
+            deck_cardBound1 = new Rect(50, graphics2DInterface.getSurfaceHeight() - 430, 150,
+                    graphics2DInterface.getSurfaceHeight() - 300);
+        }
+        if (deck_cardBound2 == null) {
+            deck_cardBound2 = new Rect(1050, 300, 1150, 430);
+        }
+        graphics2DInterface.drawBitmap(deck_cardBitmap1, null, deck_cardBound1, null);
+        graphics2DInterface.drawBitmap(deck_cardBitmap2, null, deck_cardBound2, null);
+
+
+        if (touchEvents.size() > 0) {
+            GameTouchEvent touchEvent = touchEvents.get(0);
+            if(firstDrawP1) {
+
+                if (deck_cardBound1.contains((int) touchEvent.x, (int) touchEvent.y)) {
+                    shuffleP1();
+                    touchedP1 = true;
+                    firstDrawP1 = false;
+                }
+            }
+            if(firstDrawP2) {
+
+                if (deck_cardBound2.contains((int) touchEvent.x, (int) touchEvent.y)) {
+                    shuffleP2();
+                    touchedP2 = true;
+                    firstDrawP2 = false;
+                }
+            }
+            if(touchedP1 && enableDragP1) {
+                if(card1Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    x1 = touchEvent.x - 55;
+                    x2 = touchEvent.x + 55;
+                    y1 = touchEvent.y - 75;
+                    y2 = touchEvent.y + 75;
+
+                    card1Bound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+                    // graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(0), null, deckSetup.card1Bound, null);
+                    if(card1Bound.intersects(DeckSetup.card1Bound,DeckSetup.card13Bound) && !snapped){
+                        card1Bound.set(card13Bound);
+                        snapped = true;
+                    }
+                    if(!card1Bound.intersects(DeckSetup.card1Bound,DeckSetup.card13Bound) && snapped){
+                        card1Bound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+                        snapped = false;
+
+                    }
+
+                }
+            }
+        }
+
+
+
+        if (touchedP1) {
+            enableDragP1 = true;
+
+            if (card1Bound == null) {
+                card1Bound = new Rect(boardLocation.getP1Hand1Location());
+            }
+            if (card2Bound == null) {
+                card2Bound = new Rect(boardLocation.getP1Hand2Location());
+            }
+            if (card3Bound == null) {
+                card3Bound = new Rect(boardLocation.getP1Hand3Location());
+            }
+            if (card4Bound == null) {
+                card4Bound = new Rect(boardLocation.getP1Hand4Location());
+            }
+            if (card5Bound == null) {
+                card5Bound = new Rect(boardLocation.getP1Hand5Location());
+            }
+            if (card6Bound == null) {
+                card6Bound = new Rect(boardLocation.getP1Hand6Location());
+            }
+            if (card13Bound == null) {
+                card13Bound = new Rect(boardLocation.getP1Bench1Location());
+            }
+            if (card14Bound == null) {
+                card14Bound = new Rect(boardLocation.getP1Bench2Location());
+            }
+            if (card15Bound == null) {
+                card15Bound = new Rect(boardLocation.getP1Bench3Location());
+            }
+
+
+            graphics2DInterface.drawBitmap(getBitmapArrayp1().get(0), null, card1Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp1().get(1), null, card2Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp1().get(2), null, card3Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp1().get(3), null, card4Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp1().get(4), null, card5Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp1().get(5), null, card6Bound, null);
+
+
+        }
+        if(touchedP2){
+
+            if (card7Bound == null) {
+                card7Bound = new Rect(boardLocation.getP2Hand1Location());
+            }
+            if (card8Bound == null) {
+                card8Bound = new Rect(boardLocation.getP2Hand2Location());
+            }
+            if (card9Bound == null) {
+                card9Bound = new Rect(boardLocation.getP2Hand3Location());
+            }
+            if (card10Bound == null) {
+                card10Bound = new Rect(boardLocation.getP2Hand4Location());
+            }
+            if (card11Bound == null) {
+                card11Bound = new Rect(boardLocation.getP2Hand5Location());
+            }
+            if (card12Bound == null) {
+                card12Bound = new Rect(boardLocation.getP2Hand6Location());
+            }
+            if (card16Bound == null) {
+                card16Bound = new Rect(boardLocation.getP2Bench1Location());
+            }
+            if (card17Bound == null) {
+                card17Bound = new Rect(boardLocation.getP2Bench2Location());
+            }
+            if (card18Bound == null) {
+                card18Bound = new Rect(boardLocation.getP2Bench3Location());
+            }
+
+            graphics2DInterface.drawBitmap(getBitmapArrayp2().get(0), null, card7Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp2().get(1), null, card8Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp2().get(2), null, card9Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp2().get(3), null, card10Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp2().get(4), null, card11Bound, null);
+            graphics2DInterface.drawBitmap(getBitmapArrayp2().get(5), null, card12Bound, null);
+
+        }
     }
 
 }
