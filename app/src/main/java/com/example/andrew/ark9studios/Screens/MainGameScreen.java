@@ -46,9 +46,7 @@ public class MainGameScreen extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
-        boardSetupHelper.drawGameSetup(graphics2DInterface);
-
-        deckSetup.initialGamePlay(graphics2DInterface, game);
+        //deckSetup.initialGamePlay(graphics2DInterface, game);
 
     }
 

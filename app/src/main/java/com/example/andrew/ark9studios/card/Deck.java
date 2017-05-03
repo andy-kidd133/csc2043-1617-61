@@ -30,9 +30,9 @@ public class Deck {
 
     public Deck() {
 
-        cardHelper = new CardHelper(context);
-        cardHelperAction = new CardHelperAction(context);
-        cardHelperEnergy = new CardHelperEnergy(context);
+        //cardHelper = new CardHelper(context);
+        //cardHelperAction = new CardHelperAction(context);
+        //cardHelperEnergy = new CardHelperEnergy(context);
 
     }
 

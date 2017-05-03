@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.AssetManager;
+import com.example.andrew.ark9studios.BoardSetupHelper;
 import com.example.andrew.ark9studios.BoundingBox;
 import com.example.andrew.ark9studios.DeckSetup;
 import com.example.andrew.ark9studios.Game;
@@ -143,21 +144,7 @@ public abstract class GameLevel extends GameScreen {
      */
     private Bitmap deck_cardBitmap2;
 
-
-
-    DeckSetup deckSetup = new DeckSetup(game);
-    Deck deck = new Deck();
-
-    boolean touchedP1 = false;
-    boolean touchedP2 = false;
-    boolean firstDrawP1 = true;
-    boolean firstDrawP2 = true;
-    boolean enableDragP1 = false;
-    boolean enableDragP2 = false;
-    boolean snapped = false;
-
-    float x1,x2,y1,y2;
-
+    private BoardSetupHelper boardSetupHelper;
 
 
     /**
@@ -174,6 +161,8 @@ public abstract class GameLevel extends GameScreen {
         this.levelHeight=levelHeight;
         this.assetManager= game.getAssetManager();
         this.gameLvlState= gameLvlState.Running;
+
+        boardSetupHelper = new BoardSetupHelper(game);
 
     }
 
@@ -230,37 +219,7 @@ public abstract class GameLevel extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
-        if (backgroundBound == null) {
-            backgroundBound = new Rect(0, 0, graphics2DInterface.getSurfaceWidth(),
-                    graphics2DInterface.getSurfaceHeight());
-        }
-
-        if (player1BenchBound == null) {
-           player1BenchBound =  new Rect(30, graphics2DInterface.getSurfaceHeight() - 325, graphics2DInterface.getSurfaceWidth() - 30,
-                    graphics2DInterface.getSurfaceHeight() - 25);
-        }
-
-        if (enemyBench_Bound == null) {
-            enemyBench_Bound = new Rect(30, 25, graphics2DInterface.getSurfaceWidth() - 30, 325);
-        }
-
-        if (deck_cardBound1 == null) {
-            deck_cardBound1 = new Rect(50, graphics2DInterface.getSurfaceHeight() - 430, 150,
-                    graphics2DInterface.getSurfaceHeight() - 300);
-        }
-        if (deck_cardBound2 == null) {
-            deck_cardBound2 = new Rect(1050, 300, 1150, 430);
-        }
-
-
-        graphics2DInterface.drawBitmap(background,null,backgroundBound,null);
-        graphics2DInterface.drawBitmap(enemyBenchBitmap, null, enemyBench_Bound, null);
-        graphics2DInterface.drawBitmap(player1BenchBitmap, null, player1BenchBound, null);
-        graphics2DInterface.drawBitmap(deck_cardBitmap1, null, deck_cardBound1, null);
-        graphics2DInterface.drawBitmap(deck_cardBitmap2, null, deck_cardBound2, null);
-
-
-
+        boardSetupHelper.drawGameSetup(graphics2DInterface);
 
         if(gameLvlState == gameLvlState.Running || gameLvlState ==
              gameLvlState.Finishing){
