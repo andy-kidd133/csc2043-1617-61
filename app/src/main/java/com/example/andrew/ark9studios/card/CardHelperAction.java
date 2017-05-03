@@ -44,10 +44,10 @@ public class CardHelperAction {
     };
 
 
-    private static Bitmap revive= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
-    private static Bitmap healthRefill = BitmapFactory.decodeResource(context.getResources(), R.drawable.card8);
-    private static Bitmap grimReaper = BitmapFactory.decodeResource(context.getResources(), R.drawable.card13);
-    private static Bitmap loseATurn = BitmapFactory.decodeResource(context.getResources(),R.drawable.card19);
+    private static Bitmap revive= BitmapFactory.decodeResource(context.getResources(), R.drawable.card1);
+    private static Bitmap healthRefill = BitmapFactory.decodeResource(context.getResources(), R.drawable.card2);
+    private static Bitmap grimReaper = BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
+    private static Bitmap loseATurn = BitmapFactory.decodeResource(context.getResources(),R.drawable.card4);
 
 
     private static Bitmap[] cardImages = {revive, healthRefill, grimReaper, loseATurn

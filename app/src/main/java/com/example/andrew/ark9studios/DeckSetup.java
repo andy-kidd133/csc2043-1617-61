@@ -2,14 +2,9 @@ package com.example.andrew.ark9studios;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
-import com.example.andrew.ark9studios.AssetManager;
-import com.example.andrew.ark9studios.BoardLocation;
-import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
-import com.example.andrew.ark9studios.fragments.GameFragment;
-import com.example.andrew.ark9studios.fragments.MainGameScreen;
 
 import java.util.ArrayList;
 import java.util.Collections;

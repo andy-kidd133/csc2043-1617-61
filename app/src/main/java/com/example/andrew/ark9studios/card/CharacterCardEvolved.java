@@ -23,7 +23,7 @@ public class CharacterCardEvolved extends CharacterCard {
 
 
     public CharacterCardEvolved(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment, Bitmap cardImg, boolean isActive, int numberEnergiesAttached) {
-        super(name, health, attackCost, attackDamage, cardDepartment, cardImg, isActive, numberEnergiesAttached);
+        super(name, health, attackCost, attackDamage, cardDepartment, cardImg);
     }
 }
 

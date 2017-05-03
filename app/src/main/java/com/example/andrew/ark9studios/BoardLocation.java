@@ -197,5 +197,4 @@ public class BoardLocation {
         return p2Bench3Location;
     }
 
-    public Rect getZoomCardLocation() {return zoomCardLocation; }
 }

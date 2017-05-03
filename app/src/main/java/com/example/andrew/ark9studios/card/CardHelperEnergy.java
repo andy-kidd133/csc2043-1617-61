@@ -52,12 +52,12 @@ public class CardHelperEnergy {
 
 
 
-        private static Bitmap paintKit= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
-        private static Bitmap globe= BitmapFactory.decodeResource(context.getResources(), R.drawable.card8);
-        private static Bitmap computer= BitmapFactory.decodeResource(context.getResources(), R.drawable.card13);
-        private static Bitmap controller= BitmapFactory.decodeResource(context.getResources(), R.drawable.card20);
-        private static Bitmap camera= BitmapFactory.decodeResource(context.getResources(), R.drawable.card21);
-        private static Bitmap scroll = BitmapFactory.decodeResource(context.getResources(), R.drawable.card22);
+        private static Bitmap paintKit= BitmapFactory.decodeResource(context.getResources(), R.drawable.card1);
+        private static Bitmap globe= BitmapFactory.decodeResource(context.getResources(), R.drawable.card2);
+        private static Bitmap computer= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
+        private static Bitmap controller= BitmapFactory.decodeResource(context.getResources(), R.drawable.card4);
+        private static Bitmap camera= BitmapFactory.decodeResource(context.getResources(), R.drawable.card5);
+        private static Bitmap scroll = BitmapFactory.decodeResource(context.getResources(), R.drawable.card6);
 
 
 
