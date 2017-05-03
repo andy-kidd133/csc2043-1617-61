@@ -1,44 +1,39 @@
 package com.example.andrew.ark9studios.card;
-
-
-
-
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 
-
-import com.example.andrew.ark9studios.ActionCard;
 import com.example.andrew.ark9studios.Game;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-
-
 /**
- * Created by megan on 02/03/2017.
- * updated by Emma 20/4/17
+ * Created by Andrew
  */
 
 public class Deck {
 
     private boolean deckEmpty = true;
-    private Rect deckRect;
+    private ArrayList<CharacterCard> characterPile = new ArrayList<>();
     private ArrayList<ActionCard> actionPile = new ArrayList<>();
     private ArrayList<EnergyCard> energyPile = new ArrayList<>();
 
-    CardHelper cardHelper;
+    private CardHelper cardHelper;
+    private CardHelperAction cardHelperAction;
+    private CardHelperEnergy cardHelperEnergy;
 
     private ArrayList<Card> deckP1 = new ArrayList<>();
 
-    private Game game;
+    private Context context;
 
     //method used to gather all the generated character cards in an ArrayList
 
-    private ArrayList<CharacterCard> characterPile = new ArrayList<>();
-
     public Deck() {
-        super();
+
+        cardHelper = new CardHelper(context);
+        cardHelperAction = new CardHelperAction(context);
+        cardHelperEnergy = new CardHelperEnergy(context);
+
     }
 
 
@@ -51,17 +46,21 @@ public class Deck {
 
     //method used to gather all the generated action cards in an ArrayList
 
-    /*public ArrayList<ActionCard> createActionPile(){
-        actionPile = CardHelperAction.generateCards();
-        return actionPile;
-    }*/
+    public void createActionPile(){
+
+        cardHelperAction.generateCards();
+        actionPile.addAll(cardHelperAction.getActionCards());
+
+    }
 
     //method used to gather all the generated energy cards in an ArrayList
 
-    /*public ArrayList<EnergyCard> createEnergyPile(){
-        energyPile = CardHelperEnergy.generateCards();
-        return energyPile;
-    }*/
+    public void createEnergyPile(){
+
+        cardHelperEnergy.generateCards();
+        energyPile.addAll(cardHelperEnergy.getEnergyCards());
+
+    }
 
     public void shuffle()
     {
@@ -73,12 +72,12 @@ public class Deck {
     public ArrayList<Card> setUpDeck(){
 
         createCharacterPile();
-        //createActionPile();
-        //createEnergyPile();
+        createActionPile();
+        createEnergyPile();
 
         deckP1.addAll(characterPile);
-        //deckP1.addAll(actionPile);
-        //deckP1.addAll(energyPile);
+        deckP1.addAll(actionPile);
+        deckP1.addAll(energyPile);
 
         shuffle();
 

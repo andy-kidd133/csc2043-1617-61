@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.andrew.ark9studios.R;
+
 import java.util.ArrayList;
 
 /**
@@ -15,7 +17,7 @@ import java.util.ArrayList;
  * pass this info into the ArrayList of the energy cards in the Deck class
  */
 
-/*public class CardHelperEnergy {
+public class CardHelperEnergy {
 
         private static Context context;
 
@@ -66,17 +68,17 @@ import java.util.ArrayList;
         };
 
 
-        public static ArrayList<EnergyCard> generateCards(){
+    private ArrayList<EnergyCard> energyCards = new ArrayList<>();
 
-            ArrayList<EnergyCard> actionCards = new ArrayList<EnergyCard>();
+    public void generateCards() {
 
-            for(int i=0; i < cardNames.length; i++){
-                actionCards.add(new EnergyCard(cardNames[i], cardImages[i],cardDepartment[i],description[i]));
-            }
-
-            return actionCards;
+        for (int i = 0; i < cardNames.length; i++) {
+            energyCards.add(new EnergyCard(cardNames[i], description[i], cardDepartment[i], cardImages[i]));
         }
+    }
 
-
-    }*/
+    public ArrayList<EnergyCard> getEnergyCards() {
+        return energyCards;
+    }
+}
 

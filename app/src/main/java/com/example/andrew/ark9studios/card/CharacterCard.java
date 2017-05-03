@@ -22,7 +22,7 @@ public class CharacterCard extends Card {
     private Weakness weakness;
 
     public CharacterCard(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment, Bitmap cardImg) {
-        super(name, cardImg);
+        super(name);
         this.health = health;
         this.attackCost = attackCost;
         this.attackDamage = attackDamage;

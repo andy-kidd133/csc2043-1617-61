@@ -30,9 +30,8 @@ public abstract class Card{
 
     //constructor
 
-    public Card(String name, Bitmap cardImg) {
+    public Card(String name) {
         this.name = name;
-        this.cardImage = cardImg;
 
     }
 
