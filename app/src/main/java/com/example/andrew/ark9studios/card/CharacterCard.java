@@ -11,30 +11,30 @@ import com.example.andrew.ark9studios.card.CardDepartment;
 
 /**
  * Created by Andrew on 13/03/2017.
+ * updated by Emma
  */
 
-public abstract class CharacterCard extends Card {
+public class CharacterCard extends Card {
 
     private int health;
+    //how many energy cards have to be attached before you can attack
     private int attackCost;
+    //the damage that the attack will do to the other players card
     private int attackDamage;
     private CardDepartment cardDepartment;
     private Bitmap cardImage;
     private Strength strength;
     private Weakness weakness;
-    private boolean isActive;
     private static final int MAXENERGYCARDSATTACHED = 3;
     private int numberEnergiesAttached;
 
     public CharacterCard(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment,
-                         Bitmap cardImg, boolean isActive, int numberEnergiesAttached) {
-        super(name, cardImg);
+                         Bitmap cardImg,boolean isActive, int numberEnergiesAttached) {
+        super(name, cardImg, isActive);
         this.health = health;
         this.attackCost = attackCost;
         this.attackDamage = attackDamage;
         this.cardImage = cardImg;
-        //every card should be inactive unless made active
-        this.isActive = false;
         this.numberEnergiesAttached = 0;
     }
 
@@ -49,25 +49,25 @@ public abstract class CharacterCard extends Card {
 
     public int getAttackCost()
 
+
     {
         return attackCost;
     }
 
 
-    public int getAttackDamage() {
+    public int getAttackDamage()
+    {
         return attackDamage;
 
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
 
-    public int getNumberEnergiesAttached() {
+    public int getNumberEnergiesAttached()
+    {
         return numberEnergiesAttached;
     }
-    //mutators
 
+    //mutators
 
     public void setHealth(int health) {
 
@@ -78,10 +78,7 @@ public abstract class CharacterCard extends Card {
         this.attackCost = attackCost;
     }
 
-    public void isActive(boolean isActive) {
 
-        this.isActive = isActive;
-    }
 
 
     public void setAttackDamage(int attackDamage) {
@@ -104,23 +101,33 @@ public abstract class CharacterCard extends Card {
      * first check if that card is active
      * if not advance it and retreat active card
      * then check if there is enough energy attached to evolve
+     * evolve will change the card on the screen
+     * the level 2 card will be in the same position in the
+     * level 2 card arrays as its level 1 card in the normal
+     * character card arrays
      */
 
     public void cardEvolve() {
-
+    if(isActive = true) {
         checkEnergyCardsAttached();
-        if(numberEnergiesAttached>=2){
+        if (numberEnergiesAttached >= 2) {
+            Log.e("QUBTIG", "Card can be evolved");
+            //switch card from character card array to level 2 character array
+
+
+        }else{
+            Log.e("QUBTIG","Not enough energy attached to evolve card");
 
 
         }
-
+    }
     }
 
     /**
      * check number of energies attached
      * if num>max number of energies you cant attach
      * error message to tell you that you cant add anymore
-     * else increment the number of energy cards attached
+/     * else increment the number of energy cards attached
      * message saying another energy card has been attached
      * return number of energies attached
      */

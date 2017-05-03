@@ -14,8 +14,8 @@ public class ActionCard extends Card {
         private CardDepartment cardDepartment;
         private Bitmap cardImage;
 
-        public ActionCard(String name, String description, CardDepartment cardDepartment, Bitmap cardImg) {
-            super(name, cardImg);
+        public ActionCard(String name, String description, CardDepartment cardDepartment, Bitmap cardImg, boolean isActive) {
+            super(name, cardImg, isActive);
             this.cardImage = cardImg;
         }
 

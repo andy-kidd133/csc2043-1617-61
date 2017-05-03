@@ -17,8 +17,8 @@ public class EnergyCard extends Card {
     private CardDepartment cardDepartment;
     private final int ENERGY_VALUE = 1;
 
-    public EnergyCard(String name, Bitmap cardImage, CardDepartment cardDepartment, String description) {
-        super(name, cardImage);
+    public EnergyCard(String name, Bitmap cardImage, CardDepartment cardDepartment, String description, boolean isActive) {
+        super(name, cardImage, isActive);
         this.description = description;
     }
 
