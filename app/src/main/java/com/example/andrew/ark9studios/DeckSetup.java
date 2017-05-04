@@ -1,10 +1,16 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.utils;
+
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
+import com.example.andrew.ark9studios.AssetManager;
+import com.example.andrew.ark9studios.BoardLocation;
+import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
+import com.example.andrew.ark9studios.fragments.GameFragment;
+import com.example.andrew.ark9studios.fragments.MainGameScreen;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +18,7 @@ import java.util.List;
 
 
 /**
- * Created by Karl and Andy on 26/04/2017.
+ * Created by Karlm on 26/04/2017.
  */
 
 //
@@ -29,7 +35,7 @@ public class DeckSetup {
 
     public static Rect card1Bound,card2Bound,card3Bound,card4Bound,card5Bound,card6Bound,card7Bound,card8Bound,card9Bound,
             card10Bound,card11Bound,card12Bound,card13Bound, card14Bound,card15Bound,card16Bound,card17Bound,
-            card18Bound,  deck_cardBound1, deck_cardBound2;
+            card18Bound,card19Bound,card20Bound,tempBound,  deck_cardBound1, deck_cardBound2;
 
     public enum cardType{character, action, energy}
 
@@ -179,6 +185,124 @@ public class DeckSetup {
         Collections.shuffle(bitmapArrayp2);
     }
 
+    public void p1CardDrag(Graphics2DInterface graphics2DInterface, Game game) //kmccoubrey
+    {
+        Input input = game.getInput();
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+        GameTouchEvent touchEvent = touchEvents.get(0);
+        x1 = touchEvent.x - 55;
+        x2 = touchEvent.x + 55;
+        y1 = touchEvent.y - 75;
+        y2 = touchEvent.y + 75;
+
+        // Collision detection against screen walls.
+        if(touchEvent.x < 55){
+            x1 = 0;
+            x2 = 110;
+        }
+        if(touchEvent.x > graphics2DInterface.getSurfaceWidth() - 55){
+            x1 = graphics2DInterface.getSurfaceWidth() - 110;
+            x2 = graphics2DInterface.getSurfaceWidth();
+        }
+        if(touchEvent.y < 75){
+            y1 = 0;
+            y2 = 150;
+        }
+        if(touchEvent.y > graphics2DInterface.getSurfaceHeight() - 75){
+            y1 = graphics2DInterface.getSurfaceHeight() - 150;
+            y2 = graphics2DInterface.getSurfaceHeight();
+        }
+
+        tempBound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+        // graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(0), null, deckSetup.card1Bound, null);
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card13Bound) && !snapped){
+            tempBound.set(card13Bound);
+            snapped = true;
+        }
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card14Bound) && !snapped){
+            tempBound.set(card14Bound);
+            snapped = true;
+        }
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card15Bound) && !snapped){
+            tempBound.set(card15Bound);
+            snapped = true;
+        }
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card19Bound) && !snapped){
+            tempBound.set(card19Bound);
+            snapped = true;
+        }
+
+        if( (!tempBound.intersects(DeckSetup.tempBound,DeckSetup.card13Bound)
+                && !tempBound.intersects(DeckSetup.tempBound,DeckSetup.card14Bound)
+                && !tempBound.intersects(DeckSetup.tempBound,DeckSetup.card15Bound)
+                && !tempBound.intersects(DeckSetup.tempBound,DeckSetup.card19Bound))
+                && snapped){
+            tempBound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+            snapped = false;
+
+        }
+
+    }
+
+    public void p2CardDrag(Graphics2DInterface graphics2DInterface, Game game) //kmccoubrey
+    {
+        Input input = game.getInput();
+        List<GameTouchEvent> touchEvents = input.getTouchEvents();
+        GameTouchEvent touchEvent = touchEvents.get(0);
+        x1 = touchEvent.x - 55;
+        x2 = touchEvent.x + 55;
+        y1 = touchEvent.y - 75;
+        y2 = touchEvent.y + 75;
+
+        // Collision detection against screen walls.
+        if(touchEvent.x < 55){
+            x1 = 0;
+            x2 = 110;
+        }
+        if(touchEvent.x > graphics2DInterface.getSurfaceWidth() - 55){
+            x1 = graphics2DInterface.getSurfaceWidth() - 110;
+            x2 = graphics2DInterface.getSurfaceWidth();
+        }
+        if(touchEvent.y < 75){
+            y1 = 0;
+            y2 = 150;
+        }
+        if(touchEvent.y > graphics2DInterface.getSurfaceHeight() - 75){
+            y1 = graphics2DInterface.getSurfaceHeight() - 150;
+            y2 = graphics2DInterface.getSurfaceHeight();
+        }
+
+        tempBound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+        // graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(0), null, deckSetup.card1Bound, null);
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card16Bound) && !snapped){
+            tempBound.set(card16Bound);
+            snapped = true;
+        }
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card17Bound) && !snapped){
+            tempBound.set(card17Bound);
+            snapped = true;
+        }
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card18Bound) && !snapped){
+            tempBound.set(card18Bound);
+            snapped = true;
+        }
+        if(tempBound.intersects(DeckSetup.tempBound,DeckSetup.card20Bound) && !snapped){
+            tempBound.set(card20Bound);
+            snapped = true;
+        }
+
+        if( (!tempBound.intersects(DeckSetup.tempBound,DeckSetup.card16Bound)
+                && !tempBound.intersects(DeckSetup.tempBound,DeckSetup.card17Bound)
+                && !tempBound.intersects(DeckSetup.tempBound,DeckSetup.card18Bound)
+                && !tempBound.intersects(DeckSetup.tempBound,DeckSetup.card20Bound))
+                && snapped){
+            tempBound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
+            snapped = false;
+
+        }
+
+    }
+
     public void initialGamePlay(Graphics2DInterface graphics2DInterface, Game game)
     {
         Input input = game.getInput();
@@ -213,27 +337,81 @@ public class DeckSetup {
                     firstDrawP2 = false;
                 }
             }
-            if(touchedP1 && enableDragP1) {
-                if(card1Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
-                    x1 = touchEvent.x - 55;
-                    x2 = touchEvent.x + 55;
-                    y1 = touchEvent.y - 75;
-                    y2 = touchEvent.y + 75;
-
-                    card1Bound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
-                    // graphics2DInterface.drawBitmap(deckSetup.getBitmapArrayp1().get(0), null, deckSetup.card1Bound, null);
-                    if(card1Bound.intersects(DeckSetup.card1Bound,DeckSetup.card13Bound) && !snapped){
-                        card1Bound.set(card13Bound);
-                        snapped = true;
-                    }
-                    if(!card1Bound.intersects(DeckSetup.card1Bound,DeckSetup.card13Bound) && snapped){
-                        card1Bound.set((int) x1 ,(int) y1, (int) x2, (int) y2);
-                        snapped = false;
-
-                    }
-
+            if(touchedP1 && enableDragP1) {     // Calls p1cardDrag to allow movement for player1's cards ~KMcC
+                if (tempBound == null) {
+                    tempBound = new Rect();
                 }
+                if(card1Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card1Bound);
+                    p1CardDrag(graphics2DInterface,game);
+                    card1Bound.set(tempBound);
+                }
+                if(card2Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card2Bound);
+                    p1CardDrag(graphics2DInterface,game);
+                    card2Bound.set(tempBound);
+                }
+                if(card3Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card3Bound);
+                    p1CardDrag(graphics2DInterface,game);
+                    card3Bound.set(tempBound);
+                }
+                if(card4Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card4Bound);
+                    p1CardDrag(graphics2DInterface,game);
+                    card4Bound.set(tempBound);
+                }
+                if(card5Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card5Bound);
+                    p1CardDrag(graphics2DInterface,game);
+                    card5Bound.set(tempBound);
+                }
+                if(card6Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card6Bound);
+                    p1CardDrag(graphics2DInterface,game);
+                    card6Bound.set(tempBound);
+                }
+
             }
+            if(touchedP2 && enableDragP2) {     // Calls p2CardDrag to allow movement for player2's cards. ~KMcC
+                if (tempBound == null) {
+                    tempBound = new Rect();
+                }
+                if(card7Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card7Bound);
+                    p2CardDrag(graphics2DInterface,game);
+                    card7Bound.set(tempBound);
+                }
+                if(card8Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card8Bound);
+                    p2CardDrag(graphics2DInterface,game);
+                    card8Bound.set(tempBound);
+                }
+                if(card9Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card9Bound);
+                    p2CardDrag(graphics2DInterface,game);
+                    card9Bound.set(tempBound);
+                }
+                if(card10Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card10Bound);
+                    p2CardDrag(graphics2DInterface,game);
+                    card10Bound.set(tempBound);
+                }
+                if(card11Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card11Bound);
+                    p2CardDrag(graphics2DInterface,game);
+                    card11Bound.set(tempBound);
+                }
+                if(card12Bound.contains((int) touchEvent.x, (int) touchEvent.y)){
+                    tempBound.set(card12Bound);
+                    p2CardDrag(graphics2DInterface,game);
+                    card12Bound.set(tempBound);
+                }
+
+            }
+
+
+
         }
 
 
@@ -268,6 +446,9 @@ public class DeckSetup {
             if (card15Bound == null) {
                 card15Bound = new Rect(boardLocation.getP1Bench3Location());
             }
+            if (card19Bound == null) {
+                card19Bound = new Rect(boardLocation.getP1ActiveLocation());
+            }
 
 
             graphics2DInterface.drawBitmap(getBitmapArrayp1().get(0), null, card1Bound, null);
@@ -280,6 +461,7 @@ public class DeckSetup {
 
         }
         if(touchedP2){
+            enableDragP2 = true;
 
             if (card7Bound == null) {
                 card7Bound = new Rect(boardLocation.getP2Hand1Location());
@@ -308,6 +490,9 @@ public class DeckSetup {
             if (card18Bound == null) {
                 card18Bound = new Rect(boardLocation.getP2Bench3Location());
             }
+            if (card20Bound == null) {
+                card20Bound = new Rect(boardLocation.getP2ActiveLocation());
+            }
 
             graphics2DInterface.drawBitmap(getBitmapArrayp2().get(0), null, card7Bound, null);
             graphics2DInterface.drawBitmap(getBitmapArrayp2().get(1), null, card8Bound, null);
@@ -318,5 +503,7 @@ public class DeckSetup {
 
         }
     }
+
+
 
 }
