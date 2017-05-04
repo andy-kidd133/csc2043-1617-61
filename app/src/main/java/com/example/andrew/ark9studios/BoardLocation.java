@@ -13,9 +13,9 @@ public class BoardLocation {
     //variables to aid process of changing locations.
     public static final int CARD_WIDTH = 110;
     public static final int CARD_HEIGHT = 150;
-    public static final int ZOOMCARD_WIDTH = 330;
-    public static final int ZOOMCARD_HEIGHT= 450;
-    private static final int ZOOMCARD_PADDING= 250;
+    //public static final int ZOOMCARD_WIDTH = 330;
+    //public static final int ZOOMCARD_HEIGHT= 450;
+    //private static final int ZOOMCARD_PADDING= 250;
     private static final int HAND_PADDING = 75;
     private static final int BENCH_PADDING = 415;
     private static final int ACTIVE_PADDING = 675;
@@ -37,21 +37,21 @@ public class BoardLocation {
 
     private static final int activeCard = 542;
 
-    private final int SCREEN_HEIGHT = 1920;
+    private final int SCREEN_HEIGHT = 1820;
     private final int SCREEN_WIDTH = 1200;
 
-    private int p1HandTop = SCREEN_HEIGHT - (CARD_HEIGHT * 2) - HAND_PADDING;
-    private int p1HandBottom = SCREEN_HEIGHT - HAND_PADDING - CARD_HEIGHT;
+    private int p1HandTop = SCREEN_HEIGHT - CARD_HEIGHT - HAND_PADDING;
+    private int p1HandBottom = SCREEN_HEIGHT - HAND_PADDING;
     private int p2HandTop = HAND_PADDING;
     private int p2HandBottom = HAND_PADDING + CARD_HEIGHT;
 
-    private int p1BenchTop = SCREEN_HEIGHT - (CARD_HEIGHT * 2) - BENCH_PADDING;
-    private int p1BenchBottom = SCREEN_HEIGHT - CARD_HEIGHT - BENCH_PADDING;
+    private int p1BenchTop = SCREEN_HEIGHT - CARD_HEIGHT - BENCH_PADDING;
+    private int p1BenchBottom = SCREEN_HEIGHT - BENCH_PADDING;
     private int p2BenchTop = BENCH_PADDING;
     private int p2BenchBottom = BENCH_PADDING + CARD_HEIGHT;
 
-    private int p1ActiveTop = SCREEN_HEIGHT - (CARD_HEIGHT * 2) - ACTIVE_PADDING;
-    private int p1ActiveBottom = SCREEN_HEIGHT - CARD_HEIGHT - ACTIVE_PADDING;
+    private int p1ActiveTop = SCREEN_HEIGHT - CARD_HEIGHT - ACTIVE_PADDING;
+    private int p1ActiveBottom = SCREEN_HEIGHT - ACTIVE_PADDING;
     private int p2ActiveTop = ACTIVE_PADDING;
     private int p2ActiveBottom = ACTIVE_PADDING + CARD_HEIGHT;
 

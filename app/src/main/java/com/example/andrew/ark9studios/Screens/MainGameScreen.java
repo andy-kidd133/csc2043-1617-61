@@ -2,13 +2,14 @@ package com.example.andrew.ark9studios.Screens;
 
 import com.example.andrew.ark9studios.BoardLocation;
 import com.example.andrew.ark9studios.BoardSetupHelper;
-import com.example.andrew.ark9studios.DeckSetup;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+import com.example.andrew.ark9studios.utils.DeckSetup;
+
 import java.util.List;
 
 

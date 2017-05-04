@@ -19,12 +19,18 @@ public class BoardSetupHelper {
     private Rect enemyCard_deckBound;
     private Rect bench_BlueBound;
     private Rect bench_RedBound;
+    private Rect p1ActiveLocationBound;
+    private Rect p2ActiveLocationBound;
+
 
     private Bitmap backgroundBitmap;
     private Bitmap card_deckBitmap;
     private Bitmap enemyCard_deckBitmap;
     private Bitmap bench_BlueBitmap;
     private Bitmap bench_RedBitmap;
+    private Bitmap p1activeLocationBitmap;
+    private Bitmap p2activeLocationBitmap;
+
 
     public BoardSetupHelper(Game game) {
 
@@ -36,12 +42,18 @@ public class BoardSetupHelper {
         assetManager.loadAndAddBitmap("enemyCard_deck", "images/enemyCard_deck.png");
         assetManager.loadAndAddBitmap("bench_Red", "images/bench_Red.png");
         assetManager.loadAndAddBitmap("bench_Blue", "images/bench_Blue.png");
+        assetManager.loadAndAddBitmap("p1activeLocation", "images/activeBound.png");
+        assetManager.loadAndAddBitmap("p2activeLocation", "images/activeBound.png");
+
 
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.card_deckBitmap = assetManager.getBitmap("card_deck");
         this.enemyCard_deckBitmap = assetManager.getBitmap("enemyCard_deck");
         this.bench_RedBitmap = assetManager.getBitmap("bench_Red");
         this.bench_BlueBitmap = assetManager.getBitmap("bench_Blue");
+        this.p1activeLocationBitmap = assetManager.getBitmap("p1activeLocation");
+        this.p2activeLocationBitmap = assetManager.getBitmap("p2activeLocation");
+
 
     }
 
@@ -70,12 +82,21 @@ public class BoardSetupHelper {
             bench_BlueBound = new Rect(327, 385, 867, 615);
         }
 
+        if (p1ActiveLocationBound == null) {
+            p1ActiveLocationBound = new Rect(522, graphics2DInterface.getSurfaceHeight() - 845, 672, graphics2DInterface.getSurfaceHeight() -655);
+        }
+
+        if (p2ActiveLocationBound == null) {
+            p2ActiveLocationBound = new Rect(522, 655, 672, 845);
+        }
+
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(card_deckBitmap, null, card_deckBound, null);
         graphics2DInterface.drawBitmap(enemyCard_deckBitmap, null, enemyCard_deckBound, null);
         graphics2DInterface.drawBitmap(bench_RedBitmap, null, bench_RedBound, null);
         graphics2DInterface.drawBitmap(bench_BlueBitmap, null, bench_BlueBound, null);
-
+        graphics2DInterface.drawBitmap(p1activeLocationBitmap, null, p1ActiveLocationBound, null);
+        graphics2DInterface.drawBitmap(p2activeLocationBitmap, null, p2ActiveLocationBound, null);
 
     }
 }
