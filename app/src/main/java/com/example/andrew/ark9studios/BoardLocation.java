@@ -17,7 +17,9 @@ public class BoardLocation {
     public static final int ZOOMCARD_HEIGHT= 450;
     private static final int ZOOMCARD_PADDING= 250;
     private static final int HAND_PADDING = 75;
-    private static final int BENCH_PADDING = 425;
+    private static final int BENCH_PADDING = 415;
+    private static final int ACTIVE_PADDING = 675;
+
 
     //hand locations
     private static final int hand1 = 105;
@@ -27,11 +29,13 @@ public class BoardLocation {
     private static final int hand5 = 805;
     private static final int hand6 = 980;
 
-    private static final int zoomCard= 10;
+    //private static final int zoomCard= 10;
 
     private static final int bench1 = 367;
     private static final int bench2 = 542;
     private static final int bench3 = 717;
+
+    private static final int activeCard = 542;
 
     private final int SCREEN_HEIGHT = 1920;
     private final int SCREEN_WIDTH = 1200;
@@ -39,15 +43,20 @@ public class BoardLocation {
     private int p1HandTop = SCREEN_HEIGHT - (CARD_HEIGHT * 2) - HAND_PADDING;
     private int p1HandBottom = SCREEN_HEIGHT - HAND_PADDING - CARD_HEIGHT;
     private int p2HandTop = HAND_PADDING;
-    private int p2HandBottom = CARD_HEIGHT + HAND_PADDING;
+    private int p2HandBottom = HAND_PADDING + CARD_HEIGHT;
 
     private int p1BenchTop = SCREEN_HEIGHT - (CARD_HEIGHT * 2) - BENCH_PADDING;
     private int p1BenchBottom = SCREEN_HEIGHT - CARD_HEIGHT - BENCH_PADDING;
     private int p2BenchTop = BENCH_PADDING;
     private int p2BenchBottom = BENCH_PADDING + CARD_HEIGHT;
 
-    private int zoomCardTop= ZOOMCARD_PADDING;
-    private int zoomCardBottom=ZOOMCARD_PADDING+ZOOMCARD_HEIGHT;
+    private int p1ActiveTop = SCREEN_HEIGHT - (CARD_HEIGHT * 2) - ACTIVE_PADDING;
+    private int p1ActiveBottom = SCREEN_HEIGHT - CARD_HEIGHT - ACTIVE_PADDING;
+    private int p2ActiveTop = ACTIVE_PADDING;
+    private int p2ActiveBottom = ACTIVE_PADDING + CARD_HEIGHT;
+
+    //private int zoomCardTop= ZOOMCARD_PADDING;
+    //private int zoomCardBottom=ZOOMCARD_PADDING+ZOOMCARD_HEIGHT;
 
     /////////////////////////////////////////////////////////////////////////
     //Player 1 Hand Locations
@@ -116,11 +125,24 @@ public class BoardLocation {
 
     private Rect p2Bench3Location = new Rect(bench3, p2BenchTop, bench3 + CARD_WIDTH, p2BenchBottom);
 
+    /////////////////////////////////////////////////////////////////////
+    // Player 1 Active Location
+    /////////////////////////////////////////////////////////////////////
+
+    private Rect p1ActiveLocation = new Rect(activeCard, p1ActiveTop, activeCard + CARD_WIDTH, p1ActiveBottom);
+
+    /////////////////////////////////////////////////////////////////////
+    // Player 2 Active Location
+    /////////////////////////////////////////////////////////////////////
+
+    private Rect p2ActiveLocation = new Rect(activeCard, p2ActiveTop, activeCard + CARD_WIDTH, p2ActiveBottom);
+
+
     ///////////////////////////////////////////////////
     // Zoomed image of selected card location
     ///////////////////////////////////////
 
-    private Rect zoomCardLocation= new Rect(zoomCard, zoomCardTop, zoomCard + ZOOMCARD_WIDTH, zoomCardBottom);
+    //private Rect zoomCardLocation= new Rect(zoomCard, zoomCardTop, zoomCard + ZOOMCARD_WIDTH, zoomCardBottom);
 
     //getters
 
@@ -197,4 +219,13 @@ public class BoardLocation {
         return p2Bench3Location;
     }
 
+    public Rect getP1ActiveLocation() {
+        return p1ActiveLocation;
+    }
+
+    public Rect getP2ActiveLocation() {
+        return p2ActiveLocation;
+    }
+
+    //public Rect getZoomCardLocation() {return zoomCardLocation; }
 }
