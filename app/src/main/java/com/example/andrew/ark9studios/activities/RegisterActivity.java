@@ -4,6 +4,7 @@ package com.example.andrew.ark9studios.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,7 +21,7 @@ import com.example.andrew.ark9studios.R;
  * This is the register screen, where the user can enter their username and password
  */
 
-public class RegisterActivity extends Activity implements  View.OnClickListener {
+public class RegisterActivity extends Activity implements  View.OnTouchListener {
 
     //////////////////////////////////////
     ///////Variables
@@ -73,19 +74,21 @@ public class RegisterActivity extends Activity implements  View.OnClickListener 
 
 
         //setting on click listeners
-        reg.setOnClickListener(this);
-        goToLogin.setOnClickListener(this);
+        reg.setOnTouchListener(this);
+        goToLogin.setOnTouchListener(this);
 
 
     }
 
     /**
-     * This is the OnClick method which is overrrided
-     *
-     * @param v
+     * This is the OnTouch method which is overrided
+     * If the register button is tocuhed then the register method is triggered
+     * if the go to login button is touched then we move from this activity to the
+     * login screen
      */
     @Override
-    public void onClick(View v) {
+    public boolean onTouch(View v, MotionEvent event) {
+
         switch (v.getId()) {
 
             case R.id.register_button:
@@ -99,7 +102,9 @@ public class RegisterActivity extends Activity implements  View.OnClickListener 
             default:
 
         }
+        return false;
     }
+
 
 
     /**

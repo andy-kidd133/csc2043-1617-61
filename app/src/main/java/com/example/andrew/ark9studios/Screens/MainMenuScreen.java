@@ -151,24 +151,35 @@ public class MainMenuScreen extends GameScreen {
     public MainMenuScreen(Game game){
           super(SCREEN_NAME, game);
 
+        //getting the asset manager
         AssetManager assetManager = game.getAssetManager();
 
 
+        //emptying the assets
         assetManager.emptyAssets();
 
 
-        assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("menuTemplate", "images/menuTemplate.png");
-        assetManager.loadAndAddBitmap("playgamebutton", "images/button_play_game.png");
-        assetManager.loadAndAddBitmap("optionsbutton", "images/option_button.png");
-        assetManager.loadAndAddBitmap("rulesbutton", "images/button_rules.png");
-        assetManager.loadAndAddBitmap("scoreboardbutton", "images/button_scoreboard.png");
-        assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
-        assetManager.loadAndAddMusic("backgroundMusic", "raw/backgroundmusic.mp3");
+        /**
+         * try loading the bitmaps if, if there is an error print the stack trace
+         */
+        try {
+
+            assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("menuTemplate", "images/menuTemplate.png");
+            assetManager.loadAndAddBitmap("playgamebutton", "images/button_play_game.png");
+            assetManager.loadAndAddBitmap("optionsbutton", "images/option_button.png");
+            assetManager.loadAndAddBitmap("rulesbutton", "images/button_rules.png");
+            assetManager.loadAndAddBitmap("scoreboardbutton", "images/button_scoreboard.png");
+            assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
+            assetManager.loadAndAddMusic("backgroundMusic", "raw/backgroundmusic.mp3");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
 
 
 
+        //initialising the variables
         this.playGameBitmap = assetManager.getBitmap("playgamebutton");
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.menuTemplateBitmap = assetManager.getBitmap("menuTemplate");
@@ -180,8 +191,11 @@ public class MainMenuScreen extends GameScreen {
 
 
 
+
+
+        //setting the music to play
             backgroundMusic.play();
-            backgroundMusic.setLooping(true);
+
 
     }
 
@@ -205,15 +219,30 @@ public class MainMenuScreen extends GameScreen {
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
 
         if (touchEvents.size() > 0) {
+
+            /**
+            * check the first touch event.
+            */
             GameTouchEvent touchEvent = touchEvents.get(0);
+
+            /**
+             * the touchEvent.typeOfTouchEvent allows us to decide what type of touch we want on the if statement;
+             * up, down , dragged
+             */
 
             if (playGameButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN) {
 
+                //music paused
+                backgroundMusic.pause();
+
+                //if the play game area has been touched then swap to the GameLevelOne screen
                 game.getScreenManager().removeScreen(this.getmName());
                GameLevelOne  gameLevelOne = new GameLevelOne(this.getmGame());
+
+                //as this is the only added screen then it will become active
                 game.getScreenManager().addGameScreen(gameLevelOne);
 
-                backgroundMusic.stop();
+
 
 
 

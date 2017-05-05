@@ -3,6 +3,7 @@ package com.example.andrew.ark9studios.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import com.example.andrew.ark9studios.R;
 /**
  * this is the welcome screen that the user is redirected to when they login
  */
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends Activity implements View.OnTouchListener {
 
     //////////////////////////////////////
     ///////Variables
@@ -54,42 +55,57 @@ public class WelcomeActivity extends Activity {
         //set the content view
         setContentView(R.layout.activity_main);
 
-
-
-
-        String username = getIntent().getStringExtra("Username");
-        TextView tvUsername = (TextView) findViewById(R.id.welcomeTxt);
-        tvUsername.setText(username);
-
+        //setting the session
+        /**
+         * if the session is logged in, then logout
+         */
         session = new Session(this);
         if (!session.loggedIn()) {
             logout();
         }
+
+        //setting the logout and tap to start to their buttons
         logout = (ImageView) findViewById(R.id.logout_button);
         tapToStart = (ImageView) findViewById(R.id.startgame_button);
 
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        logout.setOnTouchListener(this);
+
+        tapToStart.setOnTouchListener(this);
+
+
+
+    }
+
+    /**
+     * This is the OnTouch method which is overrided
+     * If the logout button is tocuhed then the logout method is triggered
+     * if the start game button is touched then we move from this activity to the
+     *gamescreen
+     */
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (v.getId()) {
+
+            case R.id.logout_button:
                 logout();
-            }
-        });
+                break;
+            case R.id.startgame_button:
+                startActivity(new Intent(WelcomeActivity.this, GameActivity.class));
+                finish();
+                break;
 
-        tapToStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WelcomeActivity.this, GameActivity.class);
-                startActivity(intent);
-            }
-        });
+            default:
 
-
+        }
+        return false;
     }
 
 
     /**
      * logout method
+     * sets the logged in to false
+     * finishes this activity and goes back to the login screen
      */
     private void logout() {
         session.setLoggedIn(false);
@@ -98,6 +114,7 @@ public class WelcomeActivity extends Activity {
 
 
     }
+
 
 
 }

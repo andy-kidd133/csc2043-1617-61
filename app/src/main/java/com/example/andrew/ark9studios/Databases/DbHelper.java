@@ -40,9 +40,22 @@ public class DbHelper extends SQLiteOpenHelper {
     SQLiteDatabase db;
 
 
+    /**
+     * Name of the user table with all their info
+     */
     private static final String USER_TABLE = "users";
+
+    /**
+     * ID column
+     */
     private static final String COLUMN_ID = "ID";
+    /**
+     * username column
+     */
     private static final String COLUMN_USERNAME = "USERNAME";
+    /**
+     * password column
+     */
     private static final String COLUMN_PASS = "PASSWORD";
 
 
@@ -50,6 +63,11 @@ public class DbHelper extends SQLiteOpenHelper {
     //////////////////////////////////////
     ///////Constructor
     /////////////////////////////////////
+
+    /**
+     * Create a new database helper
+     * @param context
+     */
 
     public DbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -80,10 +98,10 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
-
-     /**
-     *
-     * storing user details in database
+    /**
+     * Adds a user to the database
+     * @param username- username of the user
+     * @param password- password of the user
      */
     public void addUser(String username, String password){
        db = this.getWritableDatabase();
@@ -108,10 +126,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public boolean getUser(String username, String pass){
         //HashMap<String, String> user = new HashMap<String, String>();
+
+        //query to get the info of the user
         String selectQuery = "select * from " + USER_TABLE + " where " +
                 COLUMN_USERNAME + " = " + "'" + username + "'" + " and " + COLUMN_PASS + " = " + "'" +pass+"'";
 
+
+        //reading from the database
         db = this.getReadableDatabase();
+        //using the cursor with the selected query to return the user wanted
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         //move cursor to first row
@@ -121,6 +144,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
             return true;
         }
+
+        //closing the cursor and database once we are finished with it
         cursor.close();
         db.close();
 

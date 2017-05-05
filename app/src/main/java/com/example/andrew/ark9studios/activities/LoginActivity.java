@@ -3,6 +3,7 @@ package com.example.andrew.ark9studios.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +22,7 @@ import com.example.andrew.ark9studios.R;
  * This is the login screen, where the user can enter their username and password
  */
 
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends Activity implements View.OnTouchListener {
 
     //////////////////////////////////////
     ///////Variables
@@ -45,10 +46,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
      * instance of the session class
      */
     private Session session;
-
-
-
-
 
 
     //////////////////////////////////////
@@ -80,8 +77,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         etPassword = (EditText) findViewById(R.id.etPass);
 
         //SETTING ONCLICK LISTENERS
-        login.setOnClickListener(this);
-        register.setOnClickListener(this);
+        login.setOnTouchListener(this);
+        register.setOnTouchListener(this);
 
 
         /**
@@ -98,12 +95,16 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
 
     /**
-     * This is the OnClick method which is overrrided
+     * This is the OnTouch method which is overrided
+     * If the login button is clicked on then the login method is triggered
+     * if the register button is touched then we move from this activity to the
+     * register screen
      *
      * @param v
      */
     @Override
-    public void onClick(View v) {
+    public boolean onTouch(View v, MotionEvent event) {
+
         switch (v.getId()) {
 
             case R.id.login_button:
@@ -116,10 +117,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             default:
 
         }
+        return false;
     }
 
 
-
+    /**
+     * This is the login method
+     * The username and password the user enters is stored into the variables username and password
+     * An if statement is used to check if the database has that user stored, if so then the session is
+     * set to logged in and it switches from this screen to the welcome screen
+     * else an error is displayed to the user
+     */
 
     private void login() {
         String username = etUsername.getText().toString();
@@ -127,15 +135,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         if (db.getUser(username, pass)) {
             session.setLoggedIn(true);
-            Intent mainAct = new Intent(LoginActivity.this, WelcomeActivity.class);
-            mainAct.putExtra("Username", username);
-            startActivity(mainAct);
+            Intent welcomeAct = new Intent(LoginActivity.this, WelcomeActivity.class);
+            startActivity(welcomeAct);
             finish();
         } else {
             Toast.makeText(getApplicationContext(), "Wrong username/password", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
 
