@@ -143,7 +143,8 @@ public class ScoreBoardScreen extends GameScreen {
      */
     private Rect[] topScoreDrawRects;
 
-
+    //getting the asset manager
+    AssetManager assetManager = game.getAssetManager();
 
     //////////////////////////////////////
     ///////Constructor
@@ -156,16 +157,27 @@ public class ScoreBoardScreen extends GameScreen {
     public ScoreBoardScreen(Game game){
         super(SCREEN_NAME, game);
 
+        //getting the screen width
         screenWidth = game.getScreenWidth();
 
-        AssetManager assetManager = game.getAssetManager();
+
+
+        //emptying the assets
         assetManager.emptyAssets();
-        assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("scoreboardmenu", "images/scoreboard_menu.png");
-        assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
-        assetManager.loadAndAddBitmap("coinAnimation", "images/coins.png");
 
+        /**
+         * try loading the bitmaps if, if there is an error print the stack trace
+         */
+        try {
+            assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("scoreboardmenu", "images/scoreboard_menu.png");
+            assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
+            assetManager.loadAndAddBitmap("coinAnimation", "images/coins.png");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
+         //initialising the variables
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
        this.scoreMenuBitmap = assetManager.getBitmap("scoreboardmenu");
         this.backButtonBitmap = assetManager.getBitmap("backbutton");
@@ -178,12 +190,10 @@ public class ScoreBoardScreen extends GameScreen {
         coinSpinning = new Animation(coin, 10);
         coinSpinning.play(1.1, true);
 
-
-
-
+        //Draw Rects for the coin animations
         coinSource = new Rect();
        coinScreen = new Rect(120, 120, 190, 200);
-     coinScreenTwo = new Rect(240, 240, 240, 240);
+       coinScreenTwo = new Rect(240, 240, 240, 240);
     }
 
 
@@ -197,23 +207,33 @@ public class ScoreBoardScreen extends GameScreen {
      */
     @Override
     public void update(ElapsedTime elapsedTime) {
+        //////////////////////////////////////
+        ///process touches on the screen
+        /////////////////////////////////////
 
         Input input = game.getInput();
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
 
+        //updating the coin animation
         coinSpinning.update(elapsedTime.stepTime);
         coinSpinning.getSourceRect(coinSource);
 
 
-
-
         if (touchEvents.size() > 0) {
+
+            /**
+             * check the first touch event.
+             */
             GameTouchEvent touchEvent = touchEvents.get(0);
             if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
 
+                //play menu select
+                assetManager.getSound("menuSelect").play();
+                //if the quit area has been touched then swap to the quit screen
                 game.getScreenManager().removeScreen(this.getmName());
-
                 MainMenuScreen mainMenuScreen = new MainMenuScreen(this.getmGame());
+
+                //as this is the only added screen then it will become active
                 game.getScreenManager().addGameScreen(mainMenuScreen);
 
 
@@ -229,9 +249,27 @@ public class ScoreBoardScreen extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
+
+        /**
+         * used to position the scoreboard menu image from the top of the screen
+         */
         int scoreMenuTop=140;
+
+        /**
+         * used to position the scoreboard menu image from the left of the screen
+         */
         int scoreMenuLeft=120;
+
+        /**
+         * used to position where the back button will be from the top of
+         * the screen
+         */
         int backTop= graphics2DInterface.getSurfaceHeight()-155;
+
+        /**
+         * used to position where the back button will be from the left of
+         * the screen
+         */
         int backLeft=20;
 
 
@@ -251,6 +289,7 @@ public class ScoreBoardScreen extends GameScreen {
         }
 
 
+        //draw the bitmaps
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(scoreMenuBitmap, null, scoreMenuBound, null);
         graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);

@@ -97,7 +97,8 @@ public class RulesScreen extends GameScreen {
      */
     private static final int BUTTON_HEIGHT = 150;
 
-
+    //getting the asset manager
+    AssetManager assetManager = game.getAssetManager();
 
     //////////////////////////////////////
     ///////Constructor
@@ -110,22 +111,33 @@ public class RulesScreen extends GameScreen {
     public RulesScreen(Game game){
         super(SCREEN_NAME, game);
 
-        this.currentRulesPage=0;
 
-        AssetManager assetManager = game.getAssetManager();
+
+
+        //emptying the assets
         assetManager.emptyAssets();
 
-        assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("rulesmenu1", "images/rules_menu1.png");
-        assetManager.loadAndAddBitmap("rulesMenu2", "images/rules_menu2.png");
-        assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
-        assetManager.loadAndAddBitmap("forwardButton", "images/foward_btn.png");
+        /**
+         * try loading the bitmaps if, if there is an error print the stack trace
+         */
+        try {
+            assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("rulesmenu1", "images/rules_menu1.png");
+            assetManager.loadAndAddBitmap("rulesMenu2", "images/rules_menu2.png");
+            assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
+            assetManager.loadAndAddBitmap("forwardButton", "images/foward_btn.png");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
+        //initialising the variables
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.rulesMenuBitmap1 = assetManager.getBitmap("rulesmenu1");
         this.rulesMenuBitmap2 = assetManager.getBitmap("rulesMenu2");
         this.forwardButtonBitmap = assetManager.getBitmap("forwardButton");
         this.backButtonBitmap = assetManager.getBitmap("backbutton");
+
+        this.currentRulesPage=0;
 
     }
 
@@ -143,16 +155,38 @@ public class RulesScreen extends GameScreen {
     @Override
     public void update(ElapsedTime elapsedTime) {
 
+        //////////////////////////////////////
+        ///process touches on the screen
+        //////////////////////////////////
+
         Input input = game.getInput();
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
         if (touchEvents.size() > 0) {
+
+            /**
+             * check the first touch event.
+             */
             GameTouchEvent touchEvent = touchEvents.get(0);
 
+            /**
+             * the touchEvent.typeOfTouchEvent allows us to decide what type of touch we want on the if statement;
+             * up, down , dragged
+             */
             if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_UP) {
 
+                //play menu select
+                assetManager.getSound("menuSelect").play();
+
+                /**
+                 * if the current page equals 0 then
+                 * the screens are swapped
+                 */
                 if (currentRulesPage == 0) {
+                    //if the play game area has been touched then swap to the GameLevelOne screen
                     game.getScreenManager().removeScreen(this.getmName());
                     MainMenuScreen mainMenuScreen = new MainMenuScreen(this.getmGame());
+
+                    //as this is the only added screen then it will become active
                     game.getScreenManager().addGameScreen(mainMenuScreen);
 
 
@@ -164,6 +198,14 @@ public class RulesScreen extends GameScreen {
             if (fowardButton.contains((int) touchEvent.x,
                     (int) touchEvent.y)
                     && touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_UP) {
+
+                //play menu select
+                assetManager.getSound("menuSelect").play();
+
+                /**
+                 * if the current page equals 0
+                 * then increment the number of pages
+                 */
                 if (currentRulesPage == 0) {
                     currentRulesPage++;
                 }
@@ -182,10 +224,35 @@ public class RulesScreen extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
+
+        /**
+         * used to position the rules menu image from the top of the screen
+         */
         int rulesMenuTop=140;
+
+        /**
+         * used to position the rules menu image from the left of the screen
+         */
         int rulesMenuLeft = 120;
-        int backTop= graphics2DInterface.getSurfaceHeight()-155;
+
+        /**
+         * used to position where the back and foward button will be from the top of
+         * the screen
+         */
+        int buttonTop= graphics2DInterface.getSurfaceHeight()-155;
+
+
+        /**
+         * used to position where the back button will be from the left of
+         * the screen
+         */
         int backLeft=20;
+
+
+        /**
+         * used to position where the foward button will be from the left of
+         * the screen
+         */
         int fowardLeft=190;
 
 
@@ -197,7 +264,7 @@ public class RulesScreen extends GameScreen {
         }
 
         if(fowardButton == null){
-            fowardButton = new Rect(fowardLeft, backTop, fowardLeft+BUTTON_WIDTH, backTop+BUTTON_HEIGHT);
+            fowardButton = new Rect(fowardLeft, buttonTop, fowardLeft+BUTTON_WIDTH, buttonTop+BUTTON_HEIGHT);
         }
 
         if(rulesMenuBound1 == null){
@@ -211,16 +278,20 @@ public class RulesScreen extends GameScreen {
         }
 
         if(backButtonBound==null){
-            backButtonBound = new Rect(backLeft, backTop, backLeft+BUTTON_WIDTH,
-                    backTop+BUTTON_HEIGHT);
+            backButtonBound = new Rect(backLeft, buttonTop, backLeft+BUTTON_WIDTH,
+                    buttonTop+BUTTON_HEIGHT);
         }
 
 
+        //drawing the bitmaps out
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
-
         graphics2DInterface.drawBitmap(backButtonBitmap, null, backButtonBound, null);
         graphics2DInterface.drawBitmap(forwardButtonBitmap, null, fowardButton, null);
 
+        /**
+         * if the current number of pages equals 0 then draw the first rules page bitmap
+         * if the number of pages equals 1 then draw the second rules page bitmap
+         */
         if(currentRulesPage == 0){
             graphics2DInterface.drawBitmap(rulesMenuBitmap1, null, rulesMenuBound1, null);
         }else if (currentRulesPage == 1){

@@ -14,6 +14,7 @@ import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameLevelOne;
 import com.example.andrew.ark9studios.Music.GameMusic;
 import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.Music.Sound;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -137,6 +138,11 @@ public class MainMenuScreen extends GameScreen {
      */
     private GameMusic backgroundMusic;
 
+    /**
+     * Menu select sound to be played
+     */
+    private Sound menuSelect;
+
 
 
     //////////////////////////////////////
@@ -153,7 +159,6 @@ public class MainMenuScreen extends GameScreen {
 
         //getting the asset manager
         AssetManager assetManager = game.getAssetManager();
-
 
         //emptying the assets
         assetManager.emptyAssets();
@@ -172,11 +177,10 @@ public class MainMenuScreen extends GameScreen {
             assetManager.loadAndAddBitmap("scoreboardbutton", "images/button_scoreboard.png");
             assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
             assetManager.loadAndAddMusic("backgroundMusic", "raw/backgroundmusic.mp3");
+            assetManager.loadAndAddSound("menuSelect", "sfx/menuClick.mp3");
         }catch(Exception e){
             e.printStackTrace();
         }
-
-
 
 
         //initialising the variables
@@ -188,13 +192,12 @@ public class MainMenuScreen extends GameScreen {
         this.scoreBoardBitmap = assetManager.getBitmap("scoreboardbutton");
         this.quitBitmap = assetManager.getBitmap("quitbutton");
         this.backgroundMusic = assetManager.getMusic("backgroundMusic");
-
-
+        this.menuSelect = assetManager.getSound("menuSelect");
 
 
 
         //setting the music to play
-            backgroundMusic.play();
+        backgroundMusic.play();
 
 
     }
@@ -214,6 +217,11 @@ public class MainMenuScreen extends GameScreen {
     @Override
     public void update(ElapsedTime elapsedTime) {
 
+        //////////////////////////////////////
+        ///process touches on the screen
+        /////////////////////////////////////
+
+
         Input input = game.getInput();
 
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
@@ -232,6 +240,9 @@ public class MainMenuScreen extends GameScreen {
 
             if (playGameButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN) {
 
+
+                //play menu select
+                menuSelect.play();
                 //music paused
                 backgroundMusic.pause();
 
@@ -243,42 +254,66 @@ public class MainMenuScreen extends GameScreen {
                 game.getScreenManager().addGameScreen(gameLevelOne);
 
 
-
-
-
             }
             if (optionsButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_UP) {
 
+
+                //play menu select
+                menuSelect.play();
+
+                //pause the music
+                backgroundMusic.pause();
+
+
+                //if the options area has been touched then swap to the Options  screen
                 game.getScreenManager().removeScreen(this.getmName());
                 OptionsScreen optionsScreen = new OptionsScreen(this.getmGame());
-                game.getScreenManager().addGameScreen(optionsScreen);
 
-                backgroundMusic.stop();
-                backgroundMusic.setLooping(false);
+                //as this is the only added screen then it will become active
+                game.getScreenManager().addGameScreen(optionsScreen);
 
             }
 
             if (rulesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN) {
-                game.getScreenManager().removeScreen(this.getmName());
 
+                //play menu select
+                menuSelect.play();
+
+                //if the rules area has been touched then swap to the Rules screen
+                game.getScreenManager().removeScreen(this.getmName());
                 RulesScreen rulesScreen = new RulesScreen(this.getmGame());
+
+                //as this is the only added screen then it will become active
                 game.getScreenManager().addGameScreen(rulesScreen);
 
             }
 
             if (scoreboardButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_UP) {
-                game.getScreenManager().removeScreen(this.getmName());
 
+                //play menu select
+                menuSelect.play();
+
+                //if the scoreboard area has been touched then swap to the scoreboard screen
+                game.getScreenManager().removeScreen(this.getmName());
                 ScoreBoardScreen scoreBoardScreen = new ScoreBoardScreen(this.getmGame());
+
+
+                //as this is the only added screen then it will become active
                 game.getScreenManager().addGameScreen(scoreBoardScreen);
 
 
             }
 
             if (quitButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN) {
-                game.getScreenManager().removeScreen(this.getmName());
 
+                //play menu select
+                menuSelect.play();
+
+                //if the quit area has been touched then swap to the quit screen
+                game.getScreenManager().removeScreen(this.getmName());
                 QuitScreen quitScreen = new QuitScreen(this.getmGame());
+
+                //as this is the only added screen then it will become active
                 game.getScreenManager().addGameScreen(quitScreen);
 
 
@@ -291,7 +326,6 @@ public class MainMenuScreen extends GameScreen {
 
     }
 
-
     /**
      * Main Menu draw method
      * @param elapsedTime- elapsed time info for the frame
@@ -301,15 +335,51 @@ public class MainMenuScreen extends GameScreen {
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
 
+        //the space between each menu button
         int verticalSpacer = 190;
+
+        /**
+         * used to position the menu image from the top of the screen
+         */
         int menuTop = 140;
+
+        /**
+         * used to position the menu image from the left of the screen
+         */
         int menuLeft = 120;
 
+        /**
+         * used to position the buttons from the left of the screen
+         */
         int buttonLeft = 375;
+
+        /**
+         * used to position where the play button will be from the top of
+         * the screen
+         */
         int playTop = 340;
+
+        /**
+         * used to position where the options button will be from the top of
+         * the screen
+         */
         int optionTop = playTop + verticalSpacer;
+        /**
+         * used to position where the rules button will be from the top of
+         * the screen
+         */
         int rulesTop = optionTop + verticalSpacer;
+
+        /**
+         * used to position where the scoreboard button will be from the top of
+         * the screen
+         */
         int scoreboardTop = rulesTop + verticalSpacer;
+
+        /**
+         * used to position where the quit button will be from the top of
+         * the screen
+         */
         int quitTop = scoreboardTop + verticalSpacer;
 
 
@@ -319,6 +389,8 @@ public class MainMenuScreen extends GameScreen {
             playGameButtonBound = new Rect(buttonLeft, playTop, buttonLeft + BUTTON_WIDTH,
                     playTop + BUTTON_HEIGHT);
         }
+
+
 
         if (optionsButtonBound == null) {
             optionsButtonBound = new Rect(buttonLeft, optionTop, buttonLeft + BUTTON_WIDTH,
@@ -356,6 +428,7 @@ public class MainMenuScreen extends GameScreen {
 
 
 
+            //drawing the bitmaps out
             graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
             graphics2DInterface.drawBitmap(menuTemplateBitmap, null, menuTemplateBound, null);
             graphics2DInterface.drawBitmap(playGameBitmap, null, playGameButtonBound, null);
@@ -369,6 +442,10 @@ public class MainMenuScreen extends GameScreen {
     }
 
 
+    /**
+     * return the game music
+     * @return
+     */
 
     public GameMusic getBackgroundMusic(){
         return backgroundMusic;

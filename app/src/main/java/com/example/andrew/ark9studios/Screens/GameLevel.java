@@ -16,7 +16,8 @@ import com.example.andrew.ark9studios.Music.GameMusic;
 import com.example.andrew.ark9studios.GameObjectFactory;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.InputControl;
-import com.example.andrew.ark9studios.card.Deck;
+import com.example.andrew.ark9studios.Overlays.PauseOverlay;
+import com.example.andrew.ark9studios.Overlays.WinningOverlay;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -91,6 +92,12 @@ public abstract class GameLevel extends GameScreen {
      * PauseOverlay Object shown on Pause
      */
     protected PauseOverlay pauseOverlay;
+
+
+    /**
+     * WinningOverlay object shown when the player has completed/won the level
+     */
+    private WinningOverlay winningOverlay;
 
     /**
      * Draw Rect for the background bitmap
@@ -236,9 +243,6 @@ public abstract class GameLevel extends GameScreen {
 
 
 
-
-
-
     /***
      * Functionality to run upon back to menu
      */
@@ -253,20 +257,27 @@ public abstract class GameLevel extends GameScreen {
     public void loadLevelAssets(){
       assetManager.emptyAssets();
 
-       assetManager.loadAndAddBitmap("Background", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("pauseButton", "images/pause_button.png");
-        assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("player1_bench", "images/player1bench.png");
-        assetManager.loadAndAddBitmap("enemy_bench", "images/enemy_bench.png");
-        assetManager.loadAndAddBitmap("deck_card1", "images/deck_card1.png");
-        assetManager.loadAndAddBitmap("deck_card2", "images/deck_card2.png");
-        assetManager.loadAndAddBitmap("ResumeButton", "images/pauseresume.png");
-        assetManager.loadAndAddBitmap("pauseMenu", "images/pausemenu.png");
-        assetManager.loadAndAddBitmap("SoundOnButton", "images/music_on.png");
-        assetManager.loadAndAddBitmap("SoundOff", "images/music_off.png");
-        assetManager.loadAndAddBitmap("mainMenuButton", "images/pausemainmenu.png");
-        assetManager.loadAndAddMusic("playGameMusic", "raw/laser_groove.mp3");
 
+        try {
+            assetManager.loadAndAddBitmap("Background", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("pauseButton", "images/pause_button.png");
+            assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("player1_bench", "images/player1bench.png");
+            assetManager.loadAndAddBitmap("enemy_bench", "images/enemy_bench.png");
+            assetManager.loadAndAddBitmap("deck_card1", "images/deck_card1.png");
+            assetManager.loadAndAddBitmap("deck_card2", "images/deck_card2.png");
+            assetManager.loadAndAddBitmap("ResumeButton", "images/pauseresume.png");
+            assetManager.loadAndAddBitmap("pauseMenu", "images/pausemenu.png");
+            assetManager.loadAndAddBitmap("SoundOnButton", "images/music_on.png");
+            assetManager.loadAndAddBitmap("SoundOff", "images/music_off.png");
+            assetManager.loadAndAddBitmap("mainMenuButton", "images/pausemainmenu.png");
+            assetManager.loadAndAddMusic("playGameMusic", "raw/laser_groove.mp3");
+            assetManager.loadAndAddBitmap("star1", "images/star1bright.png");
+            assetManager.loadAndAddBitmap("winningMenu", "images/youwonmenu.png");
+            assetManager.loadAndAddBitmap("restartButton", "images/reloadbutton.png");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         this.background =   assetManager.getBitmap("Background");
         this.player1BenchBitmap = assetManager.getBitmap("player1_bench");
@@ -286,6 +297,7 @@ public abstract class GameLevel extends GameScreen {
         setupInputControls();
         startBackgroundMusic();
         setupPauseOverlay();
+        setupWinMenu();
 
     }
 
@@ -335,6 +347,18 @@ public abstract class GameLevel extends GameScreen {
                 assetManager.getBitmap("pauseMenu"), this);
     }
 
+
+    /**
+     * Setup and instantiate the desired position of the WinningOverlay
+     */
+    protected void setupWinMenu(){
+        int width = 900;
+        int height = 700;
+        float x = 600.0f;
+        float y = 800.0f;
+       winningOverlay = new WinningOverlay(x, y, width, height,
+                assetManager.getBitmap("winningMenu"), this);
+    }
 
 
     /***

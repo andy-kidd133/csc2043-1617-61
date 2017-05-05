@@ -94,7 +94,8 @@ public class QuitScreen extends GameScreen{
      */
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
 
-
+    //getting the asset manager
+    AssetManager assetManager = game.getAssetManager();
 
 
     //////////////////////////////////////
@@ -108,15 +109,23 @@ public class QuitScreen extends GameScreen{
     public QuitScreen(Game game){
         super(SCREEN_NAME, game);
 
-        AssetManager assetManager = game.getAssetManager();
+        //emptying the assets
         assetManager.emptyAssets();
-        assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("quitmenu", "images/quit_menu.png");
-        assetManager.loadAndAddBitmap("yesbutton", "images/yes_button.png");
-       assetManager.loadAndAddBitmap("nobutton", "images/no_button.png");
+
+        /**
+         * try loading the bitmaps if, if there is an error print the stack trace
+         */
+        try {
+            assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("quitmenu", "images/quit_menu.png");
+            assetManager.loadAndAddBitmap("yesbutton", "images/yes_button.png");
+            assetManager.loadAndAddBitmap("nobutton", "images/no_button.png");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
 
-
+        //initialising the variables
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
         this.quitMenuBitmap = assetManager.getBitmap("quitmenu");
         this.yesBitmap = assetManager.getBitmap("yesbutton");
@@ -138,6 +147,11 @@ public class QuitScreen extends GameScreen{
     @Override
     public void update(ElapsedTime elapsedTime) {
 
+        //////////////////////////////////////
+        ///process touches on the screen
+        /////////////////////////////////////
+
+
      Input input = game.getInput();
 
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
@@ -148,17 +162,25 @@ public class QuitScreen extends GameScreen{
                 if(yesButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)){
 
 
+                    /**
+                     * Cuurently a Bug as it reloads the welcme activity/screen
+                     * if we were to create the game again we wouldnt have included
+                     * a quit option
+                     */
                    System.exit(0);
-
 
                 }
 
                 if (noButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN){
 
+                    //play menu select
+                    assetManager.getSound("menuSelect").play();
+                    //if the quit area has been touched then swap to the quit screen
                     game.getScreenManager().removeScreen(this.getmName());
+                    MainMenuScreen mainMenuScreen = new MainMenuScreen(game);
 
-                    MainMenuScreen mainScreen = new MainMenuScreen(this.getmGame());
-                    game.getScreenManager().addGameScreen(mainScreen);
+                    //as this is the only added screen then it will become active
+                    game.getScreenManager().addGameScreen(mainMenuScreen);
 
                 }
 
@@ -175,12 +197,34 @@ public class QuitScreen extends GameScreen{
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
-
+        /**
+         * used to position the quit menu image from the top of the screen
+         */
         int quitMenuTop=140;
+
+        /**
+         * used to position the quit menu image from the left of the screen
+         */
         int quitMenuLeft = 120;
+
+        //vertical spacer for between the buttons
         int verticalSpacer=190;
+
+        /**
+         * used to position the buttons from the left of the screen
+         */
         int buttonLeft =375;
+
+        /**
+         * used to position where the yes button will be from the top of
+         * the screen
+         */
         int yesButtonTop = 500;
+
+        /**
+         * used to position where the no button will be from the top of
+         * the screen
+         */
         int noButtonTop = yesButtonTop + verticalSpacer;
 
 
@@ -208,6 +252,7 @@ public class QuitScreen extends GameScreen{
 
 
 
+        //draw the bitmaps
         graphics2DInterface.drawBitmap(backgroundBitmap, null, backgroundBound, null);
         graphics2DInterface.drawBitmap(quitMenuBitmap, null, quitMenuBound, null);
         graphics2DInterface.drawBitmap(yesBitmap, null, yesButtonBound, null);

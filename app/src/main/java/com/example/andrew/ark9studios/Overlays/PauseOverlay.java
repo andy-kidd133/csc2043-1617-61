@@ -1,4 +1,4 @@
-package com.example.andrew.ark9studios.Screens;
+package com.example.andrew.ark9studios.Overlays;
 
 /**
  * Created by Megan on 21/04/2017.
@@ -81,26 +81,31 @@ public class PauseOverlay extends OverlayObject {
       AssetManager assetManager = gameScreen.getmGame().getAssetManager();
 
 
+      //width and height of the resume and mainmenu button
       float buttonWidth =270.0f;
       float buttonHeight = 90.0f;
 
+
+      //width and height of the sound buttons
       float soundButtonWidth=150.0f;
       float soundButtonHeight=150.0f;
 
 
+      //buttons X coordinate (left)
       float soundButtonX = bound.getLeft() + 450.0f;
       float menuButtonX= bound.getLeft() + 460.0f;
       float resumeButtonX = bound.getLeft() +460.0f;
 
+      //buttons Y coordinate (top)
       float soundbuttonY =  1020.0f;
       float menubuttonY = 860.0f;
       float resumebuttonY = 660.0f;
 
 
 
+      //assigning the bitmaps
       this.soundOn = assetManager.getBitmap("SoundOnButton");
       this.soundOff = assetManager.getBitmap("SoundOnButton");
-
 
 
       if(GameAudioManager.SOUND_ENABLED)
@@ -108,7 +113,6 @@ public class PauseOverlay extends OverlayObject {
                   soundButtonHeight, soundOn, gameScreen);
       else this.soundControl = new InputControl(soundButtonX, soundbuttonY, soundButtonWidth,
                   soundButtonHeight, soundOff, gameScreen);
-
 
 
      this.resumeButton = new InputControl(resumeButtonX, resumebuttonY,
@@ -132,6 +136,10 @@ public class PauseOverlay extends OverlayObject {
      */
     public void update(ElapsedTime elapsedTime) {
 
+        /**
+         * Checks if the sound is on, if so then the bitmap is the soundOn image
+         * else it is changed to the soundOff bitmap
+         */
 
         if (GameAudioManager.SOUND_ENABLED && soundControl.getBitmap() != soundOn) {
             soundControl.setBitmap(soundOn);
