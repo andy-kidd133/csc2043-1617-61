@@ -9,6 +9,7 @@ import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.AssetManager;
+import com.example.andrew.ark9studios.GameGraphics.Animation;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
@@ -69,6 +70,11 @@ public class MainMenuScreen extends GameScreen {
      */
     private Rect quitButtonBound;
 
+    /**
+     *Draw Rect for the coin animation bitmap
+     */
+    private Rect cardSource, cardScreen, cardScreenTwo;
+
 
 
     /**
@@ -105,6 +111,16 @@ public class MainMenuScreen extends GameScreen {
      * quit button bitmap
      */
     private Bitmap quitBitmap;
+
+    /**
+     *Animation for the coin
+     */
+    private Animation cardRotating;
+
+    /**
+     *coin bitmap
+     */
+    private Bitmap card;
 
 
     /**
@@ -180,6 +196,7 @@ public class MainMenuScreen extends GameScreen {
             assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
             assetManager.loadAndAddMusic("backgroundMusic", "raw/backgroundmusic.mp3");
             assetManager.loadAndAddSound("menuSelect", "sfx/menuclick.mp3");
+            assetManager.loadAndAddBitmap("cardAnimation", "images/cardanimation.png");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -195,8 +212,18 @@ public class MainMenuScreen extends GameScreen {
         this.quitBitmap = assetManager.getBitmap("quitbutton");
         this.backgroundMusic = assetManager.getMusic("backgroundMusic");
         this.menuSelect = assetManager.getSound("menuSelect");
+        this.card = assetManager.getBitmap("cardAnimation");
 
 
+        //loading the card animation
+        cardRotating = new Animation(card, 12);
+        cardRotating.play(1.9, true);
+
+
+        //Draw Rects for the cardanimations
+        cardSource = new Rect();
+        cardScreen = new Rect(1010, 100 , 1130, 200);
+        cardScreenTwo = new Rect(170, 100, 290, 200);
 
             //setting the music to play
             backgroundMusic.play();
@@ -228,6 +255,10 @@ public class MainMenuScreen extends GameScreen {
         Input input = game.getInput();
 
         List<GameTouchEvent> touchEvents = input.getTouchEvents();
+
+        //updating the card animation
+        cardRotating.update(elapsedTime.stepTime);
+        cardRotating.getSourceRect(cardSource);
 
         if (touchEvents.size() > 0) {
 
@@ -441,7 +472,8 @@ public class MainMenuScreen extends GameScreen {
             graphics2DInterface.drawBitmap(rulesBitmap, null, rulesButtonBound, null);
             graphics2DInterface.drawBitmap(scoreBoardBitmap, null, scoreboardButtonBound, null);
             graphics2DInterface.drawBitmap(quitBitmap, null, quitButtonBound, null);
-
+            graphics2DInterface.drawBitmap(card, cardSource, cardScreen, null);
+            graphics2DInterface.drawBitmap(card, cardSource, cardScreenTwo, null);
 
 
     }

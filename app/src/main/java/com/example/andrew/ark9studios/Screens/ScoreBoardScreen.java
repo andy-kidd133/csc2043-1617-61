@@ -197,8 +197,8 @@ public class ScoreBoardScreen extends GameScreen {
 
 
 
-        //loading the card animation
-        coinSpinning = new Animation(coin, 10);
+        //loading the coin animation
+        coinSpinning = new Animation(coin, 14);
         coinSpinning.play(1.1, true);
 
 
