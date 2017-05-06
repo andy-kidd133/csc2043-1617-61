@@ -220,13 +220,11 @@ public class AssetManager {
      * @return boolean true if the asset could be loaded and added, false if not
      */
     public boolean loadAndAddSound(String assetName, String soundFile) {
-        soundLoaded = false;
+
         boolean success = true;
         try {
             Sound sound = gameIO.loadSound(soundFile, soundPool);
-            while (soundLoaded == false) {
-                Log.d("TribalHunter", "Loading Sound : " + soundFile);
-            }
+
             success = add(assetName, sound);
         } catch (IOException e) {
             Log.e("TribalHunter",

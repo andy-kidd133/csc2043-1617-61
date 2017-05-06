@@ -9,6 +9,7 @@ import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.Music.Sound;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -97,6 +98,12 @@ public class RulesScreen extends GameScreen {
      */
     private static final int BUTTON_HEIGHT = 150;
 
+
+    /**
+     * Menu select sound to be played
+     */
+    private Sound menuSelect;
+
     //getting the asset manager
     AssetManager assetManager = game.getAssetManager();
 
@@ -126,6 +133,7 @@ public class RulesScreen extends GameScreen {
             assetManager.loadAndAddBitmap("rulesMenu2", "images/rules_menu2.png");
             assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
             assetManager.loadAndAddBitmap("forwardButton", "images/foward_btn.png");
+            assetManager.loadAndAddSound("menuSelect", "sfx/menuclick.mp3");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -136,8 +144,11 @@ public class RulesScreen extends GameScreen {
         this.rulesMenuBitmap2 = assetManager.getBitmap("rulesMenu2");
         this.forwardButtonBitmap = assetManager.getBitmap("forwardButton");
         this.backButtonBitmap = assetManager.getBitmap("backbutton");
+        this.menuSelect = assetManager.getSound("menuSelect");
 
         this.currentRulesPage=0;
+
+
 
     }
 
@@ -174,6 +185,8 @@ public class RulesScreen extends GameScreen {
              */
             if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_UP) {
 
+
+
                 //play menu select
                 assetManager.getSound("menuSelect").play();
 
@@ -182,6 +195,7 @@ public class RulesScreen extends GameScreen {
                  * the screens are swapped
                  */
                 if (currentRulesPage == 0) {
+
                     //if the play game area has been touched then swap to the GameLevelOne screen
                     game.getScreenManager().removeScreen(this.getmName());
                     MainMenuScreen mainMenuScreen = new MainMenuScreen(this.getmGame());

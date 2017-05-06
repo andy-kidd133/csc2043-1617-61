@@ -3,6 +3,7 @@ package com.example.andrew.ark9studios.Screens;
 
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
@@ -145,6 +146,7 @@ public class MainMenuScreen extends GameScreen {
 
 
 
+
     //////////////////////////////////////
     ///////Constructor
     /////////////////////////////////////
@@ -177,7 +179,7 @@ public class MainMenuScreen extends GameScreen {
             assetManager.loadAndAddBitmap("scoreboardbutton", "images/button_scoreboard.png");
             assetManager.loadAndAddBitmap("quitbutton", "images/button_quit.png");
             assetManager.loadAndAddMusic("backgroundMusic", "raw/backgroundmusic.mp3");
-            assetManager.loadAndAddSound("menuSelect", "sfx/menuClick.mp3");
+            assetManager.loadAndAddSound("menuSelect", "sfx/menuclick.mp3");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -196,8 +198,9 @@ public class MainMenuScreen extends GameScreen {
 
 
 
-        //setting the music to play
-        backgroundMusic.play();
+            //setting the music to play
+            backgroundMusic.play();
+
 
 
     }
@@ -285,6 +288,8 @@ public class MainMenuScreen extends GameScreen {
 
                 //as this is the only added screen then it will become active
                 game.getScreenManager().addGameScreen(rulesScreen);
+
+
 
             }
 

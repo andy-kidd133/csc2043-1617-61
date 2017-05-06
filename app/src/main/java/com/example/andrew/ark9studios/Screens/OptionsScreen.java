@@ -11,6 +11,7 @@ import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.Music.Sound;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -146,6 +147,12 @@ public class OptionsScreen extends GameScreen {
     //getting the asset manager
     AssetManager assetManager = game.getAssetManager();
 
+    /**
+     * Menu select sound to be played
+     */
+    private Sound menuSelect;
+
+
 
     //////////////////////////////////////
     ///////Constructor
@@ -174,6 +181,7 @@ public class OptionsScreen extends GameScreen {
             assetManager.loadAndAddBitmap("musicOff", "images/music_off.png");
             assetManager.loadAndAddBitmap("musicText", "images/music_text.png");
             assetManager.loadAndAddBitmap("facebookButton", "images/facebook.png");
+            assetManager.loadAndAddSound("menuSelect", "sfx/menuclick.mp3");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -186,11 +194,12 @@ public class OptionsScreen extends GameScreen {
         this.musicOff = assetManager.getBitmap("musicOff");
         this.musicTextBitmap = assetManager.getBitmap("musicText");
         this.facebookBitmap = assetManager.getBitmap("facebookButton");
+        this.menuSelect = assetManager.getSound("menuSelect");
 
 
         //getting the background music
         mainMenuScreen = new MainMenuScreen(game);
-        mainMenuScreen.getBackgroundMusic();
+
 
     }
 
@@ -220,6 +229,7 @@ public class OptionsScreen extends GameScreen {
             if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
 
 
+                mainMenuScreen.getBackgroundMusic().pause();
                 //play menu select
                 assetManager.getSound("menuSelect").play();
                 //if the quit area has been touched then swap to the quit screen
@@ -238,12 +248,16 @@ public class OptionsScreen extends GameScreen {
 
                /**
                 *  if the background music is currently playing then pause it
+                *  else play
                 */
 
                 if(mainMenuScreen.getBackgroundMusic().isPlaying()){
                     mainMenuScreen.getBackgroundMusic().pause();
+
+
                 }else{
                     mainMenuScreen.getBackgroundMusic().play();
+
                 }
 
 

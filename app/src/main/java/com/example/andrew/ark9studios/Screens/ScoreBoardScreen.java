@@ -13,6 +13,7 @@ import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.Music.Sound;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -77,10 +78,12 @@ public class ScoreBoardScreen extends GameScreen {
      */
     private Animation coinSpinning;
 
+
     /**
      *coin bitmap
      */
     private Bitmap coin;
+
 
 
     /**
@@ -143,6 +146,12 @@ public class ScoreBoardScreen extends GameScreen {
      */
     private Rect[] topScoreDrawRects;
 
+
+    /**
+     * Menu select sound to be played
+     */
+    private Sound menuSelect;
+
     //getting the asset manager
     AssetManager assetManager = game.getAssetManager();
 
@@ -173,6 +182,7 @@ public class ScoreBoardScreen extends GameScreen {
             assetManager.loadAndAddBitmap("scoreboardmenu", "images/scoreboard_menu.png");
             assetManager.loadAndAddBitmap("backbutton", "images/back_btn.png");
             assetManager.loadAndAddBitmap("coinAnimation", "images/coins.png");
+            assetManager.loadAndAddSound("menuSelect", "sfx/menuclick.mp3");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -182,6 +192,7 @@ public class ScoreBoardScreen extends GameScreen {
        this.scoreMenuBitmap = assetManager.getBitmap("scoreboardmenu");
         this.backButtonBitmap = assetManager.getBitmap("backbutton");
         this.coin = assetManager.getBitmap("coinAnimation");
+        this.menuSelect = assetManager.getSound("menuSelect");
 
 
 
@@ -190,10 +201,13 @@ public class ScoreBoardScreen extends GameScreen {
         coinSpinning = new Animation(coin, 10);
         coinSpinning.play(1.1, true);
 
+
         //Draw Rects for the coin animations
         coinSource = new Rect();
-       coinScreen = new Rect(120, 120, 190, 200);
-       coinScreenTwo = new Rect(240, 240, 240, 240);
+        coinScreen = new Rect(1010, 100 , 1060, 200);
+        coinScreenTwo = new Rect(170, 100, 220, 200);
+
+
     }
 
 
@@ -219,6 +233,7 @@ public class ScoreBoardScreen extends GameScreen {
         coinSpinning.getSourceRect(coinSource);
 
 
+
         if (touchEvents.size() > 0) {
 
             /**
@@ -226,6 +241,7 @@ public class ScoreBoardScreen extends GameScreen {
              */
             GameTouchEvent touchEvent = touchEvents.get(0);
             if (backButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)) {
+
 
                 //play menu select
                 assetManager.getSound("menuSelect").play();

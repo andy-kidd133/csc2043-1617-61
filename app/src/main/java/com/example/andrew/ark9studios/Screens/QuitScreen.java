@@ -13,6 +13,7 @@ import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
+import com.example.andrew.ark9studios.Music.Sound;
 import com.example.andrew.ark9studios.activities.ClosingActivity;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
@@ -94,8 +95,17 @@ public class QuitScreen extends GameScreen{
      */
     private static final int MENU_TEMPLATE_HEIGHT = 1400;
 
+
+    private MainMenuScreen mainMenuScreen;
+
     //getting the asset manager
     AssetManager assetManager = game.getAssetManager();
+
+    /**
+     * Menu select sound to be played
+     */
+    private Sound menuSelect;
+
 
 
     //////////////////////////////////////
@@ -120,6 +130,7 @@ public class QuitScreen extends GameScreen{
             assetManager.loadAndAddBitmap("quitmenu", "images/quit_menu.png");
             assetManager.loadAndAddBitmap("yesbutton", "images/yes_button.png");
             assetManager.loadAndAddBitmap("nobutton", "images/no_button.png");
+            assetManager.loadAndAddSound("menuSelect", "sfx/menuclick.mp3");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -130,7 +141,11 @@ public class QuitScreen extends GameScreen{
         this.quitMenuBitmap = assetManager.getBitmap("quitmenu");
         this.yesBitmap = assetManager.getBitmap("yesbutton");
         this.noBitmap = assetManager.getBitmap("nobutton");
+        this.menuSelect = assetManager.getSound("menuSelect");
 
+
+        mainMenuScreen = new MainMenuScreen(game);
+        mainMenuScreen.getBackgroundMusic();
 
 
     }
@@ -172,6 +187,8 @@ public class QuitScreen extends GameScreen{
                 }
 
                 if (noButtonBound.contains((int) touchEvent.x, (int) touchEvent.y)&& touchEvent.typeOfTouchEvent == GameTouchEvent.TOUCH_DOWN){
+
+                    mainMenuScreen.getBackgroundMusic().pause();
 
                     //play menu select
                     assetManager.getSound("menuSelect").play();
