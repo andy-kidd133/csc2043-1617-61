@@ -4,9 +4,9 @@
  * Created by Christopher on 04/05/2017.
  */
 
+//import java.util.Random;
 //public class AI
 //
-//import java.util.Random;
 //
 ///**
 // * East AI picks 1 card at random to be played
