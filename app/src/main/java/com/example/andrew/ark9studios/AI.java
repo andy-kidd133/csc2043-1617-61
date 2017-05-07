@@ -5,7 +5,6 @@
  */
 
 //public class AI
-//package com.example.administrator.myapplication;
 //
 //import java.util.Random;
 //
