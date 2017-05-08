@@ -112,6 +112,11 @@ public abstract class Card{
     public void attack() {
         if (isActive = true) {
             /**
+             * player2.health = player2.health - player1.attackDamage;
+             * if player2.health <=0 sendToGraveyard;
+             */
+
+            /**
              * if attack is used the cards health becomes the original health
              * minus the attack damage of the card which is attacking it
              * this must be saved in temp storage as when the game goes back to
@@ -121,6 +126,8 @@ public abstract class Card{
              */
 
 
+        } else {
+            Log.e("QUBTIG", "Only active cards can attack");
         }
     }
 
@@ -135,7 +142,17 @@ public abstract class Card{
         if(isActive = true) {
             Log.e("QUBTIG","Are you sure you want to retreat from battle");
             //move back
-            Log.e("QUBTIG", "Card has retreated");
+
+            /**
+             * if(location = active) {
+             * card.newLocation = bench;
+             * } else {
+             * if(location = bench) {
+             * card.newLocation = hand;
+             * }
+             */
+            Log.e("QUBTIG", "Card has retreated")
+
         }
         //reatreat card from active to bench - from bench to hand - from hand to graveyard
     }
@@ -145,8 +162,13 @@ public abstract class Card{
         if(isActive = true){
         Log.e("QUBTIG","Card is already active - cannot be advanced further");
         }else {
-            //move card from hand to bench or from bench to active
-        }Log.e("QUBTIG", "Card has advanced");
+            //if(location = bench){
+            //card.newLocation = active;
+            //} else{
+            //if{location = hand) {
+            //card.newLocation = bench;
+            //}
+            }Log.e("QUBTIG", "Card has advanced");
     }
 
 
@@ -154,6 +176,7 @@ public abstract class Card{
     public void sendToGraveyard(int cardHealth){
         if(cardHealth<=0){
             Log.e("QUBTIG","Card has been deafeated, sent to graveyard");
+            //cardLoation = graveyard;
         }
 
 
