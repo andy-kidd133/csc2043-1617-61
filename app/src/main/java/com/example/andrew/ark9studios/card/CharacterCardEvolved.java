@@ -22,8 +22,12 @@ import com.example.andrew.ark9studios.card.CardDepartment;
 public class CharacterCardEvolved extends CharacterCard {
 
 
-    public CharacterCardEvolved(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment, Bitmap cardImg, boolean isActive, int numberEnergiesAttached) {
-        super(name, health, attackCost, attackDamage, cardDepartment, cardImg, isActive, numberEnergiesAttached);
+    public CharacterCardEvolved(String name, int health, int attackCost, int attackDamage,
+                                CardDepartment cardDepartment, Bitmap cardImg, Strength strength,
+                                Weakness weakness, boolean isActive,
+                                int numberEnergiesAttached) {
+        super(name, health, attackCost, attackDamage, cardDepartment, cardImg,
+                strength, weakness, isActive, numberEnergiesAttached);
     }
 }
 

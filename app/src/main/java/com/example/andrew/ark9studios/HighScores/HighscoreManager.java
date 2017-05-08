@@ -4,6 +4,7 @@ import java.util.*;
 import java.io.*;
 /**
  * Created by Emma on 26/04/2017.
+ * based on online tutorial
  */
 
 public class HighscoreManager {

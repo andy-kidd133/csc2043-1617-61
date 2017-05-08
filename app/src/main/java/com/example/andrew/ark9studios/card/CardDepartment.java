@@ -1,7 +1,7 @@
 package com.example.andrew.ark9studios.card;
 
 /**
- * Created by Emma and Megan on 09/02/2017.
+ * Created by Emma 09/02/2017.
  */
 
 public enum CardDepartment {

@@ -8,8 +8,6 @@ package com.example.andrew.ark9studios.card;
     import android.graphics.Bitmap;
     import android.graphics.BitmapFactory;
 
-    import com.example.andrew.ark9studios.R;
-
     import java.util.ArrayList;
 
 
@@ -43,33 +41,32 @@ public class CardHelperAction {
 
     };
 
-    private static CardDepartment[] cardDepartments={};
 
-    private static Bitmap revive= BitmapFactory.decodeResource(context.getResources(), R.drawable.card1);
-    private static Bitmap healthRefill = BitmapFactory.decodeResource(context.getResources(), R.drawable.card2);
-    private static Bitmap grimReaper = BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
-    private static Bitmap loseATurn = BitmapFactory.decodeResource(context.getResources(),R.drawable.card4);
+    private static Bitmap revive= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
+    private static Bitmap healthRefill = BitmapFactory.decodeResource(context.getResources(), R.drawable.card8);
+    private static Bitmap grimReaper = BitmapFactory.decodeResource(context.getResources(),R.drawable.card13);
+    private static Bitmap loseATurn = BitmapFactory.decodeResource(context.getResources(),R.drawable.card19);
 
 
     private static Bitmap[] cardImages = {revive, healthRefill, grimReaper, loseATurn
 
     };
 
-    private static boolean[] isActive= {};
+    private static Boolean[] isActive = {false,false,false,false,};
 
+    public static ArrayList<ActionCard> generateCards(){
 
-    private ArrayList<ActionCard> actionCards = new ArrayList<>();
+        ArrayList<ActionCard> actionCards = new ArrayList<ActionCard>();
 
-
-    public void generateCards() {
-
-        for (int i = 0; i < cardNames.length; i++) {
-            actionCards.add(new ActionCard(cardNames[i], description[i], cardDepartments[i],  cardImages[i], isActive[i]));
+        for(int i=0; i < cardNames.length; i++){
+            actionCards.add(new ActionCard(cardNames[i], cardImages[i], isActive[i],description[i]));
         }
-    }
 
-    public ArrayList<ActionCard> getActionCards() {
         return actionCards;
     }
+
+
+
+
 
 }

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.andrew.ark9studios.R;
-
 import java.util.ArrayList;
 
 /**
@@ -52,12 +50,12 @@ public class CardHelperEnergy {
 
 
 
-        private static Bitmap paintKit= BitmapFactory.decodeResource(context.getResources(), R.drawable.card1);
-        private static Bitmap globe= BitmapFactory.decodeResource(context.getResources(), R.drawable.card2);
-        private static Bitmap computer= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
-        private static Bitmap controller= BitmapFactory.decodeResource(context.getResources(), R.drawable.card4);
-        private static Bitmap camera= BitmapFactory.decodeResource(context.getResources(), R.drawable.card5);
-        private static Bitmap scroll = BitmapFactory.decodeResource(context.getResources(), R.drawable.card6);
+        private static Bitmap paintKit= BitmapFactory.decodeResource(context.getResources(), R.drawable.card3);
+        private static Bitmap globe= BitmapFactory.decodeResource(context.getResources(), R.drawable.card8);
+        private static Bitmap computer= BitmapFactory.decodeResource(context.getResources(), R.drawable.card13);
+        private static Bitmap controller= BitmapFactory.decodeResource(context.getResources(), R.drawable.card20);
+        private static Bitmap camera= BitmapFactory.decodeResource(context.getResources(), R.drawable.card21);
+        private static Bitmap scroll = BitmapFactory.decodeResource(context.getResources(), R.drawable.card22);
 
 
 
@@ -67,20 +65,20 @@ public class CardHelperEnergy {
 
         };
 
-    private static boolean[] isActive= {};
+    private static boolean[] isActive = {false,false,false,false,false,false,false};
 
+        public static ArrayList<EnergyCard> generateCards(){
 
-    private ArrayList<EnergyCard> energyCards = new ArrayList<>();
+            ArrayList<EnergyCard> actionCards = new ArrayList<EnergyCard>();
 
-    public void generateCards() {
+            for(int i=0; i < cardNames.length; i++){
+                actionCards.add(new EnergyCard(cardNames[i], description[i],cardDepartment[i],
+               cardImages[i], isActive[i]));
+            }
 
-        for (int i = 0; i < cardNames.length; i++) {
-            energyCards.add(new EnergyCard(cardNames[i], description[i], cardDepartment[i], cardImages[i], isActive[i] ));
+            return actionCards;
         }
-    }
 
-    public ArrayList<EnergyCard> getEnergyCards() {
-        return energyCards;
+
     }
-}
 

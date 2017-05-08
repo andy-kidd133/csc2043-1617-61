@@ -7,6 +7,7 @@ import android.view.SurfaceHolder;
 
 /**
  * Created by Emma on 21/03/2017.
+ * game loop based on youtube tutorial
  */
 
 public class MainThread {
