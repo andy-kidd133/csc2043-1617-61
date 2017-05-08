@@ -183,7 +183,7 @@ public abstract class Card{
         /**
          * when a cards health reaches 0 or a player decides to send a card
          * to the graveyard it goes out of play and its values all revert to
-         * the original
+         * the original for the next time the game is played
          */
 
 
