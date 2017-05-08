@@ -110,19 +110,7 @@ public class Deck {
     /**
      * Created by Emma on 20/04/2017.
      */
-
-    public static class ActionCard extends Card {
-
-        private String description;
-        private Bitmap cardImage;
-
-        public ActionCard(String name, String description, Bitmap cardImg) {
-            super(name, cardImg);
-            this.cardImage = cardImg;
-        }
-
-
-        //methods
+        //methods in other classes
 
         public void cardAdvance() {
             //when card moves from hand to bench/active
@@ -141,4 +129,3 @@ public class Deck {
             //send it to graveyard
         }
     }
-}

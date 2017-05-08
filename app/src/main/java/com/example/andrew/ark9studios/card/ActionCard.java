@@ -11,14 +11,14 @@ public class ActionCard extends Card {
 
 
         private String description;
-        private CardDepartment cardDepartment;
+
         private Bitmap cardImage;
 
-        public ActionCard(String name, String description, CardDepartment cardDepartment, Bitmap cardImg, boolean isActive) {
-            super(name, cardImg, isActive);
-            this.cardImage = cardImg;
-        }
-
+    public ActionCard(String name, Bitmap cardImg, boolean isActive, String description) {
+        super(name, cardImg, isActive);
     }
+}
+
+
 
 

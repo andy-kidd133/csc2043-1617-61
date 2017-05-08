@@ -13,6 +13,8 @@ import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.R;
+import com.example.andrew.ark9studios.Strength;
+import com.example.andrew.ark9studios.Weakness;
 
 import java.util.ArrayList;
 
@@ -57,10 +59,19 @@ public class CardHelper {
     private static Bitmap geographyL1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.card6);
     private static Bitmap geographyL2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.card7);
 
+    private static Boolean[] isActive = {false,false,false,false,false,false,false};
 
+    private static int [] energiesAttached ={0,0,0,0,0,0,0};
 
     private static Bitmap[] cardImages = {painterL1, painterL2, historyL1, historyL2, geographyL1, geographyL2};
 
+    private static Strength[] strength = {
+
+    };
+
+    private static Weakness[] weakness = {
+
+    };
 
     private ArrayList<CharacterCard> characterCards = new ArrayList<>();
 
@@ -69,7 +80,7 @@ public class CardHelper {
 
         for (int i = 0; i < cardNames.length; i++) {
             characterCards.add(new CharacterCard(cardNames[i], health[i], attackCost[i], attackDamage[i],
-                    cardDepartments[i], cardImages[i]));
+                    cardDepartments[i], cardImages[i],strength[i], weakness[i], isActive[i],energiesAttached[i]));
         }
     }
 
@@ -101,4 +112,8 @@ public class CardHelper {
     public static Bitmap getCardImages(int i) {
         return cardImages[i];
     }
+
+    public static Boolean isActive(boolean isActive) { return isActive;}
+
+    public static int[] energiesAttached() {return energiesAttached;}
 }

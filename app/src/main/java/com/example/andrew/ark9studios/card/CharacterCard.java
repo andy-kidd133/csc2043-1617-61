@@ -29,7 +29,8 @@ public class CharacterCard extends Card {
     private int numberEnergiesAttached;
 
     public CharacterCard(String name, int health, int attackCost, int attackDamage, CardDepartment cardDepartment,
-                         Bitmap cardImg,boolean isActive, int numberEnergiesAttached) {
+                         Bitmap cardImg, Strength strength, Weakness weakness,
+                         boolean isActive, int numberEnergiesAttached) {
         super(name, cardImg, isActive);
         this.health = health;
         this.attackCost = attackCost;
@@ -89,6 +90,11 @@ public class CharacterCard extends Card {
         this.numberEnergiesAttached = numberEnergiesAttached;
     }
 
+
+    /**
+     * unable to fully implement following methods due to code missing from other classes
+     * which is necessary for the methods
+     */
     /**if energy is attached basic character card can be evolved into a higher level card
      **   only applies to a level 1 character card
      **  position of evolved card will be the same position in its array

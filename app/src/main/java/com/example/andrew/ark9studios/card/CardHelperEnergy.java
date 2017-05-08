@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * pass this info into the ArrayList of the energy cards in the Deck class
  */
 
-/*public class CardHelperEnergy {
+public class CardHelperEnergy {
 
         private static Context context;
 
@@ -65,18 +65,20 @@ import java.util.ArrayList;
 
         };
 
+    private static boolean[] isActive = {false,false,false,false,false,false,false};
 
         public static ArrayList<EnergyCard> generateCards(){
 
             ArrayList<EnergyCard> actionCards = new ArrayList<EnergyCard>();
 
             for(int i=0; i < cardNames.length; i++){
-                actionCards.add(new EnergyCard(cardNames[i], cardImages[i],cardDepartment[i],description[i]));
+                actionCards.add(new EnergyCard(cardNames[i], cardImages[i],cardDepartment[i],description[i],
+                isActive[i]));
             }
 
             return actionCards;
         }
 
 
-    }*/
+    }
 

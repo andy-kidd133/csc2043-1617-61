@@ -9,6 +9,7 @@ import android.view.SurfaceView;
 
 /**
  * Created by Emma on 21/03/2017.
+ * created with a youtube tutorial
  */
 
 //OTHER GAME LOOP

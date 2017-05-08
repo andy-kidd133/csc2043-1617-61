@@ -8,13 +8,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.andrew.ark9studios.Strength;
+import com.example.andrew.ark9studios.Weakness;
+
 import java.util.ArrayList;
 
 /**
  * This class will store information for each instance variable of the evolved character card objects
  * */
 
-/*public class CardHelperEvolved {
+public class CardHelperEvolved {
 
 
 
@@ -111,6 +114,10 @@ import java.util.ArrayList;
 
     };
 
+    private static Boolean[] isActive = {false,false,false,false,false,false,false,false,false};
+
+    private static int[] energiesAttached = {0,0,0,0,0,0,0,0,0};
+
 
     public static ArrayList<CharacterCardEvolved> generateCards(){
 
@@ -118,12 +125,12 @@ import java.util.ArrayList;
 
         for(int i=0; i < cardNames.length; i++){
             evolvedCharacterCards.add(new CharacterCardEvolved(cardNames[i], health[i], attackCost[i], attackDamage[i],
-                    cardDepartments[i], strength[i], weakness[i], cardImages[i]));
+                    cardDepartments[i], cardImages[i], strength[i],weakness[i], isActive[i],energiesAttached[i]));
         }
 
         return evolvedCharacterCards;
     }
 
 
-}*/
+}
 

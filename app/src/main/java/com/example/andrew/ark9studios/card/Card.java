@@ -8,7 +8,7 @@ import com.example.andrew.ark9studios.BoundingBox;
 import com.example.andrew.ark9studios.Vector2;
 
 /**
- * Created by Emma and Megan 09/02/2017.
+ * Created by Emma 09/02/2017.
  */
 /*
     Updated by Emma and Andrew 13/4/17
@@ -70,7 +70,7 @@ public abstract class Card{
         this.isActive = isActive;
     }
 
-
+    //Andrew Kidds method
     /*public void dragCard(final Bitmap cardImage)
     {
         cardImage.setOnTouchListener(new View.OnTouchListener() {
@@ -105,7 +105,10 @@ public abstract class Card{
 
     }
 
+
+    //Emma McAllister code again
     //only active card can attack opponents card
+    //unable to fully implement methods as code from other classes required which doesnt work
     public void attack() {
         if (isActive = true) {
             /**
@@ -126,7 +129,14 @@ public abstract class Card{
 
 
     //taking a card back from bench to hand or active to bench
+    //waiting on positions/names of placements on screen to update method
+    //to allow card to move forwards and backwards
     public void retreat() {
+        if(isActive = true) {
+            Log.e("QUBTIG","Are you sure you want to retreat from battle");
+            //move back
+            Log.e("QUBTIG", "Card has retreated");
+        }
         //reatreat card from active to bench - from bench to hand - from hand to graveyard
     }
 

@@ -15,7 +15,7 @@ package com.example.andrew.ark9studios.card;
  * this class will contain the information for each of the different action cards within the deck
  * and will pass this information into the ArrayList of the action cards in the Deck class
  **/
-/*
+
 
 public class CardHelperAction {
 
@@ -52,13 +52,14 @@ public class CardHelperAction {
 
     };
 
+    private static Boolean[] isActive = {false,false,false,false,};
 
     public static ArrayList<ActionCard> generateCards(){
 
         ArrayList<ActionCard> actionCards = new ArrayList<ActionCard>();
 
         for(int i=0; i < cardNames.length; i++){
-            actionCards.add(new ActionCard(cardNames[i], description[i],cardImages[i]));
+            actionCards.add(new ActionCard(cardNames[i], cardImages[i], isActive[i],description[i]));
         }
 
         return actionCards;
@@ -68,4 +69,4 @@ public class CardHelperAction {
 
 
 
-}*/
+}
