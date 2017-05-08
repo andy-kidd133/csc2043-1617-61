@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.AssetManager;
+import com.example.andrew.ark9studios.BoardSetupHelper;
 import com.example.andrew.ark9studios.BoundingBox;
-import com.example.andrew.ark9studios.DeckSetup;
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameGraphics.GraphicsHelper;
@@ -16,7 +16,8 @@ import com.example.andrew.ark9studios.Music.GameMusic;
 import com.example.andrew.ark9studios.GameObjectFactory;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.InputControl;
-import com.example.andrew.ark9studios.card.Deck;
+import com.example.andrew.ark9studios.Overlays.PauseOverlay;
+import com.example.andrew.ark9studios.Overlays.WinningOverlay;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;
@@ -92,6 +93,12 @@ public abstract class GameLevel extends GameScreen {
      */
     protected PauseOverlay pauseOverlay;
 
+
+    /**
+     * WinningOverlay object shown when the player has completed/won the level
+     */
+    private WinningOverlay winningOverlay;
+
     /**
      * Draw Rect for the background bitmap
      */
@@ -143,21 +150,7 @@ public abstract class GameLevel extends GameScreen {
      */
     private Bitmap deck_cardBitmap2;
 
-
-
-    DeckSetup deckSetup = new DeckSetup(game);
-    Deck deck = new Deck();
-
-    boolean touchedP1 = false;
-    boolean touchedP2 = false;
-    boolean firstDrawP1 = true;
-    boolean firstDrawP2 = true;
-    boolean enableDragP1 = false;
-    boolean enableDragP2 = false;
-    boolean snapped = false;
-
-    float x1,x2,y1,y2;
-
+    private BoardSetupHelper boardSetupHelper;
 
 
     /**
@@ -174,6 +167,8 @@ public abstract class GameLevel extends GameScreen {
         this.levelHeight=levelHeight;
         this.assetManager= game.getAssetManager();
         this.gameLvlState= gameLvlState.Running;
+
+        boardSetupHelper = new BoardSetupHelper(game);
 
     }
 
@@ -230,37 +225,7 @@ public abstract class GameLevel extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
-        if (backgroundBound == null) {
-            backgroundBound = new Rect(0, 0, graphics2DInterface.getSurfaceWidth(),
-                    graphics2DInterface.getSurfaceHeight());
-        }
-
-        if (player1BenchBound == null) {
-           player1BenchBound =  new Rect(30, graphics2DInterface.getSurfaceHeight() - 325, graphics2DInterface.getSurfaceWidth() - 30,
-                    graphics2DInterface.getSurfaceHeight() - 25);
-        }
-
-        if (enemyBench_Bound == null) {
-            enemyBench_Bound = new Rect(30, 25, graphics2DInterface.getSurfaceWidth() - 30, 325);
-        }
-
-        if (deck_cardBound1 == null) {
-            deck_cardBound1 = new Rect(50, graphics2DInterface.getSurfaceHeight() - 430, 150,
-                    graphics2DInterface.getSurfaceHeight() - 300);
-        }
-        if (deck_cardBound2 == null) {
-            deck_cardBound2 = new Rect(1050, 300, 1150, 430);
-        }
-
-
-        graphics2DInterface.drawBitmap(background,null,backgroundBound,null);
-        graphics2DInterface.drawBitmap(enemyBenchBitmap, null, enemyBench_Bound, null);
-        graphics2DInterface.drawBitmap(player1BenchBitmap, null, player1BenchBound, null);
-        graphics2DInterface.drawBitmap(deck_cardBitmap1, null, deck_cardBound1, null);
-        graphics2DInterface.drawBitmap(deck_cardBitmap2, null, deck_cardBound2, null);
-
-
-
+        boardSetupHelper.drawGameSetup(graphics2DInterface);
 
         if(gameLvlState == gameLvlState.Running || gameLvlState ==
              gameLvlState.Finishing){
@@ -278,9 +243,6 @@ public abstract class GameLevel extends GameScreen {
 
 
 
-
-
-
     /***
      * Functionality to run upon back to menu
      */
@@ -295,20 +257,27 @@ public abstract class GameLevel extends GameScreen {
     public void loadLevelAssets(){
       assetManager.emptyAssets();
 
-       assetManager.loadAndAddBitmap("Background", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("pauseButton", "images/pause_button.png");
-        assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
-        assetManager.loadAndAddBitmap("player1_bench", "images/player1bench.png");
-        assetManager.loadAndAddBitmap("enemy_bench", "images/enemy_bench.png");
-        assetManager.loadAndAddBitmap("deck_card1", "images/deck_card1.png");
-        assetManager.loadAndAddBitmap("deck_card2", "images/deck_card2.png");
-        assetManager.loadAndAddBitmap("ResumeButton", "images/pauseresume.png");
-        assetManager.loadAndAddBitmap("pauseMenu", "images/pausemenu.png");
-        assetManager.loadAndAddBitmap("SoundOnButton", "images/music_on.png");
-        assetManager.loadAndAddBitmap("SoundOff", "images/music_off.png");
-        assetManager.loadAndAddBitmap("mainMenuButton", "images/pausemainmenu.png");
-        assetManager.loadAndAddMusic("playGameMusic", "raw/laser_groove.mp3");
 
+        try {
+            assetManager.loadAndAddBitmap("Background", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("pauseButton", "images/pause_button.png");
+            assetManager.loadAndAddBitmap("backgroundLayer", "images/qubbg.png");
+            assetManager.loadAndAddBitmap("player1_bench", "images/player1bench.png");
+            assetManager.loadAndAddBitmap("enemy_bench", "images/enemy_bench.png");
+            assetManager.loadAndAddBitmap("deck_card1", "images/deck_card1.png");
+            assetManager.loadAndAddBitmap("deck_card2", "images/deck_card2.png");
+            assetManager.loadAndAddBitmap("ResumeButton", "images/pauseresume.png");
+            assetManager.loadAndAddBitmap("pauseMenu", "images/pausemenu.png");
+            assetManager.loadAndAddBitmap("SoundOnButton", "images/music_on.png");
+            assetManager.loadAndAddBitmap("SoundOff", "images/music_off.png");
+            assetManager.loadAndAddBitmap("mainMenuButton", "images/pausemainmenu.png");
+            assetManager.loadAndAddMusic("playGameMusic", "raw/laser_groove.mp3");
+            assetManager.loadAndAddBitmap("star1", "images/star1bright.png");
+            assetManager.loadAndAddBitmap("winningMenu", "images/youwonmenu.png");
+            assetManager.loadAndAddBitmap("restartButton", "images/reloadbutton.png");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         this.background =   assetManager.getBitmap("Background");
         this.player1BenchBitmap = assetManager.getBitmap("player1_bench");
@@ -328,6 +297,7 @@ public abstract class GameLevel extends GameScreen {
         setupInputControls();
         startBackgroundMusic();
         setupPauseOverlay();
+        setupWinMenu();
 
     }
 
@@ -377,6 +347,18 @@ public abstract class GameLevel extends GameScreen {
                 assetManager.getBitmap("pauseMenu"), this);
     }
 
+
+    /**
+     * Setup and instantiate the desired position of the WinningOverlay
+     */
+    protected void setupWinMenu(){
+        int width = 900;
+        int height = 700;
+        float x = 600.0f;
+        float y = 800.0f;
+       winningOverlay = new WinningOverlay(x, y, width, height,
+                assetManager.getBitmap("winningMenu"), this);
+    }
 
 
     /***

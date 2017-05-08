@@ -7,6 +7,7 @@ import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.Screens.GameLevel;
 import com.example.andrew.ark9studios.Screens.MainMenuScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+import com.example.andrew.ark9studios.utils.DeckSetup;
 
 /**
  * Created by Megan on 20/04/2017.
@@ -18,7 +19,7 @@ import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
  */
 public class GameLevelOne extends GameLevel {
 
-
+    private DeckSetup deckSetup;
 
 
     /**
@@ -28,6 +29,8 @@ public class GameLevelOne extends GameLevel {
 
     public GameLevelOne(Game game) {
         super("Game Level One", game, 800.0f, 4000.0f);
+
+        deckSetup = new DeckSetup(game);
 
         setUpLevel();
     }
@@ -63,6 +66,8 @@ public class GameLevelOne extends GameLevel {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
         super.draw(elapsedTime, graphics2DInterface);
+
+        deckSetup.initialGamePlay(graphics2DInterface, game);
 
     }
 

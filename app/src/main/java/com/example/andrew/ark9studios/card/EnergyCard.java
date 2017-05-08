@@ -17,11 +17,30 @@ public class EnergyCard extends Card {
     private CardDepartment cardDepartment;
     private final int ENERGY_VALUE = 1;
 
-    public EnergyCard(String name, Bitmap cardImage, CardDepartment cardDepartment, String description, boolean isActive) {
-        super(name, cardImage, isActive);
+    public EnergyCard(String name, String description, CardDepartment cardDepartment, Bitmap cardImage) {
+        super(name);
         this.description = description;
     }
 
 
+
+    //methods
+
+    public void cardAdvance() {
+        //when card moves from hand to bench/active
+    }
+
+    public void cardRetreat(){
+        //moves from active to bench
+    }
+
+    public void cardAttack() {
+
+
+    }
+
+    public void cardDeath() {
+        //send it to graveyard
+    }
 }
 
