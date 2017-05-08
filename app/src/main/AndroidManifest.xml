@@ -36,7 +36,6 @@
         <activity android:name=".activities.WelcomeActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.GameActivity" />
-        <activity android:name=".activities.ClosingActivity"></activity>
     </application>
 
 </manifest>

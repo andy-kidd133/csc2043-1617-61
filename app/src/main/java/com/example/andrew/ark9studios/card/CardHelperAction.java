@@ -43,6 +43,7 @@ public class CardHelperAction {
 
     };
 
+    private static CardDepartment[] cardDepartments={};
 
     private static Bitmap revive= BitmapFactory.decodeResource(context.getResources(), R.drawable.card1);
     private static Bitmap healthRefill = BitmapFactory.decodeResource(context.getResources(), R.drawable.card2);
@@ -54,6 +55,8 @@ public class CardHelperAction {
 
     };
 
+    private static boolean[] isActive= {};
+
 
     private ArrayList<ActionCard> actionCards = new ArrayList<>();
 
@@ -61,7 +64,7 @@ public class CardHelperAction {
     public void generateCards() {
 
         for (int i = 0; i < cardNames.length; i++) {
-            actionCards.add(new ActionCard(cardNames[i], description[i], cardImages[i]));
+            actionCards.add(new ActionCard(cardNames[i], description[i], cardDepartments[i],  cardImages[i], isActive[i]));
         }
     }
 

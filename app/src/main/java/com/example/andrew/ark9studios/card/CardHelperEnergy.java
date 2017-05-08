@@ -67,13 +67,15 @@ public class CardHelperEnergy {
 
         };
 
+    private static boolean[] isActive= {};
+
 
     private ArrayList<EnergyCard> energyCards = new ArrayList<>();
 
     public void generateCards() {
 
         for (int i = 0; i < cardNames.length; i++) {
-            energyCards.add(new EnergyCard(cardNames[i], description[i], cardDepartment[i], cardImages[i]));
+            energyCards.add(new EnergyCard(cardNames[i], description[i], cardDepartment[i], cardImages[i], isActive[i] ));
         }
     }
 

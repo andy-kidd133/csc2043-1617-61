@@ -8,12 +8,12 @@ import android.graphics.Bitmap;
 
 
 public class ActionCard extends Card {
-
     private String description;
-
-    public ActionCard(String name, String description, Bitmap cardImage) {
-        super(name);
-        this.description = description;
+    private CardDepartment cardDepartment;
+    private Bitmap cardImage;
+    public ActionCard(String name, String description, CardDepartment cardDepartment, Bitmap cardImg, boolean isActive) {
+        super(name, cardImg, isActive);
+        this.cardImage = cardImg;
     }
 }
 

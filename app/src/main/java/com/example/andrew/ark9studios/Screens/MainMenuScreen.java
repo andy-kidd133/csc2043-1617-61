@@ -3,7 +3,6 @@ package com.example.andrew.ark9studios.Screens;
 
 
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
@@ -13,7 +12,6 @@ import com.example.andrew.ark9studios.GameGraphics.Animation;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
-import com.example.andrew.ark9studios.GameLevelOne;
 import com.example.andrew.ark9studios.Music.GameMusic;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.Music.Sound;

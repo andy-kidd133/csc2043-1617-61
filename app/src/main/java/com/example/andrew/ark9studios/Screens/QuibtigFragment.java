@@ -1,4 +1,4 @@
-package com.example.andrew.ark9studios;
+package com.example.andrew.ark9studios.Screens;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

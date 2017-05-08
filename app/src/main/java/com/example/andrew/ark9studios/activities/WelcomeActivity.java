@@ -114,9 +114,6 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
 
 
     }
-
-
-
 }
 
 

@@ -42,8 +42,8 @@ public class BoardSetupHelper {
         assetManager.loadAndAddBitmap("enemyCard_deck", "images/enemyCard_deck.png");
         assetManager.loadAndAddBitmap("bench_Red", "images/bench_Red.png");
         assetManager.loadAndAddBitmap("bench_Blue", "images/bench_Blue.png");
-        assetManager.loadAndAddBitmap("p1activeLocation", "images/activeBound.png");
-        assetManager.loadAndAddBitmap("p2activeLocation", "images/activeBound.png");
+        assetManager.loadAndAddBitmap("p1activeLocation", "images/card1.png");
+        assetManager.loadAndAddBitmap("p2activeLocation", "images/card2.png");
 
 
         this.backgroundBitmap = assetManager.getBitmap("backgroundLayer");
