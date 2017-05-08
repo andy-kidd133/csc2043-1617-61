@@ -1,38 +1,34 @@
 package com.example.andrew.ark9studios.Screens;
 
-import com.example.andrew.ark9studios.BoardLocation;
-import com.example.andrew.ark9studios.BoardSetupHelper;
+
 import com.example.andrew.ark9studios.Game;
 import com.example.andrew.ark9studios.GameGraphics.Graphics2DInterface;
 import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
-import com.example.andrew.ark9studios.utils.DeckSetup;
+
 
 import java.util.List;
 
 
-
+/**
+ * Created by Megan on 23/02/2017.
+ */
 
 /**
- * Created by Andrew and Karl on 18/04/2017.
+ * Main Game Screen used by the Game feature branch to draw in bitmap and update events: dragging cards etc
  */
-//Test push for "Checkout as new local branch"
+
 public class MainGameScreen extends GameScreen {
 
     public static final String SCREEN_NAME = "MainGameScreen";
 
-    private BoardSetupHelper boardSetupHelper;
-    private BoardLocation boardLocation;
-    private DeckSetup deckSetup;
+
 
     public MainGameScreen(Game game){
         super(SCREEN_NAME, game);
 
-        boardSetupHelper = new BoardSetupHelper(game);
-        boardLocation = new BoardLocation();
-        deckSetup = new DeckSetup(game);
 
     }
 
@@ -47,7 +43,7 @@ public class MainGameScreen extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
-        //deckSetup.initialGamePlay(graphics2DInterface, game);
+
 
     }
 

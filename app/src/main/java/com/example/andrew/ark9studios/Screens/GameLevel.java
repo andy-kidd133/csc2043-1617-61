@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 
 import com.example.andrew.ark9studios.AssetManager;
+import com.example.andrew.ark9studios.BoardLocation;
 import com.example.andrew.ark9studios.BoardSetupHelper;
 import com.example.andrew.ark9studios.BoundingBox;
 import com.example.andrew.ark9studios.Game;
@@ -19,6 +20,8 @@ import com.example.andrew.ark9studios.InputControl;
 import com.example.andrew.ark9studios.Overlays.PauseOverlay;
 import com.example.andrew.ark9studios.Overlays.WinningOverlay;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
+import com.example.andrew.ark9studios.gameLvlState;
+import com.example.andrew.ark9studios.utils.DeckSetup;
 
 import java.util.List;
 
@@ -73,19 +76,10 @@ public abstract class GameLevel extends GameScreen {
     protected InputControl pauseButton;
 
 
-    /***
-     *
-     * Enum that describes possible level states
-     *
-     */
-    protected  enum gameLvlState{
-        Running, mainMenu, Paused, Finishing
-    }
-
     /**
      * Current game state
      */
-    protected gameLvlState gameLvlState;
+    private gameLvlState gameLvlState;
 
 
     /***
@@ -150,7 +144,10 @@ public abstract class GameLevel extends GameScreen {
      */
     private Bitmap deck_cardBitmap2;
 
+
     private BoardSetupHelper boardSetupHelper;
+    private BoardLocation boardLocation;
+    private DeckSetup deckSetup;
 
 
     /**
@@ -169,6 +166,8 @@ public abstract class GameLevel extends GameScreen {
         this.gameLvlState= gameLvlState.Running;
 
         boardSetupHelper = new BoardSetupHelper(game);
+        boardLocation = new BoardLocation();
+        deckSetup = new DeckSetup(game);
 
     }
 
@@ -225,7 +224,10 @@ public abstract class GameLevel extends GameScreen {
     @Override
     public void draw(ElapsedTime elapsedTime, Graphics2DInterface graphics2DInterface) {
 
+
+
         boardSetupHelper.drawGameSetup(graphics2DInterface);
+        deckSetup.initialGamePlay(graphics2DInterface, game);
 
         if(gameLvlState == gameLvlState.Running || gameLvlState ==
              gameLvlState.Finishing){
@@ -237,6 +239,9 @@ public abstract class GameLevel extends GameScreen {
             //draw the paused screen
             pauseOverlay.draw(elapsedTime,graphics2DInterface, layerViewport, screenViewport);
         }
+
+
+
 
 
     }
@@ -426,6 +431,12 @@ public abstract class GameLevel extends GameScreen {
         }
         return false;
     }
+
+
+    public gameLvlState getGameLvlState(){
+        return gameLvlState;
+    }
+
 
 
 }

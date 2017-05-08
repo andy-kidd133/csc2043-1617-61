@@ -2,8 +2,6 @@ package com.example.andrew.ark9studios.Screens;
 
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
@@ -14,7 +12,6 @@ import com.example.andrew.ark9studios.GameInput.GameTouchEvent;
 import com.example.andrew.ark9studios.GameInput.Input;
 import com.example.andrew.ark9studios.GameScreen;
 import com.example.andrew.ark9studios.Music.Sound;
-import com.example.andrew.ark9studios.activities.ClosingActivity;
 import com.example.andrew.ark9studios.gameInfrastructure.ElapsedTime;
 
 import java.util.List;

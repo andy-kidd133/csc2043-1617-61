@@ -142,7 +142,4 @@ public class LoginActivity extends Activity implements View.OnTouchListener {
             Toast.makeText(getApplicationContext(), "Wrong username/password", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 }
