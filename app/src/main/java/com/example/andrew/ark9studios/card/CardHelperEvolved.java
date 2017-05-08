@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.andrew.ark9studios.R;
 import com.example.andrew.ark9studios.Strength;
 import com.example.andrew.ark9studios.Weakness;
 

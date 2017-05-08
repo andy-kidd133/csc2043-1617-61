@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 /**
  * Created by Megan on 09/04/2017.
+ * adapted from online reading and tutorial
  */
 
 public class Session {

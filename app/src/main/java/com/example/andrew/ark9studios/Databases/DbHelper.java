@@ -12,7 +12,8 @@ import android.util.Log;
  */
 
 /**
- * Thia is the database helper class
+ * This is the database helper class
+ * adapted from online reading and tutorial
  */
 
 
