@@ -72,8 +72,8 @@ public class CardHelperEnergy {
             ArrayList<EnergyCard> actionCards = new ArrayList<EnergyCard>();
 
             for(int i=0; i < cardNames.length; i++){
-                actionCards.add(new EnergyCard(cardNames[i], cardImages[i],cardDepartment[i],description[i],
-                isActive[i]));
+                actionCards.add(new EnergyCard(cardNames[i], description[i],cardDepartment[i],
+               cardImages[i], isActive[i]));
             }
 
             return actionCards;
